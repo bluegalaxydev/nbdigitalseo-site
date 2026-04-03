@@ -344,12 +344,12 @@ export default function AISeoMarketingLandingPage() {
             </p>
 
             <div className="mt-9 flex flex-wrap gap-4">
-              <button
-                onClick={() => goTo('#checkout')}
-                className="rounded-full bg-teal-500 px-7 py-4 text-sm font-semibold text-white shadow-lg shadow-teal-500/20 transition hover:scale-[1.02]"
-              >
-                Get Monthly SEO Service
-              </button>
+<button
+  onClick={() => window.location.href = "https://buy.stripe.com/8x2cMXbu081d1Qkbjb9AA00"}
+  className="rounded-full bg-teal-500 px-7 py-4 text-sm font-semibold text-white"
+>
+  Start SEO Service
+</button>
 
               <a
                 href="#services"
@@ -642,7 +642,7 @@ function SiteHeader({ onNavigate }) {
         </nav>
 
         <button
-          onClick={() => onNavigate('#checkout')}
+onClick={() => window.location.href = "https://buy.stripe.com/8x2cMXbu081d1Qkbjb9AA00"}
           className="rounded-full bg-teal-500 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:scale-[1.02]"
         >
           Start for $150/mo
