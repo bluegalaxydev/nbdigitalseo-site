@@ -345,7 +345,7 @@ export default function AISeoMarketingLandingPage() {
 
             <div className="mt-9 flex flex-wrap gap-4">
 <button
-  onClick={() => window.location.href = "https://buy.stripe.com/8x2cMXbu081d1Qkbjb9AA00"}
+  onClick={() => window.location.href = "https://buy.stripe.com/8x2cMXbuO81d1Qkbjb9AA00"}
   className="rounded-full bg-teal-500 px-7 py-4 text-sm font-semibold text-white"
 >
   Start SEO Service
@@ -601,12 +601,12 @@ export default function AISeoMarketingLandingPage() {
             ))}
           </div>
 
-          <button
-            onClick={() => goTo('#checkout')}
-            className="mt-10 inline-flex rounded-full bg-teal-500 px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-teal-500/20 transition hover:scale-[1.02]"
-          >
-            Start SEO Service
-          </button>
+<button
+  onClick={() => window.location.href = "https://buy.stripe.com/8x2cMXbu081d1Qkbjb9AA00"}
+  className="mt-10 inline-flex rounded-full bg-teal-500 px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-teal-500/20 transition hover:scale-[1.02]"
+>
+  Start SEO Service
+</button>
         </div>
       </section>
     </div>
@@ -642,7 +642,7 @@ function SiteHeader({ onNavigate }) {
         </nav>
 
         <button
-onClick={() => window.location.href = "https://buy.stripe.com/8x2cMXbu081d1Qkbjb9AA00"}
+onClick={() => window.location.href = "https://buy.stripe.com/8x2cMXbuO81d1Qkbjb9AA00"}
           className="rounded-full bg-teal-500 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:scale-[1.02]"
         >
           Start for $150/mo
