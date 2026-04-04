@@ -10,7 +10,7 @@ export default function AISeoMarketingLandingPage() {
     notes: '',
   });
 
-  const stripeUrl = 'https://buy.stripe.com/8x2cMXbu081d1Qkbjb9AA00';
+  const stripeUrl = 'https://buy.stripe.com/8x2cMXbuO81d1Qkbjb9AA00';
   const formspreeEndpoint = 'https://formspree.io/f/xykbbzye';
 
   useEffect(() => {
