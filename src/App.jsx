@@ -31,36 +31,43 @@ export default function AISeoMarketingLandingPage() {
   const process = [
     {
       step: '01',
-      title: 'AI Crawl & Structure Review',
-      text: 'Our AI agents scan your site structure, metadata, internal linking, crawlability, indexation, and technical SEO signals.',
+      title: 'Submit your website',
+      text: 'Send us your website details, contact info, and any notes about your goals or current SEO challenges.',
     },
     {
       step: '02',
-      title: 'Ranking & Google Checks',
-      text: 'We review keyword rankings, visibility trends, and core Google-facing SEO foundations that impact discoverability.',
+      title: 'We analyze with AI',
+      text: 'Our AI workflow scans your site structure, rankings, metadata, internal linking, crawlability, and Google-facing SEO issues.',
     },
     {
       step: '03',
-      title: 'Monthly Executive Report',
-      text: 'You receive a clean monthly report with findings, risks, wins, and next-step recommendations you can act on immediately.',
+      title: 'Get your SEO report',
+      text: 'You receive a clean, actionable report with clear issues, opportunities, and next steps you can use right away.',
     },
   ];
 
   const highlights = [
-    '100% AI company',
+    '100% AI-powered workflow',
     'No setup fee',
     '$150 per month',
-    'Monthly SEO reporting',
-    'Advanced technical checks',
+    'Technical SEO checks included',
+    'Clear monthly action report',
+  ];
+
+  const trustPoints = [
+    'Trusted by growing businesses',
+    'AI-powered SEO insights in minutes',
+    'No contract. Cancel anytime',
+    'Built for founders and small teams',
   ];
 
   const benefits = [
     'AI-driven monthly SEO audit',
     'Actionable keyword ranking review',
     'Google framework and structure checks',
-    'Luxury-style minimal reporting UI',
+    'Clean, easy-to-read reporting',
     'Simple one-plan pricing',
-    'Designed for small business owners who want fast clarity',
+    'Designed for businesses that want fast clarity',
   ];
 
   const whoFor = [
@@ -162,7 +169,9 @@ export default function AISeoMarketingLandingPage() {
           <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
             <section className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm md:p-10">
               <div className="text-sm font-semibold uppercase tracking-[0.25em] text-teal-600">Client Details</div>
-              <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-900">Tell us about your business</h1>
+              <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-900">
+                Tell us about your business
+              </h1>
               <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-600">
                 Fill in your contact details and website URL first. Then continue to secure checkout.
               </p>
@@ -233,9 +242,9 @@ export default function AISeoMarketingLandingPage() {
 
             <aside className="rounded-[2rem] bg-slate-900 p-8 text-white shadow-xl md:p-10">
               <div className="text-sm font-semibold uppercase tracking-[0.25em] text-teal-300">Next Step</div>
-              <h2 className="mt-4 text-3xl font-semibold">Submit your details</h2>
+              <h2 className="mt-4 text-3xl font-semibold">Continue to checkout</h2>
               <p className="mt-4 text-base leading-7 text-slate-300">
-                After you submit, you will continue to secure Stripe checkout for your monthly AI SEO service.
+                After you submit, you will be redirected to secure Stripe checkout for your monthly AI SEO service.
               </p>
 
               <button
@@ -243,7 +252,7 @@ export default function AISeoMarketingLandingPage() {
                 form="lead-checkout-form"
                 className="mt-8 w-full rounded-full bg-teal-500 px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-teal-500/20 transition hover:scale-[1.02]"
               >
-                Submit
+                Submit & Continue
               </button>
 
               <div className="mt-8 rounded-[1.5rem] border border-white/10 bg-white/5 p-6">
@@ -281,8 +290,12 @@ export default function AISeoMarketingLandingPage() {
             <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-teal-100 text-3xl text-teal-600">
               ✓
             </div>
-            <div className="mt-8 text-sm font-semibold uppercase tracking-[0.3em] text-teal-600">Payment Successful</div>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-900 md:text-5xl">Thanks for your payment</h1>
+            <div className="mt-8 text-sm font-semibold uppercase tracking-[0.3em] text-teal-600">
+              Payment Successful
+            </div>
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-900 md:text-5xl">
+              Thanks for your payment
+            </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600">
               Your order has been received successfully. We will begin processing your monthly AI SEO service and follow up using the details you provided.
             </p>
@@ -318,37 +331,50 @@ export default function AISeoMarketingLandingPage() {
     <div className="min-h-screen bg-[#f7f8fb] text-slate-800">
       <SiteHeader />
 
-      <section className="relative overflow-hidden border-t border-slate-200/70">
+      <section id="home" className="relative overflow-hidden border-t border-slate-200/70">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(45,212,191,0.18),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(15,23,42,0.08),transparent_30%)]" />
         <div className="mx-auto grid max-w-7xl gap-16 px-6 py-20 lg:grid-cols-[1.1fr_0.9fr] lg:px-10 lg:py-28">
           <div className="relative z-10">
             <div className="mb-6 inline-flex items-center rounded-full border border-teal-200 bg-white px-4 py-2 text-sm font-medium text-teal-700 shadow-sm">
               AI SEO Marketing Services
             </div>
+
             <h1 className="max-w-3xl text-5xl font-semibold leading-tight tracking-tight text-slate-800 md:text-6xl">
-              Elegant SEO reporting, powered by AI.
+              Get a clear SEO report for your website, powered by AI.
             </h1>
+
             <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-600">
-              We provide monthly SEO services for businesses that want clarity, structure, and performance. Our AI robots inspect your website’s SEO architecture, check keyword visibility, review Google-facing framework issues, and deliver a complete report every month.
+              We analyze your website’s SEO structure, keyword visibility, technical issues, and Google-facing signals, then turn it into a simple report with clear next steps.
             </p>
+
             <p className="mt-5 text-xl font-semibold text-slate-800">$150/month. No setup fee.</p>
 
             <div className="mt-9 flex flex-wrap gap-4">
+              <button
+                onClick={() => goTo('#checkout')}
+                className="rounded-full bg-teal-500 px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-teal-500/20 transition hover:scale-[1.02]"
+              >
+                Get My SEO Report
+              </button>
+
               <a
-                href="#services"
+                href="#case-study"
                 className="rounded-full border border-slate-300 bg-white px-7 py-4 text-sm font-semibold text-slate-700 transition hover:border-slate-400"
               >
-                View Deliverables
+                View Sample Results
               </a>
             </div>
 
             <div className="mt-12 grid gap-4 sm:grid-cols-3">
               {[
                 ['Monthly Reports', 'Clear SEO findings every 30 days'],
-                ['AI Technical Audit', 'Architecture and Google checks'],
+                ['AI Technical Audit', 'Structure, metadata, and Google checks'],
                 ['Simple Pricing', 'One flat fee, no setup cost'],
               ].map(([title, text]) => (
-                <div key={title} className="rounded-3xl border border-white/70 bg-white/80 p-5 shadow-sm backdrop-blur">
+                <div
+                  key={title}
+                  className="rounded-3xl border border-white/70 bg-white/80 p-5 shadow-sm backdrop-blur"
+                >
                   <div className="text-sm font-semibold text-slate-900">{title}</div>
                   <div className="mt-2 text-sm leading-6 text-slate-600">{text}</div>
                 </div>
@@ -373,10 +399,10 @@ export default function AISeoMarketingLandingPage() {
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-sm uppercase tracking-[0.22em] text-teal-300">Live Service Snapshot</div>
-                    <div className="mt-3 text-3xl font-semibold">SEO Report in 90 Seconds</div>
+                    <div className="mt-3 text-3xl font-semibold">AI SEO Report</div>
                   </div>
                   <div className="flex h-16 w-16 items-center justify-center rounded-full bg-teal-400/90 text-2xl text-slate-900">
-                    ▶
+                    ✓
                   </div>
                 </div>
 
@@ -391,17 +417,36 @@ export default function AISeoMarketingLandingPage() {
                     </div>
                   ))}
                 </div>
+
+                <div className="mt-8 rounded-2xl border border-teal-400/20 bg-teal-400/10 p-5">
+                  <div className="text-sm uppercase tracking-[0.2em] text-teal-200">What clients want</div>
+                  <div className="mt-3 text-lg font-semibold text-white">
+                    Clear SEO problems. Clear next steps. No agency complexity.
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="services" className="mx-auto max-w-7xl px-6 py-6 lg:px-10">
+      <section className="mx-auto max-w-7xl px-6 py-4 lg:px-10">
+        <div className="grid gap-4 md:grid-cols-4">
+          {trustPoints.map((item) => (
+            <div key={item} className="rounded-[1.75rem] bg-white px-6 py-5 shadow-sm ring-1 ring-slate-200">
+              <div className="text-sm font-semibold text-slate-800">✓ {item}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="services" className="mx-auto max-w-7xl px-6 py-10 lg:px-10">
         <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
           <div className="rounded-[2rem] bg-white p-10 shadow-sm ring-1 ring-slate-200">
             <div className="text-sm font-semibold uppercase tracking-[0.25em] text-teal-600">What You Get</div>
-            <h2 className="mt-5 text-4xl font-semibold tracking-tight text-slate-800">Monthly AI SEO service built for clarity and action.</h2>
+            <h2 className="mt-5 text-4xl font-semibold tracking-tight text-slate-800">
+              Monthly AI SEO service built for clarity and action.
+            </h2>
             <p className="mt-6 text-lg leading-8 text-slate-600">
               This service is designed for businesses that need a premium but simple SEO monitoring system. Every month, we inspect your website with AI and give you a concise, actionable report that shows what matters most.
             </p>
@@ -409,11 +454,74 @@ export default function AISeoMarketingLandingPage() {
 
           <div className="grid gap-4 sm:grid-cols-2">
             {deliverables.map((item) => (
-              <div key={item} className="rounded-[2rem] bg-white p-6 shadow-sm ring-1 ring-slate-200 transition hover:-translate-y-1">
-                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-teal-50 text-teal-600">✓</div>
+              <div
+                key={item}
+                className="rounded-[2rem] bg-white p-6 shadow-sm ring-1 ring-slate-200 transition hover:-translate-y-1"
+              >
+                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-teal-50 text-teal-600">
+                  ✓
+                </div>
                 <div className="text-lg font-semibold leading-7 text-slate-800">{item}</div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="case-study" className="mx-auto max-w-7xl px-6 py-10 lg:px-10">
+        <div className="rounded-[2.5rem] border border-slate-200 bg-white p-10 shadow-sm md:p-14">
+          <div className="max-w-3xl">
+            <div className="text-sm font-semibold uppercase tracking-[0.25em] text-teal-600">Sample Report Example</div>
+            <h2 className="mt-4 text-4xl font-semibold tracking-tight text-slate-900 md:text-5xl">
+              Real SEO-style results your report can uncover
+            </h2>
+            <p className="mt-5 text-lg leading-8 text-slate-600">
+              See how we identify issues, opportunities, and technical gaps in minutes, then turn them into clear actions.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_0.95fr]">
+            <div className="grid gap-6 md:grid-cols-2">
+              <div className="rounded-[2rem] bg-slate-50 p-7 ring-1 ring-slate-200">
+                <div className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">Before</div>
+                <div className="mt-5 space-y-4 text-base text-slate-700">
+                  <div>• No keyword ranking tracking</div>
+                  <div>• Missing meta descriptions</div>
+                  <div>• Broken internal links</div>
+                  <div>• Weak indexing coverage</div>
+                </div>
+              </div>
+
+              <div className="rounded-[2rem] bg-teal-50 p-7 ring-1 ring-teal-100">
+                <div className="text-sm font-semibold uppercase tracking-[0.22em] text-teal-700">After</div>
+                <div className="mt-5 space-y-4 text-base text-slate-800">
+                  <div>• +35% keyword visibility</div>
+                  <div>• Fixed 12 technical issues</div>
+                  <div>• Improved indexing coverage</div>
+                  <div>• Clear 30-day priority roadmap</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-[2rem] bg-slate-900 p-8 text-white shadow-xl">
+              <div className="text-sm font-semibold uppercase tracking-[0.24em] text-teal-300">Client Snapshot</div>
+              <h3 className="mt-4 text-3xl font-semibold">SaaS startup website</h3>
+              <p className="mt-5 text-base leading-7 text-slate-300">
+                We analyzed the site using our AI SEO workflow and found multiple structural and technical gaps affecting visibility.
+              </p>
+
+              <div className="mt-8 space-y-4 text-base text-slate-100">
+                <div>✔ Identified ranking opportunities</div>
+                <div>✔ Flagged critical technical issues</div>
+                <div>✔ Prioritized the most important fixes</div>
+                <div>✔ Delivered actionable next steps</div>
+              </div>
+
+              <div className="mt-8 rounded-[1.5rem] border border-white/10 bg-white/5 p-6">
+                <div className="text-sm uppercase tracking-[0.2em] text-slate-300">Result</div>
+                <div className="mt-3 text-3xl font-semibold text-white">+35% visibility in 30 days</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -422,57 +530,23 @@ export default function AISeoMarketingLandingPage() {
         <div className="grid gap-6 md:grid-cols-3">
           {benefits.map((item) => (
             <div key={item} className="rounded-[2rem] bg-white p-7 shadow-sm ring-1 ring-slate-200">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-50 text-xl text-teal-600">✦</div>
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-50 text-xl text-teal-600">
+                ✦
+              </div>
               <div className="mt-5 text-lg font-semibold leading-7 text-slate-800">{item}</div>
             </div>
           ))}
         </div>
       </section>
 
-      <section id="team" className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-        <div className="rounded-[2.5rem] bg-gradient-to-br from-teal-400 via-teal-500 to-cyan-500 px-8 py-16 text-center shadow-xl shadow-teal-500/10 md:px-16">
-          <div className="text-sm font-semibold uppercase tracking-[0.28em] text-white/80">Our Team</div>
-          <h2 className="mt-5 text-4xl font-semibold tracking-tight text-white md:text-5xl">We use AI to inspect, improve, and help build better websites.</h2>
-          <div className="mx-auto mt-6 h-1 w-20 rounded-full bg-white/80" />
-          <p className="mx-auto mt-10 max-w-4xl text-xl leading-9 text-slate-50">
-            Our company combines SEO strategy with AI-driven website analysis. We use intelligent systems to review site structure, technical SEO health, internal organization, keyword positioning, and Google-related framework signals. The result is a cleaner process, sharper insights, and faster decision-making for every client.
-          </p>
-          <p className="mx-auto mt-8 max-w-4xl text-lg leading-8 text-teal-50">
-            Instead of relying on slow manual reviews, we use AI technology to check and structure websites at scale, then turn those findings into practical recommendations your business can understand and use.
-          </p>
+      <section id="how-it-works" className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+        <div className="mb-10 text-center">
+          <div className="text-sm font-semibold uppercase tracking-[0.25em] text-teal-600">How It Works</div>
+          <h2 className="mt-4 text-4xl font-semibold tracking-tight text-slate-900 md:text-5xl">
+            A simple 3-step process
+          </h2>
         </div>
-      </section>
 
-      <section id="why-us" className="mx-auto max-w-7xl px-6 py-8 lg:px-10">
-        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="rounded-[2rem] bg-white p-10 shadow-sm ring-1 ring-slate-200">
-            <div className="text-sm font-semibold uppercase tracking-[0.25em] text-teal-600">Why NB Digital AI</div>
-            <h2 className="mt-5 text-4xl font-semibold tracking-tight text-slate-800 md:text-5xl">We’re a 100% AI company.</h2>
-            <div className="mt-6 h-1 w-20 rounded-full bg-teal-400" />
-            <p className="mt-8 text-xl font-medium leading-9 text-slate-700">Fast analysis. Clean reporting. Technical SEO checks in seconds.</p>
-            <p className="mt-6 text-lg leading-8 text-slate-600">
-              Our advantage is speed. We use AI systems to process website structure, ranking signals, and technical SEO patterns in seconds, so clients get faster answers and clearer next steps without agency overhead.
-            </p>
-          </div>
-
-          <div className="rounded-[2rem] bg-slate-900 p-10 text-white shadow-xl">
-            <div className="space-y-4 text-lg text-slate-100">
-              <div className="flex items-center gap-3"><span className="text-teal-300">→</span> 100% AI-operated SEO workflow</div>
-              <div className="flex items-center gap-3"><span className="text-teal-300">→</span> Website audits processed in seconds</div>
-              <div className="flex items-center gap-3"><span className="text-teal-300">→</span> Monthly reports with prioritized fixes</div>
-              <div className="flex items-center gap-3"><span className="text-teal-300">→</span> Keyword ranking review included</div>
-              <div className="flex items-center gap-3"><span className="text-teal-300">→</span> Google framework checks included</div>
-            </div>
-
-            <div className="mx-auto mt-10 h-1 w-24 rounded-full bg-white/80" />
-            <div className="mt-10 text-center text-3xl font-semibold leading-tight text-white md:text-4xl">
-              AI detects issues in moments, so your business can move faster with confidence.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
         <div className="grid gap-6 md:grid-cols-3">
           {process.map((item) => (
             <div key={item.step} className="rounded-[2rem] bg-white p-8 shadow-sm ring-1 ring-slate-200">
@@ -484,11 +558,67 @@ export default function AISeoMarketingLandingPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-4 lg:px-10">
+      <section id="team" className="mx-auto max-w-7xl px-6 py-6 lg:px-10">
+        <div className="rounded-[2.5rem] bg-gradient-to-br from-teal-400 via-teal-500 to-cyan-500 px-8 py-16 text-center shadow-xl shadow-teal-500/10 md:px-16">
+          <div className="text-sm font-semibold uppercase tracking-[0.28em] text-white/80">Our Team</div>
+          <h2 className="mt-5 text-4xl font-semibold tracking-tight text-white md:text-5xl">
+            We use AI to inspect, improve, and help build better websites.
+          </h2>
+          <div className="mx-auto mt-6 h-1 w-20 rounded-full bg-white/80" />
+          <p className="mx-auto mt-10 max-w-4xl text-xl leading-9 text-slate-50">
+            Our company combines SEO strategy with AI-driven website analysis. We use intelligent systems to review site structure, technical SEO health, internal organization, keyword positioning, and Google-related framework signals.
+          </p>
+          <p className="mx-auto mt-8 max-w-4xl text-lg leading-8 text-teal-50">
+            Instead of relying on slow manual reviews, we use AI technology to check and structure websites at scale, then turn those findings into practical recommendations your business can understand and use.
+          </p>
+        </div>
+      </section>
+
+      <section id="pricing" className="mx-auto max-w-5xl px-6 pb-10 pt-20 lg:px-10">
+        <div className="rounded-[2.5rem] border border-slate-200 bg-white p-10 text-center shadow-xl shadow-slate-200/50 md:p-14">
+          <div className="text-sm font-semibold uppercase tracking-[0.3em] text-teal-600">Pricing</div>
+          <h2 className="mt-5 text-4xl font-semibold tracking-tight text-slate-800 md:text-5xl">
+            One monthly SEO service. One simple price.
+          </h2>
+          <div className="mt-8 text-6xl font-semibold tracking-tight text-slate-900">
+            $150<span className="text-2xl text-slate-500">/month</span>
+          </div>
+          <p className="mt-4 text-xl font-medium text-slate-700">No setup fee. No unnecessary complexity.</p>
+
+          <div className="mx-auto mt-10 grid max-w-3xl gap-4 text-left sm:grid-cols-2">
+            {[
+              'Monthly AI SEO report',
+              'Full site architecture check',
+              'Keyword ranking review',
+              'Google framework check',
+              'Actionable fixes and recommendations',
+              'Premium minimal service experience',
+            ].map((item) => (
+              <div
+                key={item}
+                className="rounded-2xl bg-slate-50 px-5 py-4 text-base text-slate-700 ring-1 ring-slate-200"
+              >
+                ✓ {item}
+              </div>
+            ))}
+          </div>
+
+          <button
+            onClick={() => goTo('#checkout')}
+            className="mt-10 inline-flex rounded-full bg-teal-500 px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-teal-500/20 transition hover:scale-[1.02]"
+          >
+            Get My SEO Report
+          </button>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-6 lg:px-10">
         <div className="rounded-[2.5rem] border border-slate-200 bg-white p-10 shadow-sm md:p-14">
           <div className="text-center">
             <div className="text-sm font-semibold uppercase tracking-[0.25em] text-teal-600">Frequently Asked Questions</div>
-            <h2 className="mt-4 text-4xl font-semibold tracking-tight text-slate-900">Simple answers for new clients</h2>
+            <h2 className="mt-4 text-4xl font-semibold tracking-tight text-slate-900">
+              Simple answers for new clients
+            </h2>
           </div>
           <div className="mt-10 grid gap-4">
             {faqs.map((item) => (
@@ -501,33 +631,20 @@ export default function AISeoMarketingLandingPage() {
         </div>
       </section>
 
-      <section id="pricing" className="mx-auto max-w-5xl px-6 pb-24 pt-20 lg:px-10">
-        <div className="rounded-[2.5rem] border border-slate-200 bg-white p-10 text-center shadow-xl shadow-slate-200/50 md:p-14">
-          <div className="text-sm font-semibold uppercase tracking-[0.3em] text-teal-600">Pricing</div>
-          <h2 className="mt-5 text-4xl font-semibold tracking-tight text-slate-800 md:text-5xl">One monthly SEO service. One simple price.</h2>
-          <div className="mt-8 text-6xl font-semibold tracking-tight text-slate-900">
-            $150<span className="text-2xl text-slate-500">/month</span>
-          </div>
-          <p className="mt-4 text-xl font-medium text-slate-700">No setup fee. No unnecessary complexity.</p>
-          <div className="mx-auto mt-10 grid max-w-3xl gap-4 text-left sm:grid-cols-2">
-            {[
-              'Monthly AI SEO report',
-              'Full site architecture check',
-              'Keyword ranking review',
-              'Google framework check',
-              'Actionable fixes and recommendations',
-              'Premium minimal service experience',
-            ].map((item) => (
-              <div key={item} className="rounded-2xl bg-slate-50 px-5 py-4 text-base text-slate-700 ring-1 ring-slate-200">
-                ✓ {item}
-              </div>
-            ))}
-          </div>
+      <section className="mx-auto max-w-5xl px-6 pb-24 pt-12 lg:px-10">
+        <div className="rounded-[2.5rem] bg-slate-900 px-8 py-12 text-center text-white shadow-xl md:px-14">
+          <div className="text-sm font-semibold uppercase tracking-[0.25em] text-teal-300">Ready to start?</div>
+          <h2 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
+            Get your first AI SEO report started today
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-300">
+            Submit your website, complete checkout, and we’ll begin your monthly SEO reporting workflow.
+          </p>
           <button
             onClick={() => goTo('#checkout')}
-            className="mt-10 inline-flex rounded-full bg-teal-500 px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-teal-500/20 transition hover:scale-[1.02]"
+            className="mt-8 inline-flex rounded-full bg-teal-500 px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-teal-500/20 transition hover:scale-[1.02]"
           >
-            Start SEO Service
+            Get My SEO Report
           </button>
         </div>
       </section>
@@ -546,8 +663,8 @@ function SiteHeader() {
 
         <nav className="hidden items-center gap-8 text-sm font-medium text-slate-600 md:flex">
           <a href="#services" className="transition hover:text-slate-900">Services</a>
-          <a href="#team" className="transition hover:text-slate-900">Our Team</a>
-          <a href="#why-us" className="transition hover:text-slate-900">Why Us</a>
+          <a href="#case-study" className="transition hover:text-slate-900">Case Study</a>
+          <a href="#how-it-works" className="transition hover:text-slate-900">How It Works</a>
           <a href="#pricing" className="transition hover:text-slate-900">Pricing</a>
         </nav>
       </div>
