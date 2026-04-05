@@ -1,6 +1,8 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ServicesPage from "./pages/ServicesPage";
 import { useEffect, useMemo, useState } from 'react';
 
-export default function AISeoMarketingLandingPage() {
+function HomePage() {
   const [route, setRoute] = useState(getRoute());
   const [form, setForm] = useState({
     fullName: '',
@@ -677,4 +679,14 @@ function getRoute() {
   if (hash === 'checkout') return 'checkout';
   if (hash === 'success') return 'success';
   return 'home';
+}
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/services" element={<ServicesPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
