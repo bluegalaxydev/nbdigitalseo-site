@@ -19,6 +19,23 @@ export default function AISeoMarketingLandingPage() {
     return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
 
+  // Dynamic page title + meta description per route (helps browsers & SEO crawlers)
+  useEffect(() => {
+    const titles = {
+      home: 'SEO Reporting & Architecture Audit Service | RankFrame SEO',
+      checkout: 'Start Your Monthly SEO Report | RankFrame SEO',
+      success: 'Payment Successful — Welcome to RankFrame SEO',
+    };
+    const descriptions = {
+      home: 'RankFrame SEO delivers monthly SEO reports, keyword ranking tracking, and SEO architecture audits for small businesses. $150/month. No setup fee.',
+      checkout: 'Submit your website details and start your monthly SEO reporting service. $150/month. No setup fee.',
+      success: 'Your RankFrame SEO subscription is confirmed. We will begin your monthly SEO audit and report.',
+    };
+    document.title = titles[route] || titles.home;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', descriptions[route] || descriptions.home);
+  }, [route]);
+
 const deliverables = [
   'Monthly SEO performance report',
   'Full website SEO architecture audit',
