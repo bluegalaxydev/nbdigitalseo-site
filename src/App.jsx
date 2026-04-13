@@ -254,35 +254,49 @@ export default function AISeoMarketingLandingPage() {
               </form>
             </section>
 
-            <aside className="gold-glow rounded-[2rem] border border-amber-500/20 bg-[#111111] p-8 text-white shadow-xl md:p-10">
-              <div className="text-sm font-semibold uppercase tracking-[0.25em] text-amber-400">Next Step</div>
-              <h2 className="mt-4 text-3xl font-semibold">Continue to checkout</h2>
-              <p className="mt-4 text-base leading-7 text-gray-400">After you submit, you will be redirected to secure Stripe checkout for your monthly AI SEO service.</p>
+            <aside className="space-y-6">
+              {/* SEO Inside — $150 checkout */}
+              <div className="gold-glow rounded-[2rem] border border-amber-500/20 bg-[#111111] p-8 text-white shadow-xl md:p-10">
+                <div className="text-sm font-semibold uppercase tracking-[0.25em] text-amber-400">SEO Inside</div>
+                <h2 className="mt-4 text-3xl font-semibold">On-Page SEO</h2>
+                <p className="mt-4 text-base leading-7 text-gray-400">Submit your details, then continue to secure Stripe checkout for your monthly on-page SEO service.</p>
 
-              <button
-                type="submit"
-                form="lead-checkout-form"
-                className="btn-shimmer mt-8 w-full rounded-full px-8 py-4 text-sm font-bold text-black shadow-lg transition hover:scale-[1.02]"
-              >
-                Submit & Continue →
-              </button>
+                <button
+                  type="submit"
+                  form="lead-checkout-form"
+                  className="btn-shimmer mt-8 w-full rounded-full px-8 py-4 text-sm font-bold text-black shadow-lg transition hover:scale-[1.02]"
+                >
+                  Subscribe — $150/mo →
+                </button>
 
-              <div className="mt-8 rounded-[1.5rem] border border-amber-500/10 bg-amber-500/5 p-6">
-                <div className="flex items-end justify-between gap-4 border-b border-white/10 pb-5">
-                  <div>
-                    <div className="text-sm uppercase tracking-[0.22em] text-gray-400">Plan</div>
-                    <div className="mt-2 text-xl font-semibold">RankFrame SEO</div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-sm text-gray-400">From</div>
+                <div className="mt-6 rounded-[1.5rem] border border-amber-500/10 bg-amber-500/5 p-6">
+                  <div className="flex items-end justify-between gap-4 border-b border-white/10 pb-5">
+                    <div>
+                      <div className="text-sm uppercase tracking-[0.22em] text-gray-400">Plan</div>
+                      <div className="mt-2 text-xl font-semibold">SEO Inside</div>
+                    </div>
                     <div className="text-3xl font-semibold text-amber-400">$150<span className="text-base font-normal text-gray-400">/mo</span></div>
                   </div>
+                  <div className="space-y-4 pt-5 text-gray-300">
+                    <div className="flex items-center justify-between"><span>Billing</span><span>{nextChargeText}</span></div>
+                    <div className="flex items-center justify-between"><span>Setup fee</span><span className="text-amber-400">$0</span></div>
+                  </div>
                 </div>
-                <div className="space-y-4 pt-5 text-gray-300">
-                  <div className="flex items-center justify-between"><span>Billing</span><span>{nextChargeText}</span></div>
-                  <div className="flex items-center justify-between"><span>Setup fee</span><span className="text-amber-400">$0</span></div>
-                  <div className="flex items-center justify-between"><span>Plans</span><span className="text-right text-sm">SEO Inside · SEO Inside + Outside</span></div>
+              </div>
+
+              {/* SEO Inside + Outside — $1,000 contact */}
+              <div className="rounded-[2rem] border border-gray-700 bg-[#141414] p-8 text-white md:p-10">
+                <div className="flex items-center gap-3">
+                  <div className="text-sm font-semibold uppercase tracking-[0.25em] text-amber-400">SEO Inside + Outside</div>
+                  <span className="rounded-full bg-amber-500/20 px-3 py-1 text-xs font-bold text-amber-400">$1,000/mo</span>
                 </div>
+                <p className="mt-4 text-base leading-7 text-gray-400">Everything in SEO Inside, plus off-page Google Trust authority building — backlinks, citations, and domain authority growth.</p>
+                <a
+                  href="mailto:zeuscapitalholdings@gmail.com?subject=SEO%20Inside%20%2B%20Outside%20—%20$1,000/mo%20Plan&body=Hi%20RankFrame%20SEO,%0A%0AI'm%20interested%20in%20the%20SEO%20Inside%20%2B%20Outside%20plan%20($1,000/month).%0A%0AMy%20website:%20%0A%0AThanks!"
+                  className="mt-6 inline-flex w-full items-center justify-center rounded-full border border-amber-500/40 bg-amber-500/10 px-8 py-4 text-sm font-bold text-amber-400 transition hover:bg-amber-500/20 hover:scale-[1.02]"
+                >
+                  Contact Us for $1,000/mo Plan →
+                </a>
               </div>
             </aside>
           </div>
