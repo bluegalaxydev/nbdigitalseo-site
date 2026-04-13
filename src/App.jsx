@@ -44,8 +44,12 @@ export default function AISeoMarketingLandingPage() {
     notes: '',
   });
 
-  const stripeUrl = 'https://buy.stripe.com/8x2cMXbuO81d1Qkbjb9AA00';
+  const stripeUrls = {
+    inside: 'https://buy.stripe.com/8x2cMXbuO81d1Qkbjb9AA00',
+    outside: 'https://buy.stripe.com/eVqeV556q5T51Qkbjb9AA01',
+  };
   const formspreeEndpoint = 'https://formspree.io/f/xykbbzye';
+  const [selectedPlan, setSelectedPlan] = useState('inside');
 
   useEffect(() => {
     const onHashChange = () => setRoute(getRoute());
@@ -60,7 +64,7 @@ export default function AISeoMarketingLandingPage() {
       success: 'Payment Successful — Welcome to RankFrame SEO',
     };
     const descriptions = {
-      home: 'RankFrame SEO delivers on-page SEO architecture setup and off-page Google Trust building. SEO Inside from $150/month. Full SEO growth from $1,000/month.',
+      home: 'RankFrame SEO delivers on-page SEO architecture setup and off-page Google Trust building. SEO Inside from $150/month. Full SEO growth from $750/month.',
       checkout: 'Submit your website details and start your monthly SEO reporting service. $150/month. No setup fee.',
       success: 'Your RankFrame SEO subscription is confirmed. We will begin your monthly SEO audit and report.',
     };
@@ -141,11 +145,11 @@ export default function AISeoMarketingLandingPage() {
     },
     {
       q: 'What is the difference between SEO Inside and SEO Outside?',
-      a: 'SEO Inside ($150/month) covers on-page optimization — architecture, meta tags, schema, sitemap, and internal linking. SEO Outside ($1,000/month) adds off-page authority building — backlinks, citations, and Google Trust signals that boost your domain authority.',
+      a: 'SEO Inside ($150/month) covers on-page optimization — architecture setup, meta tags, schema markup, sitemap, and internal linking with monthly reporting. SEO Inside + Outside ($750/month) includes everything in SEO Inside, plus external backlink acquisition (10+ quality links/month), guest post outreach on high-DA sites, 50+ business directory citations, competitor backlink gap analysis, toxic link audits, brand mention monitoring, and a dedicated SEO strategist for long-term deep collaboration.',
     },
     {
       q: 'Is there any setup fee?',
-      a: 'No. Both plans have no setup fee. Start at $150/month for SEO Inside, or $1,000/month for the complete SEO Inside + Outside package.',
+      a: 'No. Both plans have no setup fee. Start at $150/month for SEO Inside, or $750/month for the complete SEO Inside + Outside package.',
     },
     {
       q: 'Who is this service best for?',
@@ -196,7 +200,7 @@ export default function AISeoMarketingLandingPage() {
       alert('We could not submit your details right now. Please try again.');
       return;
     }
-    window.location.href = stripeUrl;
+    window.location.href = stripeUrls[selectedPlan];
   };
 
   /* ═══════════ CHECKOUT PAGE ═══════════ */
@@ -255,48 +259,70 @@ export default function AISeoMarketingLandingPage() {
             </section>
 
             <aside className="space-y-6">
-              {/* SEO Inside — $150 checkout */}
+              {/* Plan selector tabs */}
+              <div className="flex rounded-full border border-gray-700 bg-[#111111] p-1">
+                <button
+                  onClick={() => setSelectedPlan('inside')}
+                  className={`flex-1 rounded-full px-4 py-3 text-sm font-bold transition ${selectedPlan === 'inside' ? 'bg-amber-500 text-black' : 'text-gray-400 hover:text-white'}`}
+                >
+                  SEO Inside · $150/mo
+                </button>
+                <button
+                  onClick={() => setSelectedPlan('outside')}
+                  className={`flex-1 rounded-full px-4 py-3 text-sm font-bold transition ${selectedPlan === 'outside' ? 'bg-amber-500 text-black' : 'text-gray-400 hover:text-white'}`}
+                >
+                  Inside + Outside · $750/mo
+                </button>
+              </div>
+
+              {/* Dynamic plan card */}
               <div className="gold-glow rounded-[2rem] border border-amber-500/20 bg-[#111111] p-8 text-white shadow-xl md:p-10">
-                <div className="text-sm font-semibold uppercase tracking-[0.25em] text-amber-400">SEO Inside</div>
-                <h2 className="mt-4 text-3xl font-semibold">On-Page SEO</h2>
-                <p className="mt-4 text-base leading-7 text-gray-400">Submit your details, then continue to secure Stripe checkout for your monthly on-page SEO service.</p>
+                <div className="text-sm font-semibold uppercase tracking-[0.25em] text-amber-400">
+                  {selectedPlan === 'inside' ? 'SEO Inside' : 'SEO Inside + Outside'}
+                </div>
+                <h2 className="mt-4 text-3xl font-semibold">
+                  {selectedPlan === 'inside' ? 'On-Page SEO' : 'Complete SEO Growth'}
+                </h2>
+                <p className="mt-4 text-base leading-7 text-gray-400">
+                  {selectedPlan === 'inside'
+                    ? 'Submit your details, then continue to secure Stripe checkout for your monthly on-page SEO architecture & reporting service.'
+                    : 'Submit your details, then continue to secure Stripe checkout. Includes everything in SEO Inside plus external backlink building & long-term deep SEO partnership.'}
+                </p>
+
+                {selectedPlan === 'outside' && (
+                  <div className="mt-4 grid grid-cols-2 gap-2 text-xs text-gray-500">
+                    <span>✓ 10+ backlinks/month</span>
+                    <span>✓ Guest post outreach</span>
+                    <span>✓ 50+ directory citations</span>
+                    <span>✓ Competitor gap analysis</span>
+                    <span>✓ DA & trust flow tracking</span>
+                    <span>✓ Dedicated SEO strategist</span>
+                  </div>
+                )}
 
                 <button
                   type="submit"
                   form="lead-checkout-form"
                   className="btn-shimmer mt-8 w-full rounded-full px-8 py-4 text-sm font-bold text-black shadow-lg transition hover:scale-[1.02]"
                 >
-                  Subscribe — $150/mo →
+                  Subscribe — {selectedPlan === 'inside' ? '$150' : '$750'}/mo →
                 </button>
 
                 <div className="mt-6 rounded-[1.5rem] border border-amber-500/10 bg-amber-500/5 p-6">
                   <div className="flex items-end justify-between gap-4 border-b border-white/10 pb-5">
                     <div>
                       <div className="text-sm uppercase tracking-[0.22em] text-gray-400">Plan</div>
-                      <div className="mt-2 text-xl font-semibold">SEO Inside</div>
+                      <div className="mt-2 text-xl font-semibold">{selectedPlan === 'inside' ? 'SEO Inside' : 'SEO Inside + Outside'}</div>
                     </div>
-                    <div className="text-3xl font-semibold text-amber-400">$150<span className="text-base font-normal text-gray-400">/mo</span></div>
+                    <div className="text-3xl font-semibold text-amber-400">
+                      {selectedPlan === 'inside' ? '$150' : '$750'}<span className="text-base font-normal text-gray-400">/mo</span>
+                    </div>
                   </div>
                   <div className="space-y-4 pt-5 text-gray-300">
                     <div className="flex items-center justify-between"><span>Billing</span><span>{nextChargeText}</span></div>
                     <div className="flex items-center justify-between"><span>Setup fee</span><span className="text-amber-400">$0</span></div>
                   </div>
                 </div>
-              </div>
-
-              {/* SEO Inside + Outside — $1,000 contact */}
-              <div className="rounded-[2rem] border border-gray-700 bg-[#141414] p-8 text-white md:p-10">
-                <div className="flex items-center gap-3">
-                  <div className="text-sm font-semibold uppercase tracking-[0.25em] text-amber-400">SEO Inside + Outside</div>
-                  <span className="rounded-full bg-amber-500/20 px-3 py-1 text-xs font-bold text-amber-400">$1,000/mo</span>
-                </div>
-                <p className="mt-4 text-base leading-7 text-gray-400">Everything in SEO Inside, plus off-page Google Trust authority building — backlinks, citations, and domain authority growth.</p>
-                <a
-                  href="mailto:zeuscapitalholdings@gmail.com?subject=SEO%20Inside%20%2B%20Outside%20—%20$1,000/mo%20Plan&body=Hi%20RankFrame%20SEO,%0A%0AI'm%20interested%20in%20the%20SEO%20Inside%20%2B%20Outside%20plan%20($1,000/month).%0A%0AMy%20website:%20%0A%0AThanks!"
-                  className="mt-6 inline-flex w-full items-center justify-center rounded-full border border-amber-500/40 bg-amber-500/10 px-8 py-4 text-sm font-bold text-amber-400 transition hover:bg-amber-500/20 hover:scale-[1.02]"
-                >
-                  Contact Us for $1,000/mo Plan →
-                </a>
               </div>
             </aside>
           </div>
@@ -751,34 +777,38 @@ export default function AISeoMarketingLandingPage() {
                   ))}
                 </div>
                 <button
-                  onClick={() => goTo('#checkout')}
+                  onClick={() => { setSelectedPlan('inside'); goTo('#checkout'); }}
                   className="mt-8 w-full rounded-full border border-amber-500/30 bg-transparent px-6 py-3.5 text-sm font-bold text-amber-400 transition hover:bg-amber-500/10"
                 >
                   Start SEO Inside →
                 </button>
               </div>
 
-              {/* SEO Outside Plan */}
+              {/* SEO Inside + Outside Plan */}
               <div className="gold-glow relative rounded-[2rem] border border-amber-500/30 bg-[#141414] p-8 md:p-10 text-left">
                 <div className="absolute -top-3 right-8 rounded-full bg-amber-500 px-4 py-1 text-xs font-bold text-black">RECOMMENDED</div>
                 <div className="text-xs font-bold uppercase tracking-[0.3em] text-amber-500">Complete Growth</div>
                 <h3 className="mt-3 text-2xl font-bold text-white">SEO Inside + Outside</h3>
-                <p className="mt-2 text-sm text-gray-400">Full on-page setup + off-page Google Trust authority building</p>
+                <p className="mt-2 text-sm text-gray-400">Full on-page setup + off-page backlink building & long-term deep SEO partnership</p>
                 <div className="mt-6">
-                  <span className="text-5xl font-bold text-white">$1,000</span>
+                  <span className="text-5xl font-bold text-white">$750</span>
                   <span className="text-xl text-gray-500">/month</span>
                 </div>
-                <p className="mt-2 text-sm text-amber-400/70">Everything in SEO Inside, plus authority building</p>
+                <p className="mt-2 text-sm text-amber-400/70">Everything in SEO Inside, plus dedicated authority building</p>
                 <div className="mt-8 space-y-3">
                   {[
-                    'Everything in SEO Inside plan',
-                    'Google Trust & authority signal building',
-                    'High-quality backlink acquisition',
-                    'Business directory & citation building',
-                    'Content marketing for link building',
-                    'Competitor backlink analysis',
-                    'Domain authority growth tracking',
-                    'Monthly off-page SEO progress report',
+                    'Everything in SEO Inside plan included',
+                    'External backlink strategy & acquisition (10+ quality links/month)',
+                    'Guest post outreach on high-DA sites',
+                    'Google Business Profile optimization',
+                    'Business directory & citation building (50+ directories)',
+                    'Competitor backlink gap analysis & reverse engineering',
+                    'Content marketing for natural link attraction',
+                    'Domain authority (DA) & trust flow growth tracking',
+                    'Toxic backlink audit & disavow management',
+                    'Brand mention monitoring & link reclamation',
+                    'Dedicated SEO strategist for long-term partnership',
+                    'Monthly off-page SEO progress report with ROI metrics',
                   ].map((item) => (
                     <div key={item} className="flex items-start gap-3 text-sm text-gray-300">
                       <span className="mt-0.5 text-amber-500">✓</span> {item}
@@ -786,7 +816,7 @@ export default function AISeoMarketingLandingPage() {
                   ))}
                 </div>
                 <button
-                  onClick={() => goTo('#checkout')}
+                  onClick={() => { setSelectedPlan('outside'); goTo('#checkout'); }}
                   className="btn-shimmer mt-8 w-full rounded-full px-6 py-3.5 text-sm font-bold text-black shadow-lg transition hover:scale-[1.02]"
                 >
                   Start Full SEO Growth →
