@@ -1,4 +1,7 @@
 import { useEffect, useMemo, useState, useRef, useCallback } from 'react';
+import { posts, getPostBySlug } from './blog/posts.js';
+
+const SITE_URL = 'https://rankframeseo.com';
 
 /* ─── Intersection Observer hook for scroll animations ─── */
 function useInView(options = {}) {
@@ -62,15 +65,43 @@ export default function AISeoMarketingLandingPage() {
       home: 'SEO Reporting & Architecture Audit Service | RankFrame SEO',
       checkout: 'Start Your Monthly SEO Report | RankFrame SEO',
       success: 'Payment Successful — Welcome to RankFrame SEO',
+      blog: 'SEO Blog — Technical SEO Insights | RankFrame SEO',
     };
     const descriptions = {
       home: 'RankFrame SEO delivers on-page SEO architecture setup and off-page Google Trust building. SEO Inside from $150/month. Full SEO growth from $750/month.',
       checkout: 'Submit your website details and start your monthly SEO reporting service. $150/month. No setup fee.',
       success: 'Your RankFrame SEO subscription is confirmed. We will begin your monthly SEO audit and report.',
+      blog: 'Articles, playbooks, and case studies on technical SEO, architecture, schema markup, Core Web Vitals and off-page trust building.',
     };
-    document.title = titles[route] || titles.home;
+
+    let title = titles[route] || titles.home;
+    let description = descriptions[route] || descriptions.home;
+    let canonical = SITE_URL + '/#' + (route === 'home' ? '' : route);
+
+    if (route === 'blog-post') {
+      const post = getPostBySlug(getBlogSlug());
+      if (post) {
+        title = post.title + ' | RankFrame SEO Blog';
+        description = post.excerpt;
+        canonical = SITE_URL + '/#blog/' + post.slug;
+      } else {
+        title = 'Article Not Found | RankFrame SEO';
+        description = 'The article you are looking for could not be found.';
+      }
+    }
+
+    document.title = title;
     const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) metaDesc.setAttribute('content', descriptions[route] || descriptions.home);
+    if (metaDesc) metaDesc.setAttribute('content', description);
+
+    // Manage canonical link
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (!canonicalLink) {
+      canonicalLink = document.createElement('link');
+      canonicalLink.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.setAttribute('href', canonical);
   }, [route]);
 
   const deliverables = [
@@ -366,6 +397,144 @@ export default function AISeoMarketingLandingPage() {
               </button>
             </div>
           </section>
+        </main>
+        <SiteFooter />
+      </div>
+    );
+  }
+
+  /* ═══════════ BLOG LIST ═══════════ */
+  if (route === 'blog') {
+    return (
+      <div className="grain-overlay min-h-screen bg-[#0a0a0a] text-gray-100">
+        <SiteHeader goTo={goTo} />
+        <main className="mx-auto max-w-5xl px-6 py-20 lg:px-10">
+          <div className="mb-10 text-center">
+            <div className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-500">RankFrame Blog</div>
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl">SEO Architecture Insights</h1>
+            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-400">
+              Playbooks, audits, and field notes on technical SEO, schema markup, internal linking, and Core Web Vitals — written for small businesses that want to stop being invisible on Google.
+            </p>
+          </div>
+
+          <div className="grid gap-6">
+            {posts.map((post) => (
+              <a
+                key={post.slug}
+                href={`#blog/${post.slug}`}
+                className="group block rounded-[2rem] border border-gray-800 bg-[#141414] p-8 transition hover:border-amber-500/40 hover:bg-[#181818] md:p-10"
+              >
+                <div className="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.25em] text-gray-500">
+                  <time dateTime={post.date}>{formatDate(post.date)}</time>
+                  <span>·</span>
+                  <span>{post.readTime}</span>
+                  <span>·</span>
+                  <span className="text-amber-500">{post.author}</span>
+                </div>
+                <h2 className="mt-4 text-2xl font-semibold tracking-tight text-white transition group-hover:text-amber-400 md:text-3xl">
+                  {post.title}
+                </h2>
+                <p className="mt-4 text-base leading-7 text-gray-400">{post.excerpt}</p>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {post.tags.map((tag) => (
+                    <span key={tag} className="rounded-full border border-gray-700 bg-[#1a1a1a] px-3 py-1 text-xs text-gray-400">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-6 text-sm font-semibold text-amber-400 transition group-hover:translate-x-1">
+                  Read article →
+                </div>
+              </a>
+            ))}
+          </div>
+        </main>
+        <SiteFooter />
+      </div>
+    );
+  }
+
+  /* ═══════════ BLOG POST ═══════════ */
+  if (route === 'blog-post') {
+    const post = getPostBySlug(getBlogSlug());
+    if (!post) {
+      return (
+        <div className="grain-overlay min-h-screen bg-[#0a0a0a] text-gray-100">
+          <SiteHeader goTo={goTo} />
+          <main className="mx-auto max-w-3xl px-6 py-24 text-center lg:px-10">
+            <h1 className="text-4xl font-semibold text-white">Article not found</h1>
+            <p className="mt-4 text-gray-400">The article you're looking for doesn't exist or has been moved.</p>
+            <button
+              onClick={() => goTo('#blog')}
+              className="mt-10 rounded-full border border-gray-700 bg-[#141414] px-5 py-3 text-sm font-semibold text-gray-300 transition hover:border-amber-500/50 hover:text-amber-400"
+            >
+              ← Back to blog
+            </button>
+          </main>
+          <SiteFooter />
+        </div>
+      );
+    }
+    return (
+      <div className="grain-overlay min-h-screen bg-[#0a0a0a] text-gray-100">
+        <SiteHeader goTo={goTo} />
+        <main className="mx-auto max-w-3xl px-6 py-16 lg:px-10">
+          <div className="mb-8">
+            <button
+              onClick={() => goTo('#blog')}
+              className="rounded-full border border-gray-700 bg-[#141414] px-4 py-2 text-sm font-semibold text-gray-300 transition hover:border-amber-500/50 hover:text-amber-400"
+            >
+              ← All articles
+            </button>
+          </div>
+          <article>
+            <header className="mb-10">
+              <div className="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.25em] text-gray-500">
+                <time dateTime={post.date}>{formatDate(post.date)}</time>
+                <span>·</span>
+                <span>{post.readTime}</span>
+                <span>·</span>
+                <span className="text-amber-500">{post.author}</span>
+              </div>
+              <h1 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
+                {post.title}
+              </h1>
+              <p className="mt-6 text-lg leading-8 text-gray-400">{post.excerpt}</p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {post.tags.map((tag) => (
+                  <span key={tag} className="rounded-full border border-gray-700 bg-[#1a1a1a] px-3 py-1 text-xs text-gray-400">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </header>
+
+            <div className="prose-custom">
+              <Markdown source={post.content} />
+            </div>
+
+            <aside className="mt-14 rounded-[2rem] border border-amber-500/20 bg-gradient-to-br from-[#141414] to-[#1a1a1a] p-8 md:p-10">
+              <div className="text-sm font-semibold uppercase tracking-[0.25em] text-amber-400">Ready to fix your SEO architecture?</div>
+              <h3 className="mt-3 text-2xl font-semibold text-white md:text-3xl">Get a monthly SEO audit from RankFrame</h3>
+              <p className="mt-4 text-base leading-7 text-gray-400">
+                We handle title tags, schema markup, internal linking, and technical fixes starting at <span className="text-amber-400 font-semibold">$150/month</span>. Add backlink building and authority growth at <span className="text-amber-400 font-semibold">$750/month</span>.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <button
+                  onClick={() => goTo('#checkout')}
+                  className="btn-shimmer rounded-full px-6 py-3 text-sm font-bold text-black transition hover:scale-[1.02]"
+                >
+                  Start your SEO report
+                </button>
+                <button
+                  onClick={() => goTo('#pricing')}
+                  className="rounded-full border border-gray-700 bg-[#141414] px-6 py-3 text-sm font-semibold text-gray-300 transition hover:border-amber-500/50 hover:text-amber-400"
+                >
+                  See pricing
+                </button>
+              </div>
+            </aside>
+          </article>
         </main>
         <SiteFooter />
       </div>
@@ -883,6 +1052,7 @@ function SiteHeader({ goTo }) {
     ['#case-study', 'Case Study'],
     ['#how-it-works', 'How It Works'],
     ['#pricing', 'Pricing'],
+    ['#blog', 'Blog'],
   ];
 
   return (
@@ -964,6 +1134,7 @@ function SiteFooter() {
                 ['#case-study', 'Case Study'],
                 ['#how-it-works', 'How It Works'],
                 ['#pricing', 'Pricing'],
+                ['#blog', 'Blog'],
               ].map(([href, label]) => (
                 <a key={href} href={href} className="text-sm text-gray-400 transition hover:text-amber-400">{label}</a>
               ))}
@@ -998,9 +1169,169 @@ function SiteFooter() {
   );
 }
 
+function formatDate(iso) {
+  try {
+    return new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  } catch {
+    return iso;
+  }
+}
+
+/* Render a limited Markdown subset safely (no HTML passthrough).
+   Supports: # h1, ## h2, ### h3, **bold**, *italic*, `code`, lists (- and 1.),
+   code fences ```...```, paragraphs. */
+function renderInline(text, keyPrefix) {
+  // Tokenize inline: **bold**, *italic*, `code`
+  const parts = [];
+  const regex = /(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`)/g;
+  let last = 0;
+  let m;
+  let i = 0;
+  while ((m = regex.exec(text)) !== null) {
+    if (m.index > last) parts.push(text.slice(last, m.index));
+    const tok = m[0];
+    if (tok.startsWith('**')) {
+      parts.push(<strong key={keyPrefix + '-b-' + i}>{tok.slice(2, -2)}</strong>);
+    } else if (tok.startsWith('`')) {
+      parts.push(
+        <code key={keyPrefix + '-c-' + i} className="rounded bg-[#1a1a1a] px-1.5 py-0.5 text-sm text-amber-300">
+          {tok.slice(1, -1)}
+        </code>
+      );
+    } else if (tok.startsWith('*')) {
+      parts.push(<em key={keyPrefix + '-i-' + i}>{tok.slice(1, -1)}</em>);
+    }
+    last = m.index + tok.length;
+    i += 1;
+  }
+  if (last < text.length) parts.push(text.slice(last));
+  return parts;
+}
+
+function Markdown({ source }) {
+  const lines = source.split('\n');
+  const blocks = [];
+  let i = 0;
+  while (i < lines.length) {
+    const line = lines[i];
+    // Code fence
+    if (line.startsWith('```')) {
+      const buf = [];
+      i += 1;
+      while (i < lines.length && !lines[i].startsWith('```')) {
+        buf.push(lines[i]);
+        i += 1;
+      }
+      i += 1; // skip closing ```
+      blocks.push(
+        <pre
+          key={'pre-' + i}
+          className="my-6 overflow-x-auto rounded-2xl border border-gray-800 bg-[#0f0f0f] p-5 text-sm leading-6 text-amber-100"
+        >
+          <code>{buf.join('\n')}</code>
+        </pre>
+      );
+      continue;
+    }
+    // Headings
+    if (line.startsWith('### ')) {
+      blocks.push(
+        <h3 key={'h3-' + i} className="mt-10 mb-4 text-xl font-semibold text-white md:text-2xl">
+          {renderInline(line.slice(4), 'h3' + i)}
+        </h3>
+      );
+      i += 1;
+      continue;
+    }
+    if (line.startsWith('## ')) {
+      blocks.push(
+        <h2 key={'h2-' + i} className="mt-12 mb-4 text-2xl font-semibold tracking-tight text-white md:text-3xl">
+          {renderInline(line.slice(3), 'h2' + i)}
+        </h2>
+      );
+      i += 1;
+      continue;
+    }
+    if (line.startsWith('# ')) {
+      blocks.push(
+        <h2 key={'h1-' + i} className="mt-12 mb-4 text-3xl font-semibold tracking-tight text-white md:text-4xl">
+          {renderInline(line.slice(2), 'h1' + i)}
+        </h2>
+      );
+      i += 1;
+      continue;
+    }
+    // Unordered list
+    if (/^[-*] /.test(line)) {
+      const items = [];
+      while (i < lines.length && /^[-*] /.test(lines[i])) {
+        items.push(lines[i].slice(2));
+        i += 1;
+      }
+      blocks.push(
+        <ul key={'ul-' + i} className="my-5 list-disc space-y-2 pl-6 text-gray-300">
+          {items.map((it, idx) => (
+            <li key={idx} className="leading-7">{renderInline(it, 'li' + idx)}</li>
+          ))}
+        </ul>
+      );
+      continue;
+    }
+    // Ordered list
+    if (/^\d+\.\s/.test(line)) {
+      const items = [];
+      while (i < lines.length && /^\d+\.\s/.test(lines[i])) {
+        items.push(lines[i].replace(/^\d+\.\s/, ''));
+        i += 1;
+      }
+      blocks.push(
+        <ol key={'ol-' + i} className="my-5 list-decimal space-y-2 pl-6 text-gray-300">
+          {items.map((it, idx) => (
+            <li key={idx} className="leading-7">{renderInline(it, 'oli' + idx)}</li>
+          ))}
+        </ol>
+      );
+      continue;
+    }
+    // Blank line
+    if (line.trim() === '') {
+      i += 1;
+      continue;
+    }
+    // Paragraph (may span multiple non-blank lines)
+    const paraBuf = [line];
+    i += 1;
+    while (
+      i < lines.length &&
+      lines[i].trim() !== '' &&
+      !lines[i].startsWith('#') &&
+      !lines[i].startsWith('```') &&
+      !/^[-*] /.test(lines[i]) &&
+      !/^\d+\.\s/.test(lines[i])
+    ) {
+      paraBuf.push(lines[i]);
+      i += 1;
+    }
+    blocks.push(
+      <p key={'p-' + i} className="my-5 text-base leading-8 text-gray-300 md:text-lg">
+        {renderInline(paraBuf.join(' '), 'p' + i)}
+      </p>
+    );
+  }
+  return <>{blocks}</>;
+}
+
 function getRoute() {
   const hash = window.location.hash.replace('#', '');
   if (hash === 'checkout') return 'checkout';
   if (hash === 'success') return 'success';
+  if (hash === 'blog') return 'blog';
+  if (hash.startsWith('blog/')) return 'blog-post';
   return 'home';
+}
+
+function getBlogSlug() {
+  const hash = window.location.hash.replace('#', '');
+  if (hash.startsWith('blog/')) return hash.slice('blog/'.length);
+  return '';
 }
