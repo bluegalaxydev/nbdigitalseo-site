@@ -114,6 +114,21 @@ export default function AISeoMarketingLandingPage() {
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) metaDesc.setAttribute('content', description);
 
+    // noindex transactional routes so they don't compete with the home page
+    const noindexRoutes = ['checkout', 'success'];
+    let robotsMeta = document.querySelector('meta[name="robots"]');
+    if (!robotsMeta) {
+      robotsMeta = document.createElement('meta');
+      robotsMeta.setAttribute('name', 'robots');
+      document.head.appendChild(robotsMeta);
+    }
+    robotsMeta.setAttribute(
+      'content',
+      noindexRoutes.includes(route)
+        ? 'noindex, nofollow'
+        : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
+    );
+
     // Manage canonical link
     let canonicalLink = document.querySelector('link[rel="canonical"]');
     if (!canonicalLink) {
@@ -303,7 +318,29 @@ export default function AISeoMarketingLandingPage() {
           { '@type': 'ListItem', position: 2, name: 'Blog', item: SITE_URL + '/blog' },
         ],
       });
-    } else if (route === 'blog-post') {
+      // ItemList of published posts — helps Google understand the /blog index
+      const publishedPosts = posts.filter((p) => {
+        try {
+          return new Date(p.date + 'T00:00:00').getTime() <= Date.now();
+        } catch {
+          return true;
+        }
+      });
+      setJsonLd('itemlist', {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        name: 'RankFrame SEO Blog',
+        itemListElement: publishedPosts.map((p, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          url: SITE_URL + '/blog/' + p.slug,
+          name: p.title,
+        })),
+      });
+    } else {
+      setJsonLd('itemlist', null);
+    }
+    if (route === 'blog-post') {
       const post = getPostBySlug(getBlogSlug());
       if (post) {
         setJsonLd('breadcrumbs', {

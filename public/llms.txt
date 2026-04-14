@@ -1,0 +1,33 @@
+# RankFrame SEO
+
+> RankFrame SEO delivers on-page SEO architecture setup, monthly reports, keyword ranking tracking, and off-page Google Trust building for small businesses. Plans from $150/month with no setup fee.
+
+## About
+
+RankFrame SEO is a monthly SEO reporting and architecture audit service. Two plans:
+
+- **SEO Inside** ($150/month): On-page SEO architecture setup — meta tags, schema markup, sitemap, internal linking, and monthly reporting.
+- **SEO Inside + Outside** ($750/month): Everything in SEO Inside, plus external backlink acquisition, guest post outreach, 50+ business directory citations, competitor backlink gap analysis, toxic link audits, brand mention monitoring, and a dedicated SEO strategist.
+
+No setup fee. Cancel anytime. Built for small businesses, startups, and service/e-commerce websites.
+
+## Key Pages
+
+- [Home](https://rankframeseo.com/): Service overview, pricing, case study, FAQ
+- [Blog](https://rankframeseo.com/blog): Technical SEO playbooks and architecture guides
+- [Case Study: PACK EXPO International](https://rankframeseo.com/case-study-pack-expo.pdf): $200K–$575K/month organic traffic opportunity audit
+
+## Blog Posts
+
+- [The Small Business SEO Architecture Playbook](https://rankframeseo.com/blog/seo-architecture-playbook-small-business): 5 technical fixes Google rewards in 2026.
+- [Why Most Small Business Websites Are Invisible to Google](https://rankframeseo.com/blog/invisible-to-google-5-architecture-fixes): 5 architecture fixes that change visibility.
+
+## Contact
+
+- Email: zeuscapitalholdings@gmail.com
+- Website: https://rankframeseo.com
+
+## Sitemap
+
+- https://rankframeseo.com/sitemap.xml
+- https://rankframeseo.com/rss.xml

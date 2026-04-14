@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>RankFrame SEO Blog</title>
+    <link>https://rankframeseo.com/blog</link>
+    <description>Technical SEO playbooks, architecture audits, and Google Trust building insights for small businesses.</description>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 13 Apr 2026 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://rankframeseo.com/rss.xml" rel="self" type="application/rss+xml" />
+    <image>
+      <url>https://rankframeseo.com/og-image.png</url>
+      <title>RankFrame SEO Blog</title>
+      <link>https://rankframeseo.com/blog</link>
+    </image>
+    <item>
+      <title>The Small Business SEO Architecture Playbook: 5 Technical Fixes Google Actually Rewards in 2026</title>
+      <link>https://rankframeseo.com/blog/seo-architecture-playbook-small-business</link>
+      <guid isPermaLink="true">https://rankframeseo.com/blog/seo-architecture-playbook-small-business</guid>
+      <pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate>
+      <description>If your website isn't ranking, the problem usually isn't your content — it's your architecture. This playbook walks through the five technical fixes that unlock organic visibility, with real numbers from a $200K+/month audit.</description>
+      <category>Technical SEO</category>
+      <category>On-Page SEO</category>
+      <category>Schema Markup</category>
+    </item>
+    <item>
+      <title>Why Most Small Business Websites Are Invisible to Google — And the 5 Architecture Fixes That Change Everything</title>
+      <link>https://rankframeseo.com/blog/invisible-to-google-5-architecture-fixes</link>
+      <guid isPermaLink="true">https://rankframeseo.com/blog/invisible-to-google-5-architecture-fixes</guid>
+      <pubDate>Sun, 12 Apr 2026 00:00:00 GMT</pubDate>
+      <description>Most small business sites lose rankings not because of content but because Google's crawler can't parse their architecture. Here are the 5 fixes that move the needle.</description>
+      <category>Technical SEO</category>
+      <category>Small Business</category>
+    </item>
+  </channel>
+</rss>
