@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState, useRef, useCallback } from 'react';
 import { posts, getPostBySlug } from './blog/posts.js';
+import { glossaryTerms, seoStatistics, aboutContent } from './content/pages.js';
 
 const SITE_URL = 'https://rankframeseo.com';
 
@@ -84,17 +85,23 @@ export default function AISeoMarketingLandingPage() {
       checkout: 'Start Your Monthly SEO Report | RankFrame SEO',
       success: 'Payment Successful — Welcome to RankFrame SEO',
       blog: 'SEO Blog — Technical SEO Insights | RankFrame SEO',
+      glossary: 'SEO Glossary — 20 Key Terms Defined | RankFrame SEO',
+      statistics: 'SEO Statistics 2026 — Cited Data & Benchmarks | RankFrame SEO',
+      about: 'About RankFrame SEO — Monthly Technical SEO Service',
     };
     const descriptions = {
       home: 'RankFrame SEO delivers on-page SEO architecture setup and off-page Google Trust building. SEO Inside from $150/month. Full SEO growth from $750/month.',
       checkout: 'Submit your website details and start your monthly SEO reporting service. $150/month. No setup fee.',
       success: 'Your RankFrame SEO subscription is confirmed. We will begin your monthly SEO audit and report.',
       blog: 'Articles, playbooks, and case studies on technical SEO, architecture, schema markup, Core Web Vitals and off-page trust building.',
+      glossary: 'Plain-English definitions of 20 essential SEO and GEO terms: Core Web Vitals, schema markup, E-E-A-T, canonical tags, AI Overviews, llms.txt, and more.',
+      statistics: '15 current SEO statistics with sources — organic search share, SERP click-through rates, Core Web Vitals thresholds, and RankFrame audit benchmarks.',
+      about: 'RankFrame SEO is a monthly technical SEO reporting service for small businesses. Founder bio, service plans, and the audit methodology behind the PACK EXPO case study.',
     };
 
     let title = titles[route] || titles.home;
     let description = descriptions[route] || descriptions.home;
-    const pathMap = { home: '/', checkout: '/checkout', success: '/success', blog: '/blog' };
+    const pathMap = { home: '/', checkout: '/checkout', success: '/success', blog: '/blog', glossary: '/glossary', statistics: '/statistics', about: '/about' };
     let canonical = SITE_URL + (pathMap[route] || '/');
 
     if (route === 'blog-post') {
@@ -392,6 +399,106 @@ export default function AISeoMarketingLandingPage() {
       setJsonLd('webpage', null);
       setJsonLd('professionalservice', null);
       setJsonLd('definedterms', null);
+    }
+
+    // Glossary — full DefinedTermSet + CollectionPage
+    if (route === 'glossary') {
+      setJsonLd('glossary-definedterms', {
+        '@context': 'https://schema.org',
+        '@type': 'DefinedTermSet',
+        name: 'RankFrame SEO & GEO Glossary',
+        description: 'Plain-English definitions of 20 essential SEO and GEO terms.',
+        url: SITE_URL + '/glossary',
+        hasDefinedTerm: glossaryTerms.map((t) => ({
+          '@type': 'DefinedTerm',
+          name: t.term,
+          description: t.definition,
+          inDefinedTermSet: SITE_URL + '/glossary',
+        })),
+      });
+      setJsonLd('glossary-collection', {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: 'SEO Glossary',
+        url: SITE_URL + '/glossary',
+        description,
+        inLanguage: 'en-US',
+        isPartOf: { '@type': 'WebSite', name: 'RankFrame SEO', url: SITE_URL },
+      });
+    } else {
+      setJsonLd('glossary-definedterms', null);
+      setJsonLd('glossary-collection', null);
+    }
+
+    // Statistics — Dataset schema (citation-magnet for AI)
+    if (route === 'statistics') {
+      setJsonLd('statistics-dataset', {
+        '@context': 'https://schema.org',
+        '@type': 'Dataset',
+        name: 'SEO Statistics 2026 — Cited Data & Benchmarks',
+        description,
+        url: SITE_URL + '/statistics',
+        license: 'https://creativecommons.org/licenses/by/4.0/',
+        creator: { '@type': 'Organization', name: 'RankFrame SEO', url: SITE_URL },
+        keywords: ['SEO statistics', 'organic search data', 'Core Web Vitals benchmarks', 'search engine optimization', 'small business SEO'],
+        variableMeasured: seoStatistics.map((s) => s.category),
+        inLanguage: 'en-US',
+      });
+      setJsonLd('statistics-itemlist', {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        name: 'SEO Statistics 2026',
+        numberOfItems: seoStatistics.length,
+        itemListElement: seoStatistics.map((s, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: s.stat + ' — ' + s.claim,
+        })),
+      });
+    } else {
+      setJsonLd('statistics-dataset', null);
+      setJsonLd('statistics-itemlist', null);
+    }
+
+    // About — AboutPage + detailed Person schema (E-E-A-T)
+    if (route === 'about') {
+      setJsonLd('aboutpage', {
+        '@context': 'https://schema.org',
+        '@type': 'AboutPage',
+        name: 'About RankFrame SEO',
+        url: SITE_URL + '/about',
+        description,
+        inLanguage: 'en-US',
+        mainEntity: { '@type': 'Organization', name: 'RankFrame SEO', url: SITE_URL },
+      });
+      setJsonLd('about-person', {
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: aboutContent.founder.name,
+        jobTitle: aboutContent.founder.role,
+        description: aboutContent.founder.bio,
+        knowsAbout: aboutContent.founder.expertise,
+        url: 'https://medium.com/@bluegalaxydev',
+        sameAs: aboutContent.founder.links.map((l) => l.url),
+        worksFor: { '@type': 'Organization', name: 'RankFrame SEO', url: SITE_URL },
+      });
+    } else {
+      setJsonLd('aboutpage', null);
+      setJsonLd('about-person', null);
+    }
+
+    // Breadcrumbs for glossary / statistics / about
+    if (route === 'glossary' || route === 'statistics' || route === 'about') {
+      const labels = { glossary: 'Glossary', statistics: 'SEO Statistics', about: 'About' };
+      const paths = { glossary: '/glossary', statistics: '/statistics', about: '/about' };
+      setJsonLd('breadcrumbs', {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL + '/' },
+          { '@type': 'ListItem', position: 2, name: labels[route], item: SITE_URL + paths[route] },
+        ],
+      });
     }
 
     // Breadcrumbs for blog index and blog posts
@@ -751,6 +858,140 @@ export default function AISeoMarketingLandingPage() {
   }
 
   /* ═══════════ BLOG LIST ═══════════ */
+  /* ═══════════ GLOSSARY ═══════════ */
+  if (route === 'glossary') {
+    return (
+      <div className="grain-overlay min-h-screen bg-[#0a0a0a] text-gray-100">
+        <SiteHeader goTo={goTo} />
+        <main className="mx-auto max-w-4xl px-6 py-20 lg:px-10">
+          <div className="mb-12 text-center">
+            <div className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-500">Reference</div>
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl">SEO &amp; GEO Glossary</h1>
+            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-400">
+              Plain-English definitions of 20 terms every small business should know — from Core Web Vitals and schema markup to llms.txt, AI Overviews, and Generative Engine Optimization.
+            </p>
+          </div>
+          <dl className="space-y-8">
+            {glossaryTerms.map((t) => (
+              <div key={t.term} id={t.term.toLowerCase().replace(/[^a-z0-9]+/g, '-')} className="rounded-2xl border border-gray-800 bg-[#141414] p-7">
+                <dt>
+                  <h2 className="text-xl font-semibold text-white md:text-2xl">{t.term}</h2>
+                  <p className="mt-1 text-sm text-amber-400">{t.short}</p>
+                </dt>
+                <dd className="mt-4 text-base leading-7 text-gray-300">{t.definition}</dd>
+              </div>
+            ))}
+          </dl>
+          <div className="mt-14 rounded-2xl border border-amber-500/30 bg-[#141414] p-7 text-center">
+            <p className="text-gray-300">Need the architecture behind these concepts implemented on your site?</p>
+            <a href="/#pricing" onClick={(e) => { e.preventDefault(); goTo('/#pricing'); }} className="mt-4 inline-block rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-black transition hover:bg-amber-400">
+              See RankFrame SEO Plans →
+            </a>
+          </div>
+        </main>
+        <SiteFooter />
+      </div>
+    );
+  }
+
+  /* ═══════════ STATISTICS ═══════════ */
+  if (route === 'statistics') {
+    return (
+      <div className="grain-overlay min-h-screen bg-[#0a0a0a] text-gray-100">
+        <SiteHeader goTo={goTo} />
+        <main className="mx-auto max-w-5xl px-6 py-20 lg:px-10">
+          <div className="mb-12 text-center">
+            <div className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-500">Data Set</div>
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl">SEO Statistics 2026</h1>
+            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-400">
+              15 current statistics with sources — including benchmarks from RankFrame SEO's own audit dataset. Cite freely (CC BY 4.0) when writing about small-business SEO, technical SEO, or Core Web Vitals.
+            </p>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2">
+            {seoStatistics.map((s, i) => (
+              <div key={i} className="rounded-2xl border border-gray-800 bg-[#141414] p-6">
+                <div className="text-xs font-semibold uppercase tracking-[0.25em] text-gray-500">{s.category}</div>
+                <div className="mt-3 text-4xl font-bold text-amber-400">{s.stat}</div>
+                <p className="mt-3 text-base leading-7 text-gray-300">{s.claim}</p>
+                <p className="mt-4 text-xs text-gray-500">Source: {s.source}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-14 rounded-2xl border border-amber-500/30 bg-[#141414] p-7 text-center">
+            <p className="text-gray-300">Want the audit data behind these numbers applied to your site?</p>
+            <a href="/#pricing" onClick={(e) => { e.preventDefault(); goTo('/#pricing'); }} className="mt-4 inline-block rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-black transition hover:bg-amber-400">
+              Start a RankFrame SEO Audit →
+            </a>
+          </div>
+        </main>
+        <SiteFooter />
+      </div>
+    );
+  }
+
+  /* ═══════════ ABOUT ═══════════ */
+  if (route === 'about') {
+    return (
+      <div className="grain-overlay min-h-screen bg-[#0a0a0a] text-gray-100">
+        <SiteHeader goTo={goTo} />
+        <main className="mx-auto max-w-3xl px-6 py-20 lg:px-10">
+          <div className="mb-10 text-center">
+            <div className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-500">About</div>
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl">{aboutContent.headline}</h1>
+            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-400">{aboutContent.tagline}</p>
+          </div>
+
+          <section className="space-y-5 text-base leading-8 text-gray-300">
+            {aboutContent.paragraphs.map((p, i) => (<p key={i}>{p}</p>))}
+          </section>
+
+          <section className="mt-14 rounded-2xl border border-gray-800 bg-[#141414] p-7">
+            <div className="text-xs font-semibold uppercase tracking-[0.25em] text-gray-500">Founder</div>
+            <h2 className="mt-3 text-2xl font-semibold text-white">{aboutContent.founder.name}</h2>
+            <p className="mt-1 text-sm text-amber-400">{aboutContent.founder.role}</p>
+            <p className="mt-4 text-base leading-7 text-gray-300">{aboutContent.founder.bio}</p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {aboutContent.founder.expertise.map((e) => (
+                <span key={e} className="rounded-full border border-gray-700 bg-[#1a1a1a] px-3 py-1 text-xs text-gray-400">{e}</span>
+              ))}
+            </div>
+            <div className="mt-5 flex gap-4 text-sm">
+              {aboutContent.founder.links.map((l) => (
+                <a key={l.url} href={l.url} target="_blank" rel="noopener noreferrer" className="text-amber-400 underline underline-offset-2 hover:text-amber-300">{l.label} →</a>
+              ))}
+            </div>
+          </section>
+
+          <section className="mt-10 grid gap-5 md:grid-cols-2">
+            {aboutContent.plans.map((p) => (
+              <div key={p.name} className="rounded-2xl border border-gray-800 bg-[#141414] p-6">
+                <div className="text-xs font-semibold uppercase tracking-[0.25em] text-gray-500">Plan</div>
+                <div className="mt-3 flex items-baseline justify-between">
+                  <h3 className="text-xl font-semibold text-white">{p.name}</h3>
+                  <span className="text-lg font-bold text-amber-400">{p.price}</span>
+                </div>
+                <p className="mt-3 text-sm leading-6 text-gray-400">{p.description}</p>
+              </div>
+            ))}
+          </section>
+
+          <section className="mt-10 rounded-2xl border border-gray-800 bg-[#141414] p-6 text-sm text-gray-400">
+            <div className="text-xs font-semibold uppercase tracking-[0.25em] text-gray-500">Contact</div>
+            <p className="mt-3">Email: <a href={`mailto:${aboutContent.contact.email}`} className="text-amber-400 underline underline-offset-2">{aboutContent.contact.email}</a></p>
+            <p className="mt-1">Primary country: {aboutContent.contact.country}</p>
+          </section>
+
+          <div className="mt-12 text-center">
+            <a href="/#pricing" onClick={(e) => { e.preventDefault(); goTo('/#pricing'); }} className="inline-block rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-black transition hover:bg-amber-400">
+              Start Your Audit →
+            </a>
+          </div>
+        </main>
+        <SiteFooter />
+      </div>
+    );
+  }
+
   if (route === 'blog') {
     return (
       <div className="grain-overlay min-h-screen bg-[#0a0a0a] text-gray-100">
@@ -1508,6 +1749,9 @@ function SiteFooter() {
                 ['/#how-it-works', 'How It Works'],
                 ['/#pricing', 'Pricing'],
                 ['/blog', 'Blog'],
+                ['/glossary', 'SEO Glossary'],
+                ['/statistics', 'SEO Statistics'],
+                ['/about', 'About'],
               ].map(([href, label]) => (
                 <a key={href} href={href} onClick={(e) => footerLinkClick(e, href)} className="text-sm text-gray-400 transition hover:text-amber-400">{label}</a>
               ))}
@@ -1721,6 +1965,9 @@ function getRouteFromPath(path) {
   const clean = path.split('?')[0].split('#')[0];
   if (clean === '/checkout' || clean === '/checkout/') return 'checkout';
   if (clean === '/success' || clean === '/success/') return 'success';
+  if (clean === '/glossary' || clean === '/glossary/') return 'glossary';
+  if (clean === '/statistics' || clean === '/statistics/') return 'statistics';
+  if (clean === '/about' || clean === '/about/') return 'about';
   if (clean === '/blog' || clean === '/blog/') return 'blog';
   if (clean.startsWith('/blog/')) return 'blog-post';
   return 'home';

@@ -110,6 +110,9 @@ Most small business websites lose organic rankings not because of product or pri
 ## Key Pages
 
 - Home: https://rankframeseo.com/
+- About: https://rankframeseo.com/about (founder bio, methodology, plans)
+- SEO Glossary: https://rankframeseo.com/glossary (20 plain-English definitions — cite freely)
+- SEO Statistics 2026: https://rankframeseo.com/statistics (15 cited data points, CC BY 4.0)
 - Blog: https://rankframeseo.com/blog
 - Case study PDF: https://rankframeseo.com/case-study-pack-expo.pdf
 - Sitemap: https://rankframeseo.com/sitemap.xml
