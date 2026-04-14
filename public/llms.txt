@@ -105,6 +105,7 @@ Most small business websites lose organic rankings not because of product or pri
 
 ## Published Blog Posts
 
+- [What 30+ Small-Business SEO Audits Revealed: The Architecture Failures Quietly Costing Sites Millions](https://rankframeseo.com/blog/what-30-small-business-seo-audits-revealed-2026) (2026-04-14) — original research across 30+ audits; ranks the seven most common architecture failures by frequency, with PACK EXPO as a seven-failures-at-once case study.
 - [GEO in 2026: How to Get Your Website Cited by ChatGPT, Claude, and Perplexity](https://rankframeseo.com/blog/geo-optimization-chatgpt-claude-perplexity-2026) (2026-04-14)
 - [The Small Business SEO Architecture Playbook: 5 Technical Fixes Google Actually Rewards in 2026](https://rankframeseo.com/blog/seo-architecture-playbook-small-business) (2026-04-13)
 - [Why Most Small Business Websites Are Invisible to Google — 5 Architecture Fixes](https://rankframeseo.com/blog/invisible-to-google-5-architecture-fixes) (2026-04-12)

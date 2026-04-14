@@ -1,7 +1,14 @@
 import { useEffect, useMemo, useState, useRef, useCallback } from 'react';
 import { posts, getPostBySlug } from './blog/posts.js';
 import { niches, getNicheBySlug } from './content/niches.js';
+import { cities, getCityBySlug } from './content/cities.js';
 import { glossaryTerms, seoStatistics, aboutContent } from './content/pages.js';
+
+// Route key helpers — kept in one place so router, schemas, and renders agree
+const NICHE_KEYS = Object.keys(niches);
+const CITY_KEYS = Object.keys(cities);
+const nicheRouteFromKey = (k) => 'niche-' + k;
+const cityRouteFromKey = (k) => 'city-' + k;
 
 const SITE_URL = 'https://rankframeseo.com';
 
@@ -90,8 +97,8 @@ export default function AISeoMarketingLandingPage() {
       statistics: 'SEO Statistics 2026 — Cited Data & Benchmarks | RankFrame SEO',
       about: 'About RankFrame SEO — Monthly Technical SEO Service',
       'get-started': 'Get Started with RankFrame SEO — Request a Custom Audit | RankFrame SEO',
-      'niche-dentists': niches.dentists.title,
-      'niche-ecommerce': niches.ecommerce.title,
+      ...Object.fromEntries(NICHE_KEYS.map((k) => [nicheRouteFromKey(k), niches[k].title])),
+      ...Object.fromEntries(CITY_KEYS.map((k) => [cityRouteFromKey(k), cities[k].title])),
     };
     const descriptions = {
       home: 'RankFrame SEO delivers on-page SEO architecture setup and off-page Google Trust building. SEO Inside from $150/month. Full SEO growth from $750/month.',
@@ -102,13 +109,17 @@ export default function AISeoMarketingLandingPage() {
       statistics: '15 current SEO statistics with sources — organic search share, SERP click-through rates, Core Web Vitals thresholds, and RankFrame audit benchmarks.',
       about: 'RankFrame SEO is a monthly technical SEO reporting service for small businesses. Founder bio, service plans, and the audit methodology behind the PACK EXPO case study.',
       'get-started': 'Tell us about your site and we\'ll send back a custom SEO audit proposal within 1 business day. Plans start at $150/month. 30+ sites optimized.',
-      'niche-dentists': niches.dentists.metaDescription,
-      'niche-ecommerce': niches.ecommerce.metaDescription,
+      ...Object.fromEntries(NICHE_KEYS.map((k) => [nicheRouteFromKey(k), niches[k].metaDescription])),
+      ...Object.fromEntries(CITY_KEYS.map((k) => [cityRouteFromKey(k), cities[k].metaDescription])),
     };
 
     let title = titles[route] || titles.home;
     let description = descriptions[route] || descriptions.home;
-    const pathMap = { home: '/', checkout: '/checkout', success: '/success', blog: '/blog', glossary: '/glossary', statistics: '/statistics', about: '/about', 'get-started': '/get-started', 'niche-dentists': '/seo-for-dentists', 'niche-ecommerce': '/seo-for-ecommerce' };
+    const pathMap = {
+      home: '/', checkout: '/checkout', success: '/success', blog: '/blog', glossary: '/glossary', statistics: '/statistics', about: '/about', 'get-started': '/get-started',
+      ...Object.fromEntries(NICHE_KEYS.map((k) => [nicheRouteFromKey(k), '/' + niches[k].slug])),
+      ...Object.fromEntries(CITY_KEYS.map((k) => [cityRouteFromKey(k), '/' + cities[k].slug])),
+    };
     let canonical = SITE_URL + (pathMap[route] || '/');
 
     if (route === 'blog-post') {
@@ -528,17 +539,21 @@ export default function AISeoMarketingLandingPage() {
       setJsonLd('freeaudit-service', null);
     }
 
-    // Niche buyer-intent pages — Service + FAQPage schema
-    const nicheKey = route === 'niche-dentists' ? 'dentists' : route === 'niche-ecommerce' ? 'ecommerce' : null;
-    if (nicheKey) {
-      const n = niches[nicheKey];
+    // Niche + City buyer-intent pages — Service + FAQPage + WebPage schema
+    const nicheKey = route.startsWith('niche-') ? route.slice('niche-'.length) : null;
+    const cityKey = route.startsWith('city-') ? route.slice('city-'.length) : null;
+    const n = nicheKey ? niches[nicheKey] : cityKey ? cities[cityKey] : null;
+    if (n) {
+      const areaServed = cityKey
+        ? { '@type': 'City', name: cities[cityKey].city }
+        : { '@type': 'Country', name: 'United States' };
       setJsonLd('niche-service', {
         '@context': 'https://schema.org',
         '@type': 'Service',
         name: n.h1,
         serviceType: n.h1,
         provider: { '@type': 'Organization', name: 'RankFrame SEO', url: SITE_URL },
-        areaServed: { '@type': 'Country', name: 'United States' },
+        areaServed,
         description: n.metaDescription,
         url: SITE_URL + '/' + n.slug,
         offers: [
@@ -570,16 +585,23 @@ export default function AISeoMarketingLandingPage() {
       setJsonLd('niche-webpage', null);
     }
 
-    // Breadcrumbs for glossary / statistics / about / get-started / niche pages
-    if (route === 'glossary' || route === 'statistics' || route === 'about' || route === 'get-started' || route === 'niche-dentists' || route === 'niche-ecommerce') {
-      const labels = { glossary: 'Glossary', statistics: 'SEO Statistics', about: 'About', 'get-started': 'Get Started', 'niche-dentists': 'SEO for Dentists', 'niche-ecommerce': 'SEO for E-commerce' };
-      const paths = { glossary: '/glossary', statistics: '/statistics', about: '/about', 'get-started': '/get-started', 'niche-dentists': '/seo-for-dentists', 'niche-ecommerce': '/seo-for-ecommerce' };
+    // Breadcrumbs for glossary / statistics / about / get-started / niche + city pages
+    const crumbStatic = {
+      glossary: { label: 'Glossary', path: '/glossary' },
+      statistics: { label: 'SEO Statistics', path: '/statistics' },
+      about: { label: 'About', path: '/about' },
+      'get-started': { label: 'Get Started', path: '/get-started' },
+    };
+    let crumbEntry = crumbStatic[route];
+    if (!crumbEntry && nicheKey) crumbEntry = { label: niches[nicheKey].h1, path: '/' + niches[nicheKey].slug };
+    if (!crumbEntry && cityKey) crumbEntry = { label: cities[cityKey].h1, path: '/' + cities[cityKey].slug };
+    if (crumbEntry) {
       setJsonLd('breadcrumbs', {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL + '/' },
-          { '@type': 'ListItem', position: 2, name: labels[route], item: SITE_URL + paths[route] },
+          { '@type': 'ListItem', position: 2, name: crumbEntry.label, item: SITE_URL + crumbEntry.path },
         ],
       });
     }
@@ -1180,16 +1202,26 @@ export default function AISeoMarketingLandingPage() {
     );
   }
 
-  /* ═══════════ NICHE LANDING PAGES ═══════════ */
-  if (route === 'niche-dentists' || route === 'niche-ecommerce') {
-    const nicheKey = route === 'niche-dentists' ? 'dentists' : 'ecommerce';
-    const n = niches[nicheKey];
+  /* ═══════════ NICHE + CITY LANDING PAGES ═══════════ */
+  if (route.startsWith('niche-') || route.startsWith('city-')) {
+    const isCity = route.startsWith('city-');
+    const dataKey = isCity ? route.slice('city-'.length) : route.slice('niche-'.length);
+    const n = isCity ? cities[dataKey] : niches[dataKey];
+    if (!n) return null;
+    const pageType = isCity ? 'Location' : 'Niche';
+    const whatWeDoLabel = isCity
+      ? `What RankFrame does for businesses in ${cities[dataKey].city}`
+      : dataKey === 'dentists'
+      ? 'What RankFrame does for dental practices'
+      : dataKey === 'ecommerce'
+      ? 'What RankFrame does for e-commerce stores'
+      : `What RankFrame does for ${n.h1.replace(/^SEO for /, '').toLowerCase()}`;
     return (
       <div className="grain-overlay min-h-screen bg-[#0a0a0a] text-gray-100">
         <SiteHeader goTo={goTo} />
         <main className="mx-auto max-w-4xl px-6 py-20 lg:px-10">
           <div className="mb-10">
-            <div className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-500">Niche</div>
+            <div className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-500">{pageType}</div>
             <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl">{n.h1}</h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-gray-400">{n.subhead}</p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -1230,7 +1262,7 @@ export default function AISeoMarketingLandingPage() {
           </section>
 
           <section className="mt-14 rounded-2xl border border-amber-500/20 bg-[#141414] p-7 md:p-10">
-            <h2 className="text-2xl font-semibold text-white md:text-3xl">What RankFrame does for {route === 'niche-dentists' ? 'dental practices' : 'e-commerce stores'}</h2>
+            <h2 className="text-2xl font-semibold text-white md:text-3xl">{whatWeDoLabel}</h2>
             <ul className="mt-6 space-y-3">
               {n.whatWeDo.map((p, i) => (
                 <li key={i} className="flex gap-3 text-gray-300">
@@ -1269,7 +1301,7 @@ export default function AISeoMarketingLandingPage() {
             >
               Start Your SEO Audit →
             </button>
-            <p className="mt-4 text-xs text-gray-500">30+ sites audited · $0 audit · 3 business days</p>
+            <p className="mt-4 text-xs text-gray-500">30+ sites optimized · Response in 1 business day · From $150/mo</p>
           </div>
         </main>
         <SiteFooter />
