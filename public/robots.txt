@@ -1,6 +1,7 @@
 # RankFrame SEO — robots.txt
 # Last updated: 2026-04-14
 
+# ===== Default: allow all crawlers =====
 User-agent: *
 Allow: /
 Disallow: /assets/
@@ -8,8 +9,102 @@ Disallow: /src/
 Disallow: /checkout
 Disallow: /success
 
+# ===== AI crawlers — explicitly allowed (GEO) =====
+# Allowing these bots lets ChatGPT, Claude, Perplexity, Google AI Overviews,
+# Gemini, and You.com reference RankFrame SEO in AI-generated answers.
+
+User-agent: GPTBot
+Allow: /
+Disallow: /checkout
+Disallow: /success
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /checkout
+Disallow: /success
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /checkout
+Disallow: /success
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /checkout
+Disallow: /success
+
+User-agent: Claude-Web
+Allow: /
+Disallow: /checkout
+Disallow: /success
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /checkout
+Disallow: /success
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /checkout
+Disallow: /success
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /checkout
+Disallow: /success
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /checkout
+Disallow: /success
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /checkout
+Disallow: /success
+
+User-agent: CCBot
+Allow: /
+Disallow: /checkout
+Disallow: /success
+
+User-agent: YouBot
+Allow: /
+Disallow: /checkout
+Disallow: /success
+
+User-agent: Meta-ExternalAgent
+Allow: /
+Disallow: /checkout
+Disallow: /success
+
+User-agent: Bytespider
+Allow: /
+Disallow: /checkout
+Disallow: /success
+
+User-agent: Amazonbot
+Allow: /
+Disallow: /checkout
+Disallow: /success
+
+User-agent: DuckAssistBot
+Allow: /
+Disallow: /checkout
+Disallow: /success
+
+User-agent: Diffbot
+Allow: /
+Disallow: /checkout
+Disallow: /success
+
 # Allow search engines to access case study PDF
 Allow: /case-study-pack-expo.pdf
+
+# ===== AI-friendly discovery files =====
+# llms.txt:       https://rankframeseo.com/llms.txt
+# llms-full.txt:  https://rankframeseo.com/llms-full.txt
+# rss.xml:        https://rankframeseo.com/rss.xml
 
 # Sitemaps
 Sitemap: https://rankframeseo.com/sitemap.xml

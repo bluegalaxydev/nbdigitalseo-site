@@ -180,10 +180,34 @@ export default function AISeoMarketingLandingPage() {
       '@context': 'https://schema.org',
       '@type': 'Organization',
       name: 'RankFrame SEO',
+      alternateName: 'RankFrame',
       url: SITE_URL,
       logo: SITE_URL + '/favicon.svg',
-      description: 'On-page SEO architecture setup and off-page Google Trust building for small businesses.',
-      sameAs: ['https://medium.com/@bluegalaxydev'],
+      description: 'Monthly SEO reporting and technical architecture audit service for small businesses. On-page SEO setup, schema markup, and off-page Google Trust building. Plans from $150/month with no setup fee.',
+      foundingDate: '2025',
+      knowsAbout: [
+        'Search Engine Optimization',
+        'Technical SEO',
+        'On-Page SEO',
+        'Off-Page SEO',
+        'Schema Markup',
+        'Core Web Vitals',
+        'Link Building',
+        'Keyword Research',
+        'SEO Audit',
+        'SEO Reporting',
+      ],
+      areaServed: { '@type': 'Country', name: 'United States' },
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'customer service',
+        email: 'zeuscapitalholdings@gmail.com',
+        availableLanguage: ['English'],
+      },
+      sameAs: [
+        'https://medium.com/@bluegalaxydev',
+        'https://github.com/bluegalaxydev',
+      ],
     });
 
     // WebSite schema — always present
@@ -211,7 +235,15 @@ export default function AISeoMarketingLandingPage() {
           url: SITE_URL + '/blog/' + post.slug,
           datePublished: post.date,
           dateModified: post.date,
-          author: { '@type': 'Person', name: post.author || 'Blue Galaxy' },
+          author: {
+            '@type': 'Person',
+            name: post.author || 'Blue Galaxy',
+            url: 'https://medium.com/@bluegalaxydev',
+            sameAs: ['https://medium.com/@bluegalaxydev'],
+            jobTitle: 'Technical SEO Practitioner',
+            worksFor: { '@type': 'Organization', name: 'RankFrame SEO', url: SITE_URL },
+            knowsAbout: ['Technical SEO', 'Schema Markup', 'Core Web Vitals', 'On-Page SEO', 'Link Building'],
+          },
           publisher: {
             '@type': 'Organization',
             name: 'RankFrame SEO',
@@ -222,6 +254,10 @@ export default function AISeoMarketingLandingPage() {
           image: SITE_URL + '/og-image.png',
           articleSection: 'SEO',
           inLanguage: 'en-US',
+          speakable: {
+            '@type': 'SpeakableSpecification',
+            cssSelector: ['h1', 'h2', 'article p:first-of-type'],
+          },
         });
       } else {
         setJsonLd('blogposting', null);
@@ -278,6 +314,55 @@ export default function AISeoMarketingLandingPage() {
         url: canonical,
         inLanguage: 'en-US',
         isPartOf: { '@type': 'WebSite', name: 'RankFrame SEO', url: SITE_URL },
+        speakable: {
+          '@type': 'SpeakableSpecification',
+          cssSelector: ['h1', 'h2', '.hero-subtitle', '[data-speakable]'],
+        },
+      });
+
+      // DefinedTermSet — glossary for AI answer extraction
+      setJsonLd('definedterms', {
+        '@context': 'https://schema.org',
+        '@type': 'DefinedTermSet',
+        name: 'RankFrame SEO Glossary',
+        hasDefinedTerm: [
+          {
+            '@type': 'DefinedTerm',
+            name: 'On-Page SEO',
+            description: 'Optimization of elements directly on a website — title tags, meta descriptions, headings, schema markup, internal linking, and page content — so search engines can parse and rank the site.',
+            inDefinedTermSet: SITE_URL + '/#glossary',
+          },
+          {
+            '@type': 'DefinedTerm',
+            name: 'Off-Page SEO',
+            description: 'Activities outside a website that build authority, including backlinks from other sites, brand mentions, business directory citations, and guest posts.',
+            inDefinedTermSet: SITE_URL + '/#glossary',
+          },
+          {
+            '@type': 'DefinedTerm',
+            name: 'Schema Markup',
+            description: 'Structured JSON-LD data embedded in a page that tells search engines exactly what information is on the page (business, products, FAQs, reviews) rather than asking them to infer from prose.',
+            inDefinedTermSet: SITE_URL + '/#glossary',
+          },
+          {
+            '@type': 'DefinedTerm',
+            name: 'Core Web Vitals',
+            description: 'Google\'s set of page-experience metrics: Largest Contentful Paint (target under 2.5s), Cumulative Layout Shift (target under 0.1), and Interaction to Next Paint (target under 200ms).',
+            inDefinedTermSet: SITE_URL + '/#glossary',
+          },
+          {
+            '@type': 'DefinedTerm',
+            name: 'SEO Architecture',
+            description: 'The technical foundation of a website that determines whether search engine crawlers can discover, parse, and rank its pages. Includes title tags, schema, internal linking, sitemaps, robots.txt, and Core Web Vitals.',
+            inDefinedTermSet: SITE_URL + '/#glossary',
+          },
+          {
+            '@type': 'DefinedTerm',
+            name: 'Google Trust',
+            description: 'The aggregate authority signals — backlinks, brand mentions, citations, and E-E-A-T markers — that cause Google to treat a domain as a credible source worth ranking and citing in AI Overviews.',
+            inDefinedTermSet: SITE_URL + '/#glossary',
+          },
+        ],
       });
 
       setJsonLd('professionalservice', {
@@ -306,6 +391,7 @@ export default function AISeoMarketingLandingPage() {
       setJsonLd('howto', null);
       setJsonLd('webpage', null);
       setJsonLd('professionalservice', null);
+      setJsonLd('definedterms', null);
     }
 
     // Breadcrumbs for blog index and blog posts
