@@ -12,6 +12,246 @@ const cityRouteFromKey = (k) => 'city-' + k;
 
 const SITE_URL = 'https://rankframeseo.com';
 
+/* ─── AI Terminal Animation for Hero (30s cycle, particle FX) ─── */
+function AITerminal() {
+  const canvasRef = useRef(null);
+  const containerRef = useRef(null);
+  const [lines, setLines] = useState([]);
+  const [phase, setPhase] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const [statusText, setStatusText] = useState('Initializing');
+  const [showResult, setShowResult] = useState(false);
+  const [metrics, setMetrics] = useState([]);
+
+  // Particle canvas
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let animId;
+    const dpr = window.devicePixelRatio || 1;
+    const resize = () => {
+      canvas.width = canvas.offsetWidth * dpr;
+      canvas.height = canvas.offsetHeight * dpr;
+      ctx.scale(dpr, dpr);
+    };
+    resize();
+    const particles = Array.from({ length: 60 }, () => ({
+      x: Math.random() * canvas.offsetWidth,
+      y: Math.random() * canvas.offsetHeight,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      r: Math.random() * 1.5 + 0.5,
+      a: Math.random() * 0.5 + 0.1,
+    }));
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
+      particles.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0) p.x = canvas.offsetWidth;
+        if (p.x > canvas.offsetWidth) p.x = 0;
+        if (p.y < 0) p.y = canvas.offsetHeight;
+        if (p.y > canvas.offsetHeight) p.y = 0;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(245,184,75,${p.a})`;
+        ctx.fill();
+      });
+      // draw connections
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 80) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(245,184,75,${0.08 * (1 - dist / 80)})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+      animId = requestAnimationFrame(draw);
+    };
+    draw();
+    return () => cancelAnimationFrame(animId);
+  }, []);
+
+  // 30-second scripted sequence
+  const script = useMemo(() => [
+    // Phase 1: Init (0-4s)
+    { t: 0, action: 'line', text: '> rf.engine.init({ mode: "deep-scan", ai: true })', type: 'cmd' },
+    { t: 800, action: 'status', text: 'Booting neural crawl engine' },
+    { t: 1200, action: 'line', text: '  [core] Loading language models... GPT-4o + custom SEO layer', type: 'dim' },
+    { t: 2000, action: 'line', text: '  [core] Initializing 12 parallel analysis threads', type: 'dim' },
+    { t: 2800, action: 'line', text: '  [✓] Engine ready — latency 23ms', type: 'success' },
+    { t: 3200, action: 'progress', value: 8 },
+    // Phase 2: Crawl (4-10s)
+    { t: 4000, action: 'status', text: 'Crawling site architecture' },
+    { t: 4000, action: 'line', text: '> rf.crawl("https://target-domain.com", { depth: 4 })', type: 'cmd' },
+    { t: 5000, action: 'line', text: '  [spider] Discovered 247 URLs across 6 subdirectories', type: 'info' },
+    { t: 5800, action: 'line', text: '  [spider] Mapping internal link graph... 1,847 edges', type: 'info' },
+    { t: 6500, action: 'progress', value: 22 },
+    { t: 6800, action: 'line', text: '  [spider] Rendering JavaScript pages via headless Chromium', type: 'info' },
+    { t: 7600, action: 'line', text: '  [spider] Extracting meta, OG, canonical, hreflang tags', type: 'info' },
+    { t: 8400, action: 'line', text: '  [✓] Crawl complete — 247 pages indexed in 4.2s', type: 'success' },
+    { t: 9000, action: 'progress', value: 35 },
+    // Phase 3: AI Analysis (10-18s)
+    { t: 10000, action: 'status', text: 'Running AI architecture analysis' },
+    { t: 10000, action: 'line', text: '> rf.analyze({ modules: ["title", "schema", "links", "vitals", "eeat"] })', type: 'cmd' },
+    { t: 11000, action: 'line', text: '  [ai] Tokenizing 247 page structures into embedding space', type: 'info' },
+    { t: 12000, action: 'line', text: '  [ai] Running title tag relevance model... 89% below threshold', type: 'warn' },
+    { t: 12800, action: 'progress', value: 48 },
+    { t: 13000, action: 'line', text: '  [ai] Schema coverage: 3% (industry avg: 67%)', type: 'warn' },
+    { t: 13800, action: 'line', text: '  [ai] Internal link equity score: 0.23 / 1.00', type: 'warn' },
+    { t: 14500, action: 'line', text: '  [ai] Core Web Vitals: LCP 4.1s | CLS 0.02 | INP 210ms', type: 'info' },
+    { t: 15200, action: 'progress', value: 62 },
+    { t: 15500, action: 'line', text: '  [ai] E-E-A-T signal strength: 12/100 — no author entities found', type: 'warn' },
+    { t: 16200, action: 'line', text: '  [ai] Cross-referencing against 14M ranking factor dataset', type: 'info' },
+    { t: 17000, action: 'line', text: '  [✓] Analysis complete — 7 critical issues, 4 warnings', type: 'success' },
+    { t: 17500, action: 'progress', value: 78 },
+    // Phase 4: Report generation (18-24s)
+    { t: 18000, action: 'status', text: 'Generating optimization report' },
+    { t: 18000, action: 'line', text: '> rf.report.generate({ format: "executive", priority: "impact" })', type: 'cmd' },
+    { t: 19000, action: 'line', text: '  [report] Ranking fixes by estimated traffic impact...', type: 'info' },
+    { t: 19800, action: 'line', text: '  [report] Projecting keyword ranking improvements...', type: 'info' },
+    { t: 20500, action: 'line', text: '  [report] Building 30-day action roadmap...', type: 'info' },
+    { t: 21200, action: 'progress', value: 90 },
+    { t: 21500, action: 'line', text: '  [report] Compiling visual dashboard + PDF export', type: 'info' },
+    { t: 22200, action: 'line', text: '  [✓] Report delivered to client portal', type: 'success' },
+    { t: 22800, action: 'progress', value: 100 },
+    // Phase 5: Results (24-30s)
+    { t: 23500, action: 'status', text: 'Audit complete' },
+    { t: 24000, action: 'result', metrics: [
+      { label: 'Issues Found', value: '7', sub: 'critical' },
+      { label: 'Est. Traffic Lift', value: '+340%', sub: 'projected' },
+      { label: 'Pages Optimized', value: '247', sub: 'indexed' },
+      { label: 'Time Elapsed', value: '24s', sub: 'fully automated' },
+    ]},
+  ], []);
+
+  useEffect(() => {
+    let timers = [];
+    setLines([]);
+    setProgress(0);
+    setShowResult(false);
+    setMetrics([]);
+    setStatusText('Initializing');
+
+    script.forEach(item => {
+      timers.push(setTimeout(() => {
+        if (item.action === 'line') setLines(prev => [...prev, { text: item.text, type: item.type }]);
+        if (item.action === 'status') setStatusText(item.text);
+        if (item.action === 'progress') setProgress(item.value);
+        if (item.action === 'result') { setShowResult(true); setMetrics(item.metrics); }
+      }, item.t));
+    });
+
+    // restart at 30s
+    timers.push(setTimeout(() => setPhase(p => p + 1), 30000));
+    return () => timers.forEach(clearTimeout);
+  }, [phase, script]);
+
+  useEffect(() => {
+    if (containerRef.current) containerRef.current.scrollTop = containerRef.current.scrollHeight;
+  }, [lines]);
+
+  const typeColor = { cmd: '#f5b84b', dim: '#6b7280', info: '#60a5fa', warn: '#fbbf24', success: '#34d399' };
+
+  return (
+    <div className="gold-glow relative overflow-hidden rounded-[2rem] border border-amber-500/20 bg-[#0b0b0b] text-white">
+      {/* Particle background */}
+      <canvas ref={canvasRef} className="pointer-events-none absolute inset-0 h-full w-full opacity-60" style={{ zIndex: 0 }} />
+
+      <div className="relative z-10">
+        {/* Header bar */}
+        <div className="flex items-center justify-between border-b border-gray-800/60 bg-[#111]/80 px-5 py-3 backdrop-blur-sm">
+          <div className="flex items-center gap-3">
+            <div className="flex gap-1.5">
+              <div className="h-2.5 w-2.5 rounded-full bg-red-500/70" />
+              <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/70" />
+              <div className="h-2.5 w-2.5 rounded-full bg-green-500/70" />
+            </div>
+            <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-gray-500">RankFrame AI Engine</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+            <span className="font-mono text-[10px] text-emerald-400/80">LIVE</span>
+          </div>
+        </div>
+
+        {/* Status + progress bar */}
+        <div className="border-b border-gray-800/40 bg-[#0e0e0e]/80 px-5 py-2.5 backdrop-blur-sm">
+          <div className="flex items-center justify-between">
+            <span className="font-mono text-[11px] text-amber-400/90">{statusText}</span>
+            <span className="font-mono text-[11px] text-gray-600">{progress}%</span>
+          </div>
+          <div className="mt-1.5 h-[3px] w-full overflow-hidden rounded-full bg-gray-800">
+            <div
+              className="h-full rounded-full bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-300 shadow-[0_0_12px_rgba(245,184,75,0.5)]"
+              style={{ width: `${progress}%`, transition: 'width 0.8s cubic-bezier(0.4,0,0.2,1)' }}
+            />
+          </div>
+        </div>
+
+        {/* Code output */}
+        <div
+          ref={containerRef}
+          className="h-[280px] overflow-hidden bg-[#080808]/60 px-5 py-3 font-mono text-[11.5px] leading-[1.8] backdrop-blur-sm sm:text-[12px]"
+        >
+          {lines.map((line, i) => (
+            <div
+              key={`${phase}-${i}`}
+              style={{ color: typeColor[line.type] || '#9ca3af', opacity: 0, animation: 'fadeSlideIn 0.3s ease-out forwards' }}
+            >
+              {line.text}
+            </div>
+          ))}
+          <span className="inline-block h-3.5 w-[6px] animate-pulse bg-amber-400/60" />
+        </div>
+
+        {/* Result cards overlay */}
+        {showResult && (
+          <div className="absolute inset-x-0 bottom-0 z-20 bg-gradient-to-t from-[#0b0b0b] via-[#0b0b0b]/95 to-transparent px-5 pb-5 pt-16">
+            <div className="mb-3 text-center font-mono text-[10px] uppercase tracking-[0.3em] text-emerald-400">
+              ✓ Audit Complete — Report Delivered
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              {metrics.map((m, i) => (
+                <div
+                  key={m.label}
+                  className="rounded-xl border border-amber-500/15 bg-amber-500/5 p-3 text-center backdrop-blur-sm"
+                  style={{ opacity: 0, animation: `fadeSlideIn 0.4s ease-out ${i * 0.1}s forwards` }}
+                >
+                  <div className="text-lg font-bold text-amber-400">{m.value}</div>
+                  <div className="text-[10px] font-semibold text-gray-300">{m.label}</div>
+                  <div className="text-[9px] text-gray-600">{m.sub}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Bottom bar */}
+        <div className="flex items-center justify-between border-t border-gray-800/40 bg-[#0e0e0e]/80 px-5 py-2.5 backdrop-blur-sm">
+          <div className="flex items-center gap-2">
+            <div className="h-1 w-1 rounded-full bg-amber-400 shadow-[0_0_4px_rgba(245,184,75,0.6)]" />
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-amber-400/70">Fully Automated</span>
+          </div>
+          <span className="font-mono text-[10px] text-gray-600">AI-Powered SEO Analysis</span>
+        </div>
+
+        {/* Product demo label */}
+        <div className="py-2 text-center">
+          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-gray-600">Product Demo — RankFrame AI Audit Engine</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ─── Intersection Observer hook for scroll animations ─── */
 function useInView(options = {}) {
   const ref = useRef(null);
@@ -1517,35 +1757,7 @@ export default function AISeoMarketingLandingPage() {
             </FadeIn>
 
             <FadeIn delay={0.2} className="relative z-10">
-              <div className="gold-glow rounded-[2rem] border border-amber-500/20 bg-[#111111] p-7 text-white">
-                <div className="rounded-[1.5rem] bg-gradient-to-br from-[#1a1a0a] via-[#111111] to-[#0d0d00] p-8">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="text-xs uppercase tracking-[0.28em] text-amber-400/80">Live Service Snapshot</div>
-                      <div className="mt-3 text-3xl font-bold tracking-tight">AI SEO Report</div>
-                    </div>
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 text-xl font-bold text-black shadow-lg shadow-amber-500/20">
-                      RF
-                    </div>
-                  </div>
-
-                  <div className="mt-8 space-y-3">
-                    {highlights.map((item) => (
-                      <div key={item} className="flex items-center gap-3 rounded-xl border border-amber-500/10 bg-amber-500/5 px-4 py-3 text-[0.95rem] text-gray-200">
-                        <span className="text-amber-400">→</span>
-                        <span>{item}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="mt-8 rounded-xl border border-amber-500/20 bg-amber-500/10 p-5">
-                    <div className="text-xs uppercase tracking-[0.25em] text-amber-300/80">What clients want</div>
-                    <div className="mt-3 text-lg font-semibold text-white">
-                      Clear SEO problems. Clear next steps. No agency complexity.
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <AITerminal />
             </FadeIn>
           </div>
         </section>
