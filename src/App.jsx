@@ -2332,6 +2332,12 @@ function SiteFooter() {
                 ['/statistics', 'SEO Statistics'],
                 ['/seo-for-dentists', 'SEO for Dentists'],
                 ['/seo-for-ecommerce', 'SEO for E-commerce'],
+                ['/seo-for-law-firms', 'SEO for Law Firms'],
+                ['/seo-for-restaurants', 'SEO for Restaurants'],
+                ['/seo-for-real-estate', 'SEO for Real Estate'],
+                ['/seo-for-contractors', 'SEO for Contractors'],
+                ['/seo-for-cbd', 'SEO for CBD Brands'],
+                ['/seo-for-saas', 'SEO for SaaS'],
                 ['/about', 'About'],
               ].map(([href, label]) => (
                 <a key={href} href={href} onClick={(e) => footerLinkClick(e, href)} className="text-sm text-gray-600 transition hover:text-emerald-600">{label}</a>
@@ -2550,8 +2556,10 @@ function getRouteFromPath(path) {
   if (clean === '/statistics' || clean === '/statistics/') return 'statistics';
   if (clean === '/about' || clean === '/about/') return 'about';
   if (clean === '/get-started' || clean === '/get-started/' || clean === '/free-audit' || clean === '/free-audit/') return 'get-started';
-  if (clean === '/seo-for-dentists' || clean === '/seo-for-dentists/') return 'niche-dentists';
-  if (clean === '/seo-for-ecommerce' || clean === '/seo-for-ecommerce/') return 'niche-ecommerce';
+  // Dynamic niche routing — any slug defined in content/niches.js resolves automatically.
+  const nicheSlug = clean.replace(/^\//, '').replace(/\/$/, '');
+  const nicheKey = NICHE_KEYS.find((k) => niches[k].slug === nicheSlug);
+  if (nicheKey) return 'niche-' + nicheKey;
   if (clean === '/blog' || clean === '/blog/') return 'blog';
   if (clean.startsWith('/blog/')) return 'blog-post';
   return 'home';
