@@ -492,14 +492,14 @@ export default function AISeoMarketingLandingPage() {
 
   useEffect(() => {
     const titles = {
-      home: 'SEO Reporting & Architecture Audit Service | RankFrame SEO',
-      checkout: 'Start Your Monthly SEO Report | RankFrame SEO',
-      success: 'Payment Successful — Welcome to RankFrame SEO',
-      blog: 'SEO Blog — Technical SEO Insights | RankFrame SEO',
+      home: 'SEO, Local, AI Search & Web Design | RankFrame SEO',
+      checkout: 'Get Started — Select Your Services | RankFrame SEO',
+      success: 'Request Received — RankFrame SEO',
+      blog: 'SEO Blog — Technical, Local & AI Search Insights | RankFrame SEO',
       glossary: 'SEO Glossary — 20 Key Terms Defined | RankFrame SEO',
       statistics: 'SEO Statistics 2026 — Cited Data & Benchmarks | RankFrame SEO',
-      about: 'About RankFrame SEO — Monthly Technical SEO Service',
-      'get-started': 'Get Started with RankFrame SEO — Request a Custom Audit | RankFrame SEO',
+      about: 'About RankFrame SEO — Full-Service SEO & Web Studio',
+      'get-started': 'Get Started — Select Your SEO & Web Services | RankFrame SEO',
       ...Object.fromEntries(NICHE_KEYS.map((k) => [nicheRouteFromKey(k), niches[k].title])),
       ...Object.fromEntries(CITY_KEYS.map((k) => [cityRouteFromKey(k), cities[k].title])),
     };
@@ -544,6 +544,10 @@ export default function AISeoMarketingLandingPage() {
 
     // noindex transactional routes so they don't compete with the home page
     const noindexRoutes = ['checkout', 'success'];
+    // Also noindex unknown URLs (SPA falls back to 'home' for them) so junk paths
+    // aren't indexed as soft-404 duplicates of the homepage.
+    const path = window.location.pathname.replace(/\/$/, '');
+    const isUnknownPath = route === 'home' && path !== '' && path !== '/index.html';
     let robotsMeta = document.querySelector('meta[name="robots"]');
     if (!robotsMeta) {
       robotsMeta = document.createElement('meta');
@@ -552,7 +556,7 @@ export default function AISeoMarketingLandingPage() {
     }
     robotsMeta.setAttribute(
       'content',
-      noindexRoutes.includes(route)
+      noindexRoutes.includes(route) || isUnknownPath
         ? 'noindex, nofollow'
         : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
     );
@@ -2190,11 +2194,19 @@ function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-[#e1f1ee]/50 bg-[#f3fbfb]/95 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
-        <a href="/" onClick={(e) => handleNavClick(e, '/')} className="text-left">
-          <div className="text-2xl font-bold tracking-tight text-gray-900 lg:text-3xl">
-            Rank<span className="bg-gradient-to-r from-emerald-500 to-sky-500 bg-clip-text text-transparent">Frame</span>
-          </div>
-          <div className="text-[0.65rem] uppercase tracking-[0.3em] text-gray-600">SEO · Local · AI Search · Web Design</div>
+        <a href="/" onClick={(e) => handleNavClick(e, '/')} className="flex items-center gap-3 text-left">
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-sky-500 shadow-md shadow-emerald-500/30 lg:h-11 lg:w-11" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 64 64" fill="none">
+              <path d="M17 42 L28 31 L36 37 L47 24" stroke="#fff" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M39 24 L47 24 L47 32" stroke="#fff" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </span>
+          <span>
+            <div className="text-2xl font-bold tracking-tight text-gray-900 lg:text-3xl">
+              Rank<span className="bg-gradient-to-r from-emerald-500 to-sky-500 bg-clip-text text-transparent">Frame</span>
+            </div>
+            <div className="text-[0.65rem] uppercase tracking-[0.3em] text-gray-600">SEO · Local · AI Search · Web Design</div>
+          </span>
         </a>
 
         {/* Desktop nav */}
@@ -2275,8 +2287,14 @@ function SiteFooter() {
         <div className="grid gap-12 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
           {/* Brand */}
           <div>
-            <div className="text-2xl font-bold tracking-tight text-gray-900">
-              Rank<span className="bg-gradient-to-r from-emerald-500 to-sky-500 bg-clip-text text-transparent">Frame</span> SEO
+            <div className="flex items-center gap-2.5 text-2xl font-bold tracking-tight text-gray-900">
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-sky-500 shadow-sm" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 64 64" fill="none">
+                  <path d="M17 42 L28 31 L36 37 L47 24" stroke="#fff" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M39 24 L47 24 L47 32" stroke="#fff" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+              <span>Rank<span className="bg-gradient-to-r from-emerald-500 to-sky-500 bg-clip-text text-transparent">Frame</span> SEO</span>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-7 text-gray-600">
               Full-service SEO, local & map optimization, AI search visibility, and website design for businesses in every industry — clear direction and measurable progress.

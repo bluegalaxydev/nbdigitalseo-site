@@ -1,5 +1,5 @@
 # RankFrame SEO — robots.txt
-# Last updated: 2026-04-14
+# Last updated: 2026-07-12
 
 # ===== Default: allow all crawlers =====
 User-agent: *
