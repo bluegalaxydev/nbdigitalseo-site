@@ -114,21 +114,45 @@ const server = http.createServer(async (req, res) => {
 
 await new Promise((r) => server.listen(PORT, r));
 
-let puppeteer;
-try {
-  puppeteer = (await import('puppeteer')).default;
-} catch {
-  server.close();
-  fail('puppeteer is not installed. Run:  npm install -D puppeteer');
+// Launch a browser that works both locally (full `puppeteer`) and in a
+// serverless build environment like Vercel (`puppeteer-core` + a bundled
+// `@sparticuz/chromium`). On Vercel the VERCEL env var is set during builds.
+async function launchBrowser() {
+  const onServerless = !!process.env.VERCEL || !!process.env.AWS_LAMBDA_FUNCTION_NAME;
+  if (onServerless) {
+    const chromium = (await import('@sparticuz/chromium')).default;
+    const puppeteerCore = (await import('puppeteer-core')).default;
+    return puppeteerCore.launch({
+      args: [...chromium.args, '--no-sandbox', '--disable-setuid-sandbox'],
+      executablePath: await chromium.executablePath(),
+      headless: chromium.headless,
+    });
+  }
+  const puppeteer = (await import('puppeteer')).default;
+  return puppeteer.launch({
+    headless: 'new',
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  });
 }
 
 const routes = await routesFromSitemap();
 console.log('[prerender] ' + routes.length + ' routes to prerender');
 
-const browser = await puppeteer.launch({
-  headless: 'new',
-  args: ['--no-sandbox', '--disable-setuid-sandbox'],
-});
+// CRITICAL SAFETY: if no browser is available, skip prerendering and let the
+// normal Vite build output deploy as-is. Prerender failure must NEVER break
+// the build / take the site down — worst case the site serves as a SPA (its
+// current behavior).
+let browser;
+try {
+  browser = await launchBrowser();
+} catch (e) {
+  console.warn(
+    '[prerender] browser unavailable — skipping prerender, deploying normal SPA build. ' +
+      (e && e.message ? e.message : e)
+  );
+  server.close();
+  process.exit(0);
+}
 
 const outputs = [];
 let ok = 0;

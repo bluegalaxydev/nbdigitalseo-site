@@ -1830,8 +1830,8 @@ export default function AISeoMarketingLandingPage() {
               </div>
 
               <h1 className="max-w-3xl text-5xl font-bold leading-[1.1] tracking-tight text-gray-900 md:text-6xl lg:text-[4.25rem]">
-                Everything SEO{' '}
-                <span className="bg-gradient-to-r from-emerald-500 via-teal-500 to-sky-500 bg-clip-text text-transparent">
+                Everything SEO
+                <span className="block bg-gradient-to-r from-emerald-500 via-teal-500 to-sky-500 bg-clip-text text-transparent">
                   done for you
                 </span>
               </h1>

@@ -33,17 +33,52 @@ Then open a deep URL like `http://localhost:4173/seo-for-crypto`, right-click �
 
 If something looks off, tell me the URL and what you saw and I'll fix the script.
 
-## Deploying the prerendered output
+## Verifying locally — important
 
-Once it looks right locally, pick one:
+Do NOT use `npm run preview` to check the prerender. `vite preview` has an SPA
+fallback that serves the root `index.html` for every route, so View Source will
+wrongly show the homepage for `/seo-for-crypto`. That's a preview-tool quirk, not
+a prerender problem — Vercel serves the nested files correctly.
 
-**Option A — let Vercel prerender (simplest to manage, needs a browser in the build).**
-In Vercel → Project → Settings → Build & Output, set the **Build Command** to `npm run build:static`. Vercel's build container needs Chromium; if the default `puppeteer` install doesn't work there, switch the script to `puppeteer-core` + `@sparticuz/chromium` (I can do this for you). Test with a preview deploy before promoting to production.
+To actually verify, open the built file directly, e.g.:
 
-**Option B — build locally, deploy the output (most reliable).**
-Run `npm run build:static` on your machine, then deploy the `dist/` folder (e.g. `vercel deploy --prebuilt` after `vercel build`, or Netlify's manual deploy). This keeps the browser off Vercel entirely.
+```
+grep -o '<title>[^<]*</title>' dist/seo-for-crypto/index.html
+```
 
-My recommendation: verify locally first (above), then try **Option A** with a preview deploy. If Vercel's build chokes on Chromium, I'll switch it to the `@sparticuz/chromium` setup, which is built for serverless build environments.
+You should see that page's own title. Each `dist/<route>/index.html` holds the
+correct per-page title, canonical, meta, JSON-LD, and body content.
+
+## Deploying on Vercel (auto-prerender)
+
+The prerender script already detects Vercel and uses a serverless-friendly
+Chromium (`@sparticuz/chromium` + `puppeteer-core`). And if the browser can't
+launch for any reason, it **skips prerendering and still deploys the normal SPA
+build** — so this can never break your deploy.
+
+Steps:
+
+1. Add the serverless browser packages (so Vercel's build can prerender). Run
+   locally so npm resolves compatible versions and updates package.json + lockfile:
+   ```
+   npm install -D @sparticuz/chromium puppeteer-core
+   ```
+2. Commit and push (`package.json`, `package-lock.json`).
+3. In Vercel → Project → Settings → Build & Output, set **Build Command** to:
+   ```
+   npm run build:static
+   ```
+4. Trigger a **preview deployment** first (push to a branch, or redeploy) and
+   check a deep URL's View Source on the *.vercel.app preview — the per-page
+   `<title>` should be correct. Then promote to production.
+
+If Vercel's build ever can't run Chromium, the log will say
+`[prerender] browser unavailable — skipping prerender` and the site deploys as
+the normal SPA (exactly today's behavior). No downside, no downtime.
+
+**Alternative (no browser on Vercel): build locally, deploy prebuilt.**
+Run `npm run build:static` on your machine (confirmed working), then
+`vercel deploy --prebuilt`. Keeps Chromium off Vercel entirely.
 
 ## Re-running
 
