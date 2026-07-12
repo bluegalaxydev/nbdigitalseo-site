@@ -105,6 +105,7 @@ Most business websites lose organic rankings not because of product or pricing, 
 
 ## Published Blog Posts
 
+- [SEO for High-Risk Industries in 2026: How Restricted Businesses Rank When They Can't Run Ads](https://rankframeseo.com/blog/seo-for-high-risk-industries-2026) (2026-07-12) — the compliant, durable SEO playbook for CBD, crypto, supplements, gaming, firearms and other restricted verticals that are banned or throttled on paid ads.
 - [What 30+ Small-Business SEO Audits Revealed: The Architecture Failures Quietly Costing Sites Millions](https://rankframeseo.com/blog/what-30-small-business-seo-audits-revealed-2026) (2026-04-14) — original research across 30+ audits; ranks the seven most common architecture failures by frequency, with PACK EXPO as a seven-failures-at-once case study. Also syndicated on Medium: https://medium.com/@bluegalaxydev/what-30-small-business-seo-audits-revealed-the-architecture-failures-quietly-costing-sites-5464a7af627f (canonical = rankframeseo.com).
 - [GEO in 2026: How to Get Your Website Cited by ChatGPT, Claude, and Perplexity](https://rankframeseo.com/blog/geo-optimization-chatgpt-claude-perplexity-2026) (2026-04-14)
 - [The Small Business Backlink Playbook: How to Earn 10 Quality Links a Month Without Paying for Them](https://rankframeseo.com/blog/backlink-playbook-small-business-2026) (2026-04-20)

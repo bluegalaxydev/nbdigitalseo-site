@@ -3,6 +3,81 @@
 
 export const posts = [
   {
+    slug: 'seo-for-high-risk-industries-2026',
+    title: 'SEO for High-Risk Industries in 2026: How Restricted Businesses Rank When They Can’t Run Ads',
+    excerpt:
+      'CBD, crypto, supplements, gaming, firearms, and other restricted verticals get banned or throttled on Google and Meta ads. That makes organic SEO their single most reliable growth channel. Here is the compliant, durable playbook we use to rank high-risk businesses without paid ads.',
+    date: '2026-07-12',
+    readTime: '11 min read',
+    author: 'Blue Galaxy',
+    tags: ['High-Risk Industries', 'Off-Page SEO', 'Technical SEO', 'Content Strategy', 'Local SEO'],
+    mediumUrl: 'https://medium.com/@bluegalaxydev',
+    content: `If you run a business in a high-risk or restricted industry — CBD, hemp, supplements, cryptocurrency, online gaming, firearms and accessories, vaping, adult-adjacent brands, or nutraceuticals — you already know the problem. Google Ads and Meta Ads either ban your category outright or approve your account one week and suspend it the next. Every dollar of paid growth sits on a landmine.
+
+That is exactly why organic SEO is not a "nice to have" for high-risk businesses. It is the single most reliable, durable customer-acquisition channel you have. Search engines rank your pages on relevance and trust, not on whether an ad-policy reviewer had a bad morning. Once you rank, that traffic compounds — and nobody can switch it off.
+
+This is the playbook we use at RankFrame to grow restricted-industry businesses through search. It is built to be compliant and durable, because the last thing a high-risk brand needs is a black-hat shortcut that triggers a manual penalty on top of everything else.
+
+## Why SEO Wins for High-Risk Industries
+
+Paid channels punish restricted verticals in three ways: outright category bans, unpredictable account suspensions, and inflated costs when you can advertise at all. SEO sidesteps all three:
+
+- **No policy reviewer stands between you and the customer.** A page that genuinely answers a searcher's question can rank regardless of your industry.
+- **The traffic compounds.** A blog post or product page that ranks keeps earning clicks for months or years with no per-click cost.
+- **Intent is higher.** Someone searching "best CBD for sleep" or "how to buy bitcoin safely" is further down the funnel than someone scrolling a feed.
+
+The catch: high-risk industries are held to a higher trust bar by Google. That means the technical foundation, the content quality, and the off-page authority all have to be genuinely solid. Cutting corners gets noticed faster here than in a low-scrutiny niche.
+
+## Step 1 — Build a Bulletproof Technical Foundation
+
+Before content or links, the architecture has to be clean, because high-risk sites get scrutinized more heavily.
+
+- **Crawlable, logical structure.** Every important page reachable within a few clicks, a clean URL scheme, and internal links that connect related products and topics.
+- **Complete schema markup.** Organization, Product (with price, availability, and rating where you legitimately have reviews), FAQPage, and BreadcrumbList. Structured data tells Google exactly what a page is instead of forcing it to guess — which matters more when your category is sensitive.
+- **Core Web Vitals in the green.** Fast LCP, low CLS, responsive interactions. Speed is a ranking factor and a trust signal.
+- **Clean indexing.** A correct XML sitemap, a sensible robots setup, canonical tags to kill duplicate-content issues (common on stores with product variants), and no accidental noindex on money pages.
+
+## Step 2 — Win With E-E-A-T and Compliant Content
+
+Google leans hard on E-E-A-T (Experience, Expertise, Authoritativeness, Trust) for "Your Money or Your Life" topics — and most high-risk industries fall squarely in that bucket. Content is where you prove it:
+
+- **Answer real buyer questions.** Build informational pages around the terms your customers actually search: "is CBD legal in [state]", "how to store hardware wallets", "creatine loading explained". These rank because they are genuinely useful and low-competition.
+- **Show real expertise and sourcing.** Cite studies, add author bios with credentials, and be specific. Vague marketing copy loses; precise, sourced content wins.
+- **Be transparent and compliant.** Clear policies, honest claims, no promises you cannot back up. This protects you legally and builds the trust signals Google rewards.
+- **Optimize for AI search too.** ChatGPT, Perplexity, and Google AI Overviews increasingly answer questions in restricted categories. Structured, well-sourced content plus an llms.txt file makes your brand citation-ready in the answer layer — a channel paid ads can never touch.
+
+## Step 3 — Own Local SEO and the Map Pack
+
+If you have any physical presence — a dispensary, a shop, a clinic — local search is gold, because "near me" intent converts and paid local ads are often blocked for your category.
+
+- Fully optimized Google Business Profile: correct category, hours, photos, services, and Q&A.
+- Google Maps and **Apple Maps / Apple Business Connect** listings set up and kept consistent.
+- Consistent NAP (name, address, phone) across every directory, plus citations in your industry's niche directories.
+- Reviews handled the right way — earned, never bought — with LocalBusiness schema so ratings can surface in results.
+
+## Step 4 — Build Authority the Durable Way
+
+Off-page authority is where high-risk SEO is won or lost, and it is where the temptation to buy shady links is highest. Do not. A manual link penalty on a brand that already has ad-account problems is a disaster. Instead:
+
+- **Digital PR and genuine outreach.** Earn mentions and links from real publications, industry blogs, and niche communities that cover your space.
+- **Guest content on authoritative sites** that actually accept your industry.
+- **Niche and industry directories** relevant to your vertical.
+- **Competitor backlink gap analysis** to find the exact sites already linking to businesses like yours — then earn those links too.
+- **Toxic backlink audits** to clean up any spammy links a previous agency may have pointed at you.
+
+Slow, earned links compound and survive core updates. Purchased link schemes collapse at the worst possible moment.
+
+## What Results Realistically Look Like
+
+SEO is not instant — and any agency that promises overnight rankings in a high-risk niche is the one to avoid. Realistically: technical fixes and Google Business Profile gains can show movement in the first few weeks. Content and authority start moving rankings around the 60–90 day mark, and the compounding effect is strongest after about six months. The upside is that, unlike paid ads, this traffic does not disappear when a policy changes — it becomes an asset you own.
+
+## The Bottom Line
+
+For restricted industries, SEO is not the backup plan — it is the plan. When ads are unreliable or banned, ranking organically is how you build a growth channel nobody can switch off. It takes a clean technical foundation, genuinely useful and compliant content, strong local presence, and authority earned the durable way. Done right, it turns the thing that makes your industry hard to advertise into your biggest long-term advantage.
+
+RankFrame works with high-risk and restricted businesses across every vertical. If paid ads keep letting you down, select the services you need and we will send you a tailored, one-on-one plan — usually within 2–6 hours.`,
+  },
+  {
     slug: 'what-30-small-business-seo-audits-revealed-2026',
     title: 'What 30+ Small-Business SEO Audits Revealed: The Architecture Failures Quietly Costing Sites Millions',
     excerpt:

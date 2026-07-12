@@ -1607,9 +1607,9 @@ export default function AISeoMarketingLandingPage() {
         <main className="mx-auto max-w-5xl px-6 py-20 lg:px-10">
           <div className="mb-10 text-center">
             <div className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-600">RankFrame Blog</div>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">SEO Architecture Insights</h1>
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">SEO, Local &amp; AI Search Insights</h1>
             <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-600">
-              Playbooks, audits, and field notes on technical SEO, schema markup, internal linking, and Core Web Vitals — written for small businesses that want to stop being invisible on Google.
+              Playbooks and field notes on technical SEO, local SEO and Google &amp; Apple Maps, AI search (GEO), backlinks, and website design — written for businesses in every industry that want to be found on Google and in AI answers.
             </p>
           </div>
 
@@ -2086,7 +2086,7 @@ export default function AISeoMarketingLandingPage() {
         <section id="pricing" className="mx-auto max-w-6xl px-6 pb-12 pt-20 lg:px-10" aria-label="Services">
           <FadeIn>
             <div className="text-center mb-12">
-              <div className="text-xs font-bold uppercase tracking-[0.35em] text-emerald-600">What we do</div>
+              <div className="text-xs font-bold uppercase tracking-[0.35em] text-emerald-600">SEO Services · Every Industry</div>
               <h2 className="mt-5 text-4xl font-bold tracking-tight text-gray-900 md:text-5xl">
                 Everything SEO — pick exactly what you need
               </h2>
