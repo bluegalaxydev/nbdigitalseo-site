@@ -2130,6 +2130,39 @@ export default function AISeoMarketingLandingPage() {
           </FadeIn>
         </section>
 
+        {/* ── INDUSTRIES ── */}
+        <section id="industries" className="mx-auto max-w-6xl px-6 py-16 lg:px-10" aria-label="Industries we serve">
+          <FadeIn>
+            <div className="mb-10 text-center">
+              <div className="text-xs font-bold uppercase tracking-[0.35em] text-emerald-600">Industries</div>
+              <h2 className="mt-5 text-4xl font-bold tracking-tight text-gray-900 md:text-5xl">
+                SEO for your industry
+              </h2>
+              <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
+                We work with businesses in every industry — including high-risk and restricted verticals. Explore the playbook for yours, or just ask us about any field.
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {NICHE_KEYS.map((k, i) => (
+                <FadeIn key={k} delay={i * 0.04}>
+                  <a
+                    href={'/' + niches[k].slug}
+                    onClick={(e) => { e.preventDefault(); goTo('/' + niches[k].slug); }}
+                    className="card-hover-glow block h-full rounded-2xl border border-[#e1f1ee] bg-white/70 p-5 backdrop-blur transition hover:-translate-y-1"
+                  >
+                    <div className="text-base font-bold leading-6 text-gray-900">{niches[k].h1}</div>
+                    <div className="mt-2 text-sm font-medium text-emerald-700">Learn more →</div>
+                  </a>
+                </FadeIn>
+              ))}
+            </div>
+            <p className="mt-8 text-center text-sm text-gray-500">
+              Don’t see yours? We do SEO for every industry —{' '}
+              <button onClick={() => goTo('/get-started')} className="font-semibold text-emerald-700 underline underline-offset-2 hover:text-emerald-600">just ask</button>.
+            </p>
+          </FadeIn>
+        </section>
+
         {/* ── FAQ ── */}
         <section className="mx-auto max-w-7xl px-6 py-10 lg:px-10" aria-label="FAQ">
           <FadeIn>
@@ -2183,8 +2216,8 @@ function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const navLinks = [
     ['/#pricing', 'Services'],
+    ['/#industries', 'Industries'],
     ['/#why-seo', 'Why SEO'],
-    ['/#services', 'What You Get'],
     ['/#how-it-works', 'How It Works'],
     ['/#case-study', 'Case Study'],
     ['/blog', 'Blog'],
