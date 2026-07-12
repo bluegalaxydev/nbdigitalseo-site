@@ -2536,6 +2536,17 @@ function SiteFooter() {
             <p className="mt-4 max-w-sm text-sm leading-7 text-gray-600">
               Full-service SEO, local & map optimization, AI search visibility, and website design for businesses in every industry — clear direction and measurable progress.
             </p>
+            <a
+              href="/get-started"
+              onClick={(e) => footerLinkClick(e, '/get-started')}
+              className="mt-6 inline-flex items-center gap-2.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 transition hover:border-emerald-500/50 hover:bg-emerald-500/15"
+            >
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
+              </span>
+              <span className="text-sm font-semibold text-emerald-700">Available for new clients</span>
+            </a>
           </div>
 
           {/* Navigation */}
