@@ -2328,20 +2328,34 @@ function SiteFooter() {
                 ['/#pricing', 'Services'],
                 ['/#case-study', 'Case Study'],
                 ['/blog', 'Blog'],
-                ['/glossary', 'SEO Glossary'],
-                ['/statistics', 'SEO Statistics'],
-                ['/seo-for-dentists', 'SEO for Dentists'],
-                ['/seo-for-ecommerce', 'SEO for E-commerce'],
-                ['/seo-for-law-firms', 'SEO for Law Firms'],
-                ['/seo-for-restaurants', 'SEO for Restaurants'],
-                ['/seo-for-real-estate', 'SEO for Real Estate'],
-                ['/seo-for-contractors', 'SEO for Contractors'],
-                ['/seo-for-cbd', 'SEO for CBD Brands'],
-                ['/seo-for-saas', 'SEO for SaaS'],
                 ['/about', 'About'],
               ].map(([href, label]) => (
                 <a key={href} href={href} onClick={(e) => footerLinkClick(e, href)} className="text-sm text-gray-600 transition hover:text-emerald-600">{label}</a>
               ))}
+
+              {/* Collapsible collection — keeps the footer clean while all links stay crawlable */}
+              <details className="group mt-1">
+                <summary className="flex cursor-pointer list-none items-center gap-1.5 text-sm font-medium text-gray-600 transition hover:text-emerald-600 [&::-webkit-details-marker]:hidden">
+                  Industries &amp; Guides
+                  <span className="text-[10px] text-gray-400 transition-transform duration-200 group-open:rotate-180">▼</span>
+                </summary>
+                <div className="mt-3 grid gap-2.5 border-l border-[#d7ece8] pl-4">
+                  {[
+                    ['/glossary', 'SEO Glossary'],
+                    ['/statistics', 'SEO Statistics'],
+                    ['/seo-for-dentists', 'SEO for Dentists'],
+                    ['/seo-for-ecommerce', 'SEO for E-commerce'],
+                    ['/seo-for-law-firms', 'SEO for Law Firms'],
+                    ['/seo-for-restaurants', 'SEO for Restaurants'],
+                    ['/seo-for-real-estate', 'SEO for Real Estate'],
+                    ['/seo-for-contractors', 'SEO for Contractors'],
+                    ['/seo-for-cbd', 'SEO for CBD Brands'],
+                    ['/seo-for-saas', 'SEO for SaaS'],
+                  ].map(([href, label]) => (
+                    <a key={href} href={href} onClick={(e) => footerLinkClick(e, href)} className="text-sm text-gray-500 transition hover:text-emerald-600">{label}</a>
+                  ))}
+                </div>
+              </details>
             </nav>
           </div>
 
