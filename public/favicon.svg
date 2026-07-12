@@ -1,11 +1,11 @@
 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="rf" x1="6" y1="6" x2="58" y2="58" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#10b981"/>
-      <stop offset="1" stop-color="#0ea5e9"/>
+    <linearGradient id="rf" x1="14" y1="50" x2="50" y2="14" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10b981"/><stop offset=".5" stop-color="#06b6d4"/><stop offset="1" stop-color="#0ea5e9"/>
     </linearGradient>
   </defs>
-  <rect x="4" y="4" width="56" height="56" rx="16" fill="url(#rf)"/>
-  <path d="M17 42 L28 31 L36 37 L47 24" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M39 24 L47 24 L47 32" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="3.5" y="3.5" width="57" height="57" rx="16.5" fill="#ffffff" stroke="#dcece8"/>
+  <path d="M30.53 41.00 24.29 29.68H22.53V41.00H15.23V11.00H27.49Q31.04 11.00 33.54 12.24Q36.04 13.48 37.28 15.64Q38.52 17.79 38.52 20.44Q38.52 23.44 36.83 25.79Q35.14 28.14 31.85 29.12L38.77 41.00ZM22.53 24.50H27.06Q29.07 24.50 30.08 23.52Q31.08 22.54 31.08 20.74Q31.08 19.03 30.08 18.05Q29.07 17.07 27.06 17.07H22.53Z" fill="url(#rf)"/>
+  <path d="M13 53 L24 46 L34 50 L52 33" stroke="url(#rf)" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M46 33 L52 33 L52 39" stroke="url(#rf)" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

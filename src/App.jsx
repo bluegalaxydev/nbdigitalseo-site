@@ -726,6 +726,7 @@ export default function AISeoMarketingLandingPage() {
           { '@type': 'Question', name: 'What services do you offer?', acceptedAnswer: { '@type': 'Answer', text: 'We cover the full range of SEO and web work: technical & on-page SEO, keyword research and content, local SEO with Google Business Profile, Google Maps and Apple Maps, AI search (GEO) visibility so you get cited by ChatGPT and Google AI Overviews, off-page authority and backlink building, e-commerce SEO, website design and build, plus analytics and monthly reporting. You choose exactly which services you need.' } },
           { '@type': 'Question', name: 'How does it work?', acceptedAnswer: { '@type': 'Answer', text: 'On our Get Started page you select the services you are interested in. Your selection is emailed to us instantly and we reply in 2–6 hours with a tailored, one-on-one plan. There is no obligation.' } },
           { '@type': 'Question', name: 'Which industries do you work with?', acceptedAnswer: { '@type': 'Answer', text: 'Every industry — local service businesses, e-commerce stores, SaaS and tech, professional services, healthcare, hospitality, and more. The SEO fundamentals that move rankings apply across all of them.' } },
+          { '@type': 'Question', name: 'Do you work with high-risk or restricted industries?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. We work with high-risk and restricted verticals, including industries where paid ads are limited or banned — such as CBD, supplements, crypto, gaming, firearms, and adult-adjacent brands. For these businesses organic SEO is often the single most reliable growth channel, and we build it the compliant, durable way.' } },
           { '@type': 'Question', name: 'Can you get my business cited by ChatGPT and AI search?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Generative Engine Optimization (GEO) makes your site citation-ready for ChatGPT, Gemini, Perplexity, and Google AI Overviews through structured data, entity optimization, llms.txt discovery files, and AI-friendly content.' } },
           { '@type': 'Question', name: 'Do you add and fix Google Maps and Apple Maps listings?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. We set up and optimize Google Business Profile and Google Maps rankings, and set up or fix Apple Maps / Apple Business Connect and Bing Places, with consistent NAP data and directory citations.' } },
           { '@type': 'Question', name: 'Do you also build websites?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. We design and build fast, modern websites and landing pages engineered to rank from day one, and can redesign or optimize an existing site for speed, mobile, and conversions.' } },
@@ -1115,6 +1116,7 @@ export default function AISeoMarketingLandingPage() {
     'Local service businesses that want to own the map pack',
     'E-commerce stores that need product and category pages to rank',
     'SaaS and startups that want visibility in Google and AI search',
+    'High-risk & restricted industries where paid ads are limited — SEO is your best channel',
     'Any business — in any industry — that wants to be found online',
   ];
 
@@ -1137,6 +1139,10 @@ export default function AISeoMarketingLandingPage() {
     {
       q: 'Which industries do you work with?',
       a: 'Every industry — local service businesses, e-commerce, SaaS and tech, professional services, healthcare, hospitality, and more. The SEO fundamentals that move rankings apply everywhere.',
+    },
+    {
+      q: 'Do you work with high-risk or restricted industries?',
+      a: 'Yes. We work with high-risk and restricted verticals — including industries where paid ads are limited or banned (such as CBD, supplements, crypto, gaming, firearms, and adult-adjacent brands). For these businesses organic SEO is often the single most reliable growth channel, and we build it the compliant, durable way.',
     },
     {
       q: 'Can you get my business cited by ChatGPT and AI search?',
@@ -1470,7 +1476,7 @@ export default function AISeoMarketingLandingPage() {
               <div className="mt-5 grid gap-3 text-sm">
                 {[
                   ['One-on-one service', 'Work directly with us — no account-manager layers.'],
-                  ['Every industry', 'Local shops, e-commerce, SaaS, professional services & more.'],
+                  ['Every industry', 'Local, e-commerce, SaaS, professional services — and high-risk / restricted verticals too.'],
                   ['2–6 hours', 'We reply with a tailored plan, fast.'],
                 ].map(([t, d]) => (
                   <div key={t} className="rounded-2xl border border-[#e1f1ee] bg-white/70 p-4">
@@ -1752,7 +1758,7 @@ export default function AISeoMarketingLandingPage() {
               </div>
 
               <h1 className="max-w-3xl text-5xl font-bold leading-[1.1] tracking-tight text-gray-900 md:text-6xl lg:text-[4.25rem]">
-                Everything SEO,{' '}
+                Everything SEO{' '}
                 <span className="bg-gradient-to-r from-emerald-500 via-teal-500 to-sky-500 bg-clip-text text-transparent">
                   done for you
                 </span>
@@ -1785,7 +1791,7 @@ export default function AISeoMarketingLandingPage() {
               <div className="mt-14 grid gap-4 sm:grid-cols-3">
                 {[
                   ['50+ Services', 'Mix and match exactly what you need'],
-                  ['Every Industry', 'Local, e-commerce, SaaS, services & more'],
+                  ['Every Industry', 'Incl. high-risk & restricted verticals'],
                   ['1-on-1 Service', 'Work directly with us, reply in 2–6 hours'],
                 ].map(([title, text], i) => (
                   <FadeIn key={title} delay={0.1 + i * 0.08} className="card-hover-glow rounded-2xl border border-[#e1f1ee] bg-white/80 p-5 backdrop-blur">
@@ -2195,10 +2201,16 @@ function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-[#e1f1ee]/50 bg-[#f3fbfb]/95 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
         <a href="/" onClick={(e) => handleNavClick(e, '/')} className="flex items-center gap-3 text-left">
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-sky-500 shadow-md shadow-emerald-500/30 lg:h-11 lg:w-11" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 64 64" fill="none">
-              <path d="M17 42 L28 31 L36 37 L47 24" stroke="#fff" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M39 24 L47 24 L47 32" stroke="#fff" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+          <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#dcece8] bg-white shadow-sm shadow-emerald-500/10 lg:h-12 lg:w-12" aria-hidden="true">
+            <svg width="30" height="30" viewBox="0 0 64 64" fill="none">
+              <defs>
+                <linearGradient id="rfHead" x1="14" y1="50" x2="50" y2="14" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="#10b981" /><stop offset="0.5" stopColor="#06b6d4" /><stop offset="1" stopColor="#0ea5e9" />
+                </linearGradient>
+              </defs>
+              <path d="M30.53 41.00 24.29 29.68H22.53V41.00H15.23V11.00H27.49Q31.04 11.00 33.54 12.24Q36.04 13.48 37.28 15.64Q38.52 17.79 38.52 20.44Q38.52 23.44 36.83 25.79Q35.14 28.14 31.85 29.12L38.77 41.00ZM22.53 24.50H27.06Q29.07 24.50 30.08 23.52Q31.08 22.54 31.08 20.74Q31.08 19.03 30.08 18.05Q29.07 17.07 27.06 17.07H22.53Z" fill="url(#rfHead)" />
+              <path d="M13 53 L24 46 L34 50 L52 33" stroke="url(#rfHead)" strokeWidth="4.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M46 33 L52 33 L52 39" stroke="url(#rfHead)" strokeWidth="4.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </span>
           <span>
@@ -2288,10 +2300,16 @@ function SiteFooter() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2.5 text-2xl font-bold tracking-tight text-gray-900">
-              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-sky-500 shadow-sm" aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 64 64" fill="none">
-                  <path d="M17 42 L28 31 L36 37 L47 24" stroke="#fff" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M39 24 L47 24 L47 32" stroke="#fff" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+              <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#dcece8] bg-white shadow-sm" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 64 64" fill="none">
+                  <defs>
+                    <linearGradient id="rfFoot" x1="14" y1="50" x2="50" y2="14" gradientUnits="userSpaceOnUse">
+                      <stop stopColor="#10b981" /><stop offset="0.5" stopColor="#06b6d4" /><stop offset="1" stopColor="#0ea5e9" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M30.53 41.00 24.29 29.68H22.53V41.00H15.23V11.00H27.49Q31.04 11.00 33.54 12.24Q36.04 13.48 37.28 15.64Q38.52 17.79 38.52 20.44Q38.52 23.44 36.83 25.79Q35.14 28.14 31.85 29.12L38.77 41.00ZM22.53 24.50H27.06Q29.07 24.50 30.08 23.52Q31.08 22.54 31.08 20.74Q31.08 19.03 30.08 18.05Q29.07 17.07 27.06 17.07H22.53Z" fill="url(#rfFoot)" />
+                  <path d="M13 53 L24 46 L34 50 L52 33" stroke="url(#rfFoot)" strokeWidth="4.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M46 33 L52 33 L52 39" stroke="url(#rfFoot)" strokeWidth="4.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </span>
               <span>Rank<span className="bg-gradient-to-r from-emerald-500 to-sky-500 bg-clip-text text-transparent">Frame</span> SEO</span>
