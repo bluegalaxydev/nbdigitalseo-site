@@ -578,6 +578,132 @@ export const niches = {
       { label: '53%', text: 'of all website traffic comes from organic search.' },
     ],
   },
+
+  medspas: {
+    slug: 'seo-for-med-spas',
+    title: 'SEO for Med Spas & Aesthetic Clinics — Local SEO | RankFrame SEO',
+    metaDescription:
+      'Local SEO for med spas and aesthetic clinics. Rank for Botox, filler, and laser searches, win the map pack, and book more consults. Google Business Profile, schema, and reviews. Reply in 2–6 hours.',
+    h1: 'SEO for Med Spas & Aesthetic Clinics',
+    subhead:
+      'Med spa clients search locally for specific treatments — Botox, filler, laser, facials — then pick from the map pack. We get your clinic ranking for every treatment you offer.',
+    painPoints: [
+      'You rank for "med spa near me" but not for the specific treatments that actually book — "Botox near me", "lip filler [city]".',
+      'Bigger clinics and franchises dominate the map pack in your area.',
+      'Your treatment pages are thin, so Google can\'t tell what services you offer.',
+      'Great before-and-after results, but reviews and Google Business Profile aren\'t working for you.',
+    ],
+    whatWeDo: [
+      'Local SEO built on Google Business Profile optimization and map-pack ranking for "near me" treatment searches.',
+      'A dedicated, optimized page per treatment (Botox, dermal filler, laser, microneedling, facials) with schema.',
+      'Review generation and MedicalBusiness / LocalBusiness schema to surface ratings in results.',
+      'Technical SEO — Core Web Vitals, internal linking, and clean indexing so treatment pages rank.',
+      'Monthly ranking reports on treatment and local keywords with a 30-day action plan.',
+    ],
+    faq: [
+      {
+        q: 'How do med spas rank for specific treatments?',
+        a: 'Each treatment needs its own optimized page — Botox, filler, laser, microneedling — with dedicated titles, content, and schema. Clients search by treatment, not just "med spa", so a page per service captures far more high-intent traffic.',
+      },
+      {
+        q: 'Do reviews matter for med spa SEO?',
+        a: 'Enormously. Reviews are a top local ranking factor and directly influence whether someone books. We set up a steady review-generation process and mark up ratings so they can surface in search.',
+      },
+      {
+        q: 'How long until a med spa sees SEO results?',
+        a: 'Google Business Profile and map-pack gains often show within 2–4 weeks. Treatment-page rankings usually move at 60–90 days and compound over six months.',
+      },
+    ],
+    stats: [
+      { label: '46%', text: 'of Google searches have local intent — the core of med spa demand.' },
+      { label: '78%', text: 'of local mobile searches result in an offline visit or booking.' },
+      { label: '3x', text: 'higher engagement on Google Business Profiles with 5+ photos.' },
+    ],
+  },
+
+  autorepair: {
+    slug: 'seo-for-auto-repair',
+    title: 'SEO for Auto Repair Shops & Mechanics — Local SEO | RankFrame SEO',
+    metaDescription:
+      'Local SEO for auto repair shops and mechanics. Rank for "mechanic near me" and service searches, win the map pack, and fill your bays. Google Business Profile, schema, and reviews. Reply in 2–6 hours.',
+    h1: 'SEO for Auto Repair Shops & Mechanics',
+    subhead:
+      'When a car breaks down, people search "mechanic near me" and call whoever shows up first. We get your shop into the map pack and ranking for the repairs you specialize in.',
+    painPoints: [
+      'You rank below chains and dealerships for "auto repair near me" even when your reviews are better.',
+      'You get found for oil changes but not for the high-margin work — brakes, transmission, diagnostics.',
+      'Your Google Business Profile is missing services, hours, and photos, so you miss the map pack.',
+      'Customers can\'t find you for the specific makes or services you\'re best at.',
+    ],
+    whatWeDo: [
+      'Local SEO built on Google Business Profile optimization and map-pack ranking for "near me" repair searches.',
+      'Service pages for each repair (brakes, transmission, AC, diagnostics, tires) and for makes you specialize in.',
+      'Review generation and AutoRepair / LocalBusiness schema to surface ratings and services.',
+      'Technical SEO — Core Web Vitals, internal linking, and clean indexing so service pages rank.',
+      'Monthly ranking reports on service and local keywords with a 30-day action plan.',
+    ],
+    faq: [
+      {
+        q: 'How do auto shops rank higher than dealerships?',
+        a: 'Independent shops win the map pack with a fully optimized Google Business Profile, consistent citations, real reviews, and service pages for each repair. Dealerships often have generic local pages, which leaves room for a focused shop to outrank them locally.',
+      },
+      {
+        q: 'Should I have a page for each service?',
+        a: 'Yes. Customers search for specific repairs — "brake repair [city]", "transmission shop near me". A dedicated, optimized page per service captures far more high-intent traffic than a single services page.',
+      },
+      {
+        q: 'How long until an auto shop sees SEO results?',
+        a: 'Google Business Profile and map-pack gains often show within 2–4 weeks. Service-page rankings usually move at 60–90 days and compound over six months.',
+      },
+    ],
+    stats: [
+      { label: '46%', text: 'of Google searches have local intent — the core of auto repair demand.' },
+      { label: '76%', text: 'of people who search for a nearby business visit within a day.' },
+      { label: '78%', text: 'of local mobile searches lead to an offline visit or call.' },
+    ],
+  },
+
+  gyms: {
+    slug: 'seo-for-gyms',
+    title: 'SEO for Gyms & Fitness Studios — Local SEO | RankFrame SEO',
+    metaDescription:
+      'Local SEO for gyms, fitness studios, and personal trainers. Rank for "gym near me" and class searches, win the map pack, and fill memberships. Google Business Profile, schema, reviews. Reply in 2–6 hours.',
+    h1: 'SEO for Gyms & Fitness Studios',
+    subhead:
+      'People choose a gym close to home or work, and they start on Google. We get your gym or studio ranking in the map pack and for the classes and programs you offer.',
+    painPoints: [
+      'You rank for your brand but not for "gym near me", "CrossFit [city]", or "yoga studio near me".',
+      'Big-box chains and franchises dominate the local map pack.',
+      'Your class and program pages are thin, so Google can\'t surface what you offer.',
+      'Strong member results and reviews, but your Google Business Profile isn\'t converting searchers.',
+    ],
+    whatWeDo: [
+      'Local SEO built on Google Business Profile optimization and map-pack ranking for "near me" fitness searches.',
+      'Optimized pages for each program (personal training, classes, CrossFit, yoga, memberships) with schema.',
+      'Review generation and LocalBusiness / HealthClub schema to surface ratings in results.',
+      'Technical SEO — Core Web Vitals, internal linking, and clean indexing so program pages rank.',
+      'Monthly ranking reports on class and local keywords with a 30-day action plan.',
+    ],
+    faq: [
+      {
+        q: 'How do independent gyms outrank big chains locally?',
+        a: 'Chains often run generic location pages with weak local signals. An independent gym with a fully optimized Google Business Profile, real reviews, consistent citations, and program pages can outrank them in the map pack for local searches.',
+      },
+      {
+        q: 'Should each class or program have its own page?',
+        a: 'Yes. People search for specific programs — "CrossFit near me", "hot yoga [city]", "personal trainer near me". Dedicated, optimized pages capture that high-intent traffic far better than one general page.',
+      },
+      {
+        q: 'How long until a gym sees SEO results?',
+        a: 'Google Business Profile and map-pack gains often show within 2–4 weeks. Program-page rankings usually move at 60–90 days and compound over six months.',
+      },
+    ],
+    stats: [
+      { label: '46%', text: 'of Google searches have local intent — the core of gym and studio demand.' },
+      { label: '78%', text: 'of local mobile searches result in an offline visit or booking.' },
+      { label: '3x', text: 'higher engagement on Google Business Profiles with 5+ photos.' },
+    ],
+  },
 };
 
 export function getNicheBySlug(slug) {

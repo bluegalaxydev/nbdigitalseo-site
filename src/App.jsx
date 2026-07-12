@@ -2525,19 +2525,10 @@ function SiteFooter() {
                   <span className="text-[10px] text-gray-400 transition-transform duration-200 group-open:rotate-180">▼</span>
                 </summary>
                 <div className="mt-3 grid gap-2.5 border-l border-[#d7ece8] pl-4">
-                  {[
-                    ['/glossary', 'SEO Glossary'],
-                    ['/statistics', 'SEO Statistics'],
-                    ['/seo-for-dentists', 'SEO for Dentists'],
-                    ['/seo-for-ecommerce', 'SEO for E-commerce'],
-                    ['/seo-for-law-firms', 'SEO for Law Firms'],
-                    ['/seo-for-restaurants', 'SEO for Restaurants'],
-                    ['/seo-for-real-estate', 'SEO for Real Estate'],
-                    ['/seo-for-contractors', 'SEO for Contractors'],
-                    ['/seo-for-cbd', 'SEO for CBD Brands'],
-                    ['/seo-for-saas', 'SEO for SaaS'],
-                  ].map(([href, label]) => (
-                    <a key={href} href={href} onClick={(e) => footerLinkClick(e, href)} className="text-sm text-gray-500 transition hover:text-emerald-600">{label}</a>
+                  <a href="/glossary" onClick={(e) => footerLinkClick(e, '/glossary')} className="text-sm text-gray-500 transition hover:text-emerald-600">SEO Glossary</a>
+                  <a href="/statistics" onClick={(e) => footerLinkClick(e, '/statistics')} className="text-sm text-gray-500 transition hover:text-emerald-600">SEO Statistics</a>
+                  {NICHE_KEYS.map((k) => (
+                    <a key={k} href={'/' + niches[k].slug} onClick={(e) => footerLinkClick(e, '/' + niches[k].slug)} className="text-sm text-gray-500 transition hover:text-emerald-600">{niches[k].h1}</a>
                   ))}
                 </div>
               </details>

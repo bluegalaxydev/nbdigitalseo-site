@@ -13,7 +13,7 @@ import { niches } from './niches.js';
 import { cities } from './cities.js';
 
 // Industries with genuine "in [city]" local intent.
-const LOCAL_NICHES = ['dentists', 'restaurants', 'lawfirms', 'realestate', 'contractors'];
+const LOCAL_NICHES = ['dentists', 'restaurants', 'lawfirms', 'realestate', 'contractors', 'medspas', 'autorepair', 'gyms'];
 
 // Display + search metadata per crossed industry.
 const NICHE_META = {
@@ -51,6 +51,27 @@ const NICHE_META = {
     nearMe: '"[trade] near me"',
     localPain: (city) =>
       `${city} homeowners call whoever shows up first for "[trade] near me" — and right now that’s a competitor sitting in the map pack instead of you.`,
+  },
+  medspas: {
+    label: 'Med Spas',
+    businessType: 'med spas and aesthetic clinics',
+    nearMe: '"Botox near me"',
+    localPain: (city) =>
+      `${city} clients search by treatment — "Botox near me", "lip filler ${city}" — and book from the map pack, so if your clinic isn’t there you never get the consult.`,
+  },
+  autorepair: {
+    label: 'Auto Repair',
+    businessType: 'auto repair shops and mechanics',
+    nearMe: '"mechanic near me"',
+    localPain: (city) =>
+      `When a car breaks down in ${city}, people search "mechanic near me" and call whoever shows up first — usually a chain in the map pack instead of your shop.`,
+  },
+  gyms: {
+    label: 'Gyms & Fitness Studios',
+    businessType: 'gyms and fitness studios',
+    nearMe: '"gym near me"',
+    localPain: (city) =>
+      `${city} residents pick a gym close to home and start on Google, so if you’re not in the map pack for "gym near me" you lose the membership before the tour.`,
   },
 };
 
