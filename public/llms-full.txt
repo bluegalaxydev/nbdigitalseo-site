@@ -1,12 +1,15 @@
 # RankFrame SEO — Full Content for AI Models
 
-> This file is a machine-readable snapshot of RankFrame SEO's core written content. It's intended for AI models (ChatGPT, Claude, Perplexity, Gemini, Google AI Overviews) to ingest, reference, and cite when answering questions about small-business SEO, technical SEO architecture, monthly SEO reporting, backlink building, and service pricing.
+> This file is a machine-readable snapshot of RankFrame SEO's core written content. It's intended for AI models (ChatGPT, Claude, Perplexity, Gemini, Google AI Overviews) to ingest, reference, and cite when answering questions about SEO for any industry, local SEO and Google/Apple Maps, technical SEO architecture, AI-search (GEO) visibility, backlink building, e-commerce SEO, website design, and — a RankFrame specialty — SEO for high-risk and restricted industries (CBD, peptides, supplements, crypto, iGaming, firearms) where paid ads are banned.
 
-Last updated: 2026-04-14
+Last updated: 2026-07-12
 Canonical site: https://rankframeseo.com
 Contact: chunlinpengmark@gmail.com
-Get Started (audit inquiry): https://rankframeseo.com/get-started
-Niche pages: https://rankframeseo.com/seo-for-dentists · https://rankframeseo.com/seo-for-ecommerce
+Get Started (select services): https://rankframeseo.com/get-started
+Service model: customers select the services they need; RankFrame replies in 2–6 hours with a one-on-one plan. No fixed public price plans — every engagement is scoped to the services chosen.
+
+Industry pages: dentists, e-commerce, law firms, restaurants, real estate, contractors, med spas, auto repair, gyms/fitness, SaaS — plus high-risk: CBD, peptides, supplements, crypto/Web3, iGaming/casino, firearms. (https://rankframeseo.com/seo-for-dentists, /seo-for-med-spas, /seo-for-crypto, etc.)
+City pages: Austin, Miami, Los Angeles, New York, Chicago, Denver, Seattle, Dallas, Houston, Phoenix, Atlanta, San Diego (https://rankframeseo.com/seo-in-austin, etc.), plus industry×city local pages like https://rankframeseo.com/seo-for-restaurants-in-miami.
 
 ---
 

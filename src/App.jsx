@@ -3,6 +3,7 @@ import { posts, getPostBySlug } from './blog/posts.js';
 import { niches, getNicheBySlug } from './content/niches.js';
 import { cities, getCityBySlug } from './content/cities.js';
 import { crosses, crossesForCity } from './content/cross.js';
+import { testimonials } from './content/testimonials.js';
 import { glossaryTerms, seoStatistics, aboutContent } from './content/pages.js';
 
 // Route key helpers — kept in one place so router, schemas, and renders agree
@@ -2314,6 +2315,34 @@ export default function AISeoMarketingLandingPage() {
             </div>
           </FadeIn>
         </section>
+
+        {/* ── Testimonials (renders only when real client quotes exist) ── */}
+        {testimonials.length > 0 && (
+          <section className="mx-auto max-w-6xl px-6 py-16 lg:px-10" aria-label="Client results">
+            <FadeIn>
+              <div className="mb-10 text-center">
+                <div className="text-xs font-bold uppercase tracking-[0.35em] text-emerald-600">Client results</div>
+                <h2 className="mt-5 text-4xl font-bold tracking-tight text-gray-900 md:text-5xl">What clients say</h2>
+              </div>
+              <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                {testimonials.map((t, i) => (
+                  <FadeIn key={i} delay={i * 0.04}>
+                    <figure className="flex h-full flex-col rounded-2xl border border-[#e1f1ee] bg-white p-6">
+                      <blockquote className="flex-1 text-base leading-7 text-gray-700">“{t.quote}”</blockquote>
+                      {t.result && <div className="mt-4 text-sm font-bold text-emerald-700">{t.result}</div>}
+                      <figcaption className="mt-4 border-t border-[#eef6f4] pt-4 text-sm text-gray-600">
+                        <span className="font-semibold text-gray-900">{t.name}</span>
+                        {t.role && <span> · {t.role}</span>}
+                        {t.business && <span> · {t.business}</span>}
+                        {t.city && <div className="text-xs text-gray-500">{t.city}</div>}
+                      </figcaption>
+                    </figure>
+                  </FadeIn>
+                ))}
+              </div>
+            </FadeIn>
+          </section>
+        )}
 
         {/* ── FAQ ── */}
         <section className="mx-auto max-w-7xl px-6 py-10 lg:px-10" aria-label="FAQ">

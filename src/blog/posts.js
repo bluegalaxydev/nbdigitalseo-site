@@ -3,6 +3,135 @@
 
 export const posts = [
   {
+    slug: 'how-to-choose-a-local-seo-company-2026',
+    title: 'How to Choose a Local SEO Company in 2026: 12 Questions to Ask First',
+    excerpt:
+      'Most SEO gets sold on vague promises and locked-in retainers. Here are the 12 questions that separate a real SEO partner from snake oil — and the answers you should expect to hear.',
+    date: '2026-07-12',
+    readTime: '9 min read',
+    author: 'Blue Galaxy',
+    tags: ['Local SEO', 'Hiring', 'Small Business', 'Buyer Guide'],
+    mediumUrl: 'https://medium.com/@bluegalaxydev',
+    content: `Hiring an SEO company is hard because the results take months and the work is invisible to most business owners. That gap is exactly where bad agencies live — they sell long contracts, send a dashboard nobody reads, and hope you don't cancel before you notice nothing changed.
+
+You don't need to become an SEO expert to hire a good one. You just need to ask the right questions and listen for honest, specific answers. Here are the twelve we'd want a business owner to ask us.
+
+## 1. "What will you actually do in the first 30 days?"
+
+A real answer is concrete: a technical audit, Google Business Profile optimization, fixing indexing and schema, keyword and competitor research, and a prioritized roadmap. A bad answer is vague — "we'll boost your rankings" or "we'll build authority." If they can't tell you the first month's tasks, they don't have a process.
+
+## 2. "How do you report progress, and what metrics matter?"
+
+Good SEO is measured in Google Search Console: impressions, clicks, average position on real keywords, and indexed pages. Beware anyone who reports only "traffic" from their own tool, or a vanity "SEO score." Ask to see a sample report and make sure it ties back to business outcomes — calls, leads, bookings.
+
+## 3. "Do you follow Google's guidelines, or do you buy links?"
+
+This is the single most important question. Cheap agencies buy links from networks (PBNs) or spammy directories. It works for a few months, then a Google update wipes the rankings — sometimes with a manual penalty that's expensive to recover from. You want earned links: digital PR, genuine directories, and content people actually cite.
+
+## 4. "Can I keep everything if I leave?"
+
+Your website, your Google Business Profile, your Search Console, your content — all of it should be in accounts **you** own. Some agencies build your site on a platform they control or keep your GBP under their account, so leaving means losing your rankings. Ownership should never be a hostage.
+
+## 5. "What's the contract length, and can I cancel?"
+
+SEO takes months to compound, so some commitment is reasonable — but a 12-month lock with no exit is a red flag. Month-to-month or a short initial term with a clear cancellation path shows the company is betting on results, not on trapping you.
+
+## 6. "Have you worked in my industry — including its restrictions?"
+
+Local dental SEO is not the same as e-commerce SEO, and neither is anything like SEO for a restricted industry (CBD, supplements, firearms, iGaming) where paid ads are banned and organic is the only channel. Ask for relevant examples. A specialist who understands your constraints will move faster than a generalist learning on your dime.
+
+## 7. "How will you handle my Google Business Profile and reviews?"
+
+For local businesses, the map pack drives most of the calls, and it's powered by your Google Business Profile, reviews, and citation consistency. A good partner has a concrete plan: category and service optimization, photos, posting cadence, and an ethical review-generation process — never fake reviews, which violate Google's policy and can get your listing suspended.
+
+## 8. "What does your content and on-page process look like?"
+
+Rankings come from pages that target real search intent. Ask how they choose keywords, how they structure title tags and headings, and whether they write genuinely useful content or spin thin filler. On-page SEO — titles, meta descriptions, internal linking, image alt text, schema — is where a lot of quiet ranking gains come from.
+
+## 9. "Do you optimize for AI search and Google's AI Overviews?"
+
+More people now ask ChatGPT, Perplexity, and Google's AI Overviews for recommendations. Getting cited there — Generative Engine Optimization (GEO) — depends on structured data, entity clarity, an llms.txt file, and being indexed in Bing (which powers ChatGPT search). A forward-looking SEO company should already be doing this.
+
+## 10. "What's realistic, and when?"
+
+Honest expectations sound like this: crawl and Google Business Profile improvements in 2–4 weeks, ranking movement at 60–90 days, real compounding at six months. Anyone promising "page one in two weeks" is either lying or planning to use tactics that get you penalized.
+
+## 11. "Who actually does the work?"
+
+Some agencies sell you a senior strategist and hand the work to a junior or an offshore content mill. Ask who writes your content, who touches your site, and whether you'll talk to that person directly. One-on-one service usually beats layers of account managers for a small business.
+
+## 12. "What happens if it doesn't work?"
+
+No honest SEO can guarantee a specific ranking — Google controls that. But they should be able to explain how they diagnose a plateau, what they'd change, and how they keep you informed. A partner who talks openly about risk is far safer than one who guarantees the impossible.
+
+## The bottom line
+
+Good SEO is boring, transparent, and compounding: a clear plan, honest reporting in your own Search Console, white-hat work, and accounts you own. If a company answers these twelve questions with specifics instead of hype, you've probably found a real partner.
+
+If you'd like, [tell us what you need](/get-started) and we'll reply in 2–6 hours with a straight, one-on-one plan — no lock-in, no jargon.`,
+  },
+  {
+    slug: 'apple-maps-seo-apple-business-connect-2026',
+    title: 'Apple Maps SEO in 2026: The Complete Apple Business Connect Guide',
+    excerpt:
+      'Everyone optimizes Google Maps and forgets Apple Maps — which powers search on every iPhone, Siri, and Spotlight. Here is how to claim, optimize, and rank your business in Apple Business Connect.',
+    date: '2026-07-12',
+    readTime: '8 min read',
+    author: 'Blue Galaxy',
+    tags: ['Local SEO', 'Apple Maps', 'Apple Business Connect', 'Maps'],
+    mediumUrl: 'https://medium.com/@bluegalaxydev',
+    content: `Ask a business owner about local SEO and they'll mention Google. Almost nobody mentions Apple Maps — which is exactly why it's an opportunity. Apple Maps is the default map on more than a billion iPhones, and it powers local results in Siri, Spotlight search, and Safari. When an iPhone user asks "coffee near me," a huge share of those answers come from Apple, not Google.
+
+Because most competitors ignore it, claiming and optimizing your Apple listing is one of the fastest local wins available. Here's the full playbook.
+
+## Apple Business Connect: the foundation
+
+Apple's equivalent of Google Business Profile is **Apple Business Connect** (business.apple.com). It's free, and it's where you claim and manage how your business appears across Apple Maps, Siri, Spotlight, and Wallet.
+
+If you've never claimed your listing, Apple may already show a basic "place card" pulled from data providers — often with wrong hours, an old address, or no photos. Until you claim it, you have no control over what iPhone users see.
+
+## Step 1 — Claim and verify your business
+
+Sign in at business.apple.com with an Apple Account, search for your business, and claim it. Apple verifies ownership by phone call, or through your business's registered documentation. Verification usually takes a few days. This single step moves you from "whatever Apple guessed" to "you control the listing."
+
+## Step 2 — Get your NAP perfectly consistent
+
+NAP means **N**ame, **A**ddress, **P**hone. Apple — like Google — trusts businesses whose details match everywhere online. Make sure your name, address, and phone number are identical on your website, Google Business Profile, Apple Business Connect, and major directories. Inconsistent NAP is the most common reason local listings underperform on both maps.
+
+## Step 3 — Fill out everything
+
+A complete listing outranks and out-converts a sparse one. In Apple Business Connect, set:
+
+- The correct primary category and any relevant secondary categories
+- Accurate hours, including holiday hours
+- A clean, high-resolution logo and cover photo
+- Real photos of your storefront, interior, team, and products
+- Your website and a working phone number
+- Any relevant attributes (outdoor seating, wheelchair access, etc.)
+
+## Step 4 — Use Showcases (Apple's version of posts)
+
+Apple Business Connect lets you publish **Showcases** — promotions, announcements, and offers that appear on your place card, similar to Google Posts. These signal an active, maintained listing and give iPhone users a reason to choose you. Refresh them regularly.
+
+## Step 5 — Make sure your website backs it up
+
+Apple pulls context from your website and from structured data. A page with proper **LocalBusiness schema** — your name, address, phone, geo-coordinates, opening hours, and business type — helps Apple (and Google, and AI engines) understand and trust your location. If your site doesn't have LocalBusiness schema yet, that's a quick, high-value fix.
+
+## Step 6 — Reviews and ratings
+
+Apple Maps shows ratings from partners (including Yelp) on many place cards. Maintaining a healthy presence on Yelp and other review platforms feeds directly into how your business appears in Apple Maps. As always: earn real reviews from real customers — never buy or fake them.
+
+## Why this matters more every year
+
+Apple keeps investing in Maps, Siri, and on-device search, and iPhone users skew toward higher spending. Ranking in Apple's ecosystem means being the answer when someone asks Siri, searches Spotlight, or opens Maps — surfaces your competitors have probably never optimized for.
+
+## The 20-minute version
+
+If you do nothing else: claim your business in Apple Business Connect, fix your hours and address, add photos, and make your NAP identical to your Google listing. That alone puts you ahead of most local competitors on Apple Maps.
+
+Want it done for you across Google Maps, Apple Maps, and Bing Places at once? [Tell us your business](/get-started) and we'll reply in 2–6 hours with a plan.`,
+  },
+  {
     slug: 'google-maps-seo-rank-local-pack-2026',
     title: 'Google Maps SEO in 2026: How to Rank in the Local Map Pack',
     excerpt:
