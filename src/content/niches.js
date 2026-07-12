@@ -6,7 +6,7 @@ export const niches = {
     slug: 'seo-for-dentists',
     title: 'SEO for Dentists — Monthly Dental SEO Service | RankFrame SEO',
     metaDescription:
-      'Monthly dental SEO service for small private practices. Local SEO, Google Business Profile, schema markup, and ranking reports from $150/month. No setup fee.',
+      'Dental SEO for private practices. Local SEO, Google Business Profile, schema markup, and monthly ranking reports. Pick the services you need — we reply in 2–6 hours.',
     h1: 'SEO for Dentists',
     subhead:
       'Monthly dental SEO service for private practices that want steady, organic new-patient flow — not one-off campaigns.',
@@ -30,15 +30,15 @@ export const niches = {
       },
       {
         q: 'Do you work with multi-location dental groups?',
-        a: 'Yes. Multi-location dental groups need individual location pages with unique LocalBusiness schema, city-specific landing pages, and Google Business Profile management per location. RankFrame\'s $750/month plan includes this structure.',
+        a: 'Yes. Multi-location dental groups need individual location pages with unique LocalBusiness schema, city-specific landing pages, and Google Business Profile management per location. RankFrame builds this multi-location structure as part of your tailored plan.',
       },
       {
         q: 'Can SEO replace Google Ads for a dental practice?',
         a: 'For most established practices, organic SEO delivers a lower cost per patient than Google Ads within 6–9 months. Paid ads are better for brand-new practices with no domain history. The smart play is usually both — ads for immediate volume, SEO for long-term compounding.',
       },
       {
-        q: 'How is this different from an SEO agency charging $2,500/month?',
-        a: 'Most agency retainers bundle strategy meetings, reporting software, and account management that a 1–2 location dental practice doesn\'t need. RankFrame\'s $150/month plan covers the actual technical SEO and reporting; $750/month adds backlinks and citation management. You get the work, not the overhead.',
+        q: 'How is this different from a big SEO agency?',
+        a: 'Most agency retainers bundle strategy meetings, reporting software, and account management that a 1–2 location dental practice doesn\'t need. RankFrame is one-on-one and service-based — you pick exactly the work you need (technical SEO, reporting, backlinks, citations) and you get the work, not the overhead.',
       },
     ],
     stats: [
@@ -51,7 +51,7 @@ export const niches = {
     slug: 'seo-for-ecommerce',
     title: 'SEO for E-commerce Stores — Monthly Technical SEO | RankFrame SEO',
     metaDescription:
-      'Monthly SEO service for Shopify, WooCommerce, and BigCommerce stores. Product schema, collection pages, crawl budget, and ranking reports from $150/month.',
+      'SEO for Shopify, WooCommerce, and BigCommerce stores. Product schema, collection pages, crawl budget, and ranking reports. Pick the services you need — we reply in 2–6 hours.',
     h1: 'SEO for E-commerce Stores',
     subhead:
       'Monthly technical SEO for Shopify, WooCommerce, and BigCommerce stores — fix crawl budget, Product schema, and collection-page architecture so Google ranks your catalog.',

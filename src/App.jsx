@@ -586,10 +586,15 @@ export default function AISeoMarketingLandingPage() {
     setMeta('property', 'og:type', route === 'blog-post' ? 'article' : 'website');
     setMeta('property', 'og:site_name', 'RankFrame SEO');
     setMeta('property', 'og:image', SITE_URL + '/og-image.png');
+    setMeta('property', 'og:image:width', '1200');
+    setMeta('property', 'og:image:height', '630');
+    setMeta('property', 'og:image:type', 'image/png');
+    setMeta('property', 'og:image:alt', 'RankFrame SEO — full-service SEO, local, and AI-search optimization for every industry');
     setMeta('name', 'twitter:card', 'summary_large_image');
     setMeta('name', 'twitter:title', title);
     setMeta('name', 'twitter:description', description);
     setMeta('name', 'twitter:image', SITE_URL + '/og-image.png');
+    setMeta('name', 'twitter:image:alt', 'RankFrame SEO — full-service SEO, local, and AI-search optimization for every industry');
 
     // Manage JSON-LD structured data
     const setJsonLd = (id, data) => {
@@ -2161,6 +2166,35 @@ export default function AISeoMarketingLandingPage() {
               <button onClick={() => goTo('/get-started')} className="font-semibold text-emerald-700 underline underline-offset-2 hover:text-emerald-600">just ask</button>.
             </p>
           </FadeIn>
+
+          {/* Local SEO by city */}
+          <FadeIn>
+            <div className="mt-14 rounded-[2rem] border border-[#e1f1ee] bg-white/70 p-8 backdrop-blur md:p-10">
+              <div className="text-center">
+                <div className="text-xs font-bold uppercase tracking-[0.35em] text-emerald-600">Local SEO by city</div>
+                <h3 className="mt-4 text-2xl font-bold tracking-tight text-gray-900 md:text-3xl">
+                  Rank in your city’s map pack
+                </h3>
+                <p className="mx-auto mt-3 max-w-2xl text-base text-gray-600">
+                  Local search is decided market by market. Explore how we rank businesses in these metros — or ask about yours.
+                </p>
+              </div>
+              <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {CITY_KEYS.map((k, i) => (
+                  <FadeIn key={k} delay={i * 0.03}>
+                    <a
+                      href={'/' + cities[k].slug}
+                      onClick={(e) => { e.preventDefault(); goTo('/' + cities[k].slug); }}
+                      className="card-hover-glow flex items-center justify-between rounded-xl border border-[#e1f1ee] bg-white px-5 py-4 transition hover:-translate-y-0.5"
+                    >
+                      <span className="text-sm font-bold text-gray-900">SEO in {cities[k].city}</span>
+                      <span className="text-sm font-medium text-emerald-700">→</span>
+                    </a>
+                  </FadeIn>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
         </section>
 
         {/* ── FAQ ── */}
@@ -2389,6 +2423,19 @@ function SiteFooter() {
                   ))}
                 </div>
               </details>
+
+              {/* Collapsible collection — local SEO city pages, kept crawlable */}
+              <details className="group mt-1">
+                <summary className="flex cursor-pointer list-none items-center gap-1.5 text-sm font-medium text-gray-600 transition hover:text-emerald-600 [&::-webkit-details-marker]:hidden">
+                  Local SEO by City
+                  <span className="text-[10px] text-gray-400 transition-transform duration-200 group-open:rotate-180">▼</span>
+                </summary>
+                <div className="mt-3 grid gap-2.5 border-l border-[#d7ece8] pl-4">
+                  {CITY_KEYS.map((k) => (
+                    <a key={k} href={'/' + cities[k].slug} onClick={(e) => footerLinkClick(e, '/' + cities[k].slug)} className="text-sm text-gray-500 transition hover:text-emerald-600">SEO in {cities[k].city}</a>
+                  ))}
+                </div>
+              </details>
             </nav>
           </div>
 
@@ -2607,6 +2654,9 @@ function getRouteFromPath(path) {
   const nicheSlug = clean.replace(/^\//, '').replace(/\/$/, '');
   const nicheKey = NICHE_KEYS.find((k) => niches[k].slug === nicheSlug);
   if (nicheKey) return 'niche-' + nicheKey;
+  // Dynamic city routing — any slug defined in content/cities.js resolves automatically.
+  const cityKey = CITY_KEYS.find((k) => cities[k].slug === nicheSlug);
+  if (cityKey) return 'city-' + cityKey;
   if (clean === '/blog' || clean === '/blog/') return 'blog';
   if (clean.startsWith('/blog/')) return 'blog-post';
   return 'home';

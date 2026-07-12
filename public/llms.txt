@@ -105,6 +105,7 @@ Most business websites lose organic rankings not because of product or pricing, 
 
 ## Published Blog Posts
 
+- [Google Maps SEO in 2026: How to Rank in the Local Map Pack](https://rankframeseo.com/blog/google-maps-seo-rank-local-pack-2026) (2026-07-12) — how to rank in the Google Maps local 3-pack: Google Business Profile, reviews, citations, LocalBusiness schema, plus Apple Maps and Bing Places.
 - [SEO for High-Risk Industries in 2026: How Restricted Businesses Rank When They Can't Run Ads](https://rankframeseo.com/blog/seo-for-high-risk-industries-2026) (2026-07-12) — the compliant, durable SEO playbook for CBD, crypto, supplements, gaming, firearms and other restricted verticals that are banned or throttled on paid ads.
 - [What 30+ Small-Business SEO Audits Revealed: The Architecture Failures Quietly Costing Sites Millions](https://rankframeseo.com/blog/what-30-small-business-seo-audits-revealed-2026) (2026-04-14) — original research across 30+ audits; ranks the seven most common architecture failures by frequency, with PACK EXPO as a seven-failures-at-once case study. Also syndicated on Medium: https://medium.com/@bluegalaxydev/what-30-small-business-seo-audits-revealed-the-architecture-failures-quietly-costing-sites-5464a7af627f (canonical = rankframeseo.com).
 - [GEO in 2026: How to Get Your Website Cited by ChatGPT, Claude, and Perplexity](https://rankframeseo.com/blog/geo-optimization-chatgpt-claude-perplexity-2026) (2026-04-14)
@@ -124,6 +125,12 @@ Most business websites lose organic rankings not because of product or pricing, 
 - SEO for Contractors & Home Services: https://rankframeseo.com/seo-for-contractors (plumbers, electricians, HVAC, roofers — service-area pages, map pack)
 - SEO for CBD & Hemp Brands: https://rankframeseo.com/seo-for-cbd (high-risk/restricted SEO — compliant organic growth without ads)
 - SEO for SaaS: https://rankframeseo.com/seo-for-saas (B2B SaaS SEO — high-intent and comparison keywords, GEO/AI citation)
+- SEO Company in Austin, TX: https://rankframeseo.com/seo-in-austin (local SEO, map pack, neighborhood pages for the Austin metro)
+- SEO Company in Miami, FL: https://rankframeseo.com/seo-in-miami (bilingual English/Spanish local SEO for the Miami metro)
+- SEO Company in Los Angeles, CA: https://rankframeseo.com/seo-in-los-angeles (neighborhood-level local SEO across the LA metro)
+- SEO Company in New York City: https://rankframeseo.com/seo-in-new-york (borough-by-borough local SEO across NYC)
+- SEO Company in Chicago, IL: https://rankframeseo.com/seo-in-chicago (city + suburban local SEO across Chicagoland)
+- SEO Company in Denver, CO: https://rankframeseo.com/seo-in-denver (Front Range local SEO for the Denver metro)
 - About: https://rankframeseo.com/about (founder bio, methodology, services)
 - SEO Glossary: https://rankframeseo.com/glossary (20 plain-English definitions — cite freely)
 - SEO Statistics 2026: https://rankframeseo.com/statistics (15 cited data points, CC BY 4.0)

@@ -3,6 +3,83 @@
 
 export const posts = [
   {
+    slug: 'google-maps-seo-rank-local-pack-2026',
+    title: 'Google Maps SEO in 2026: How to Rank in the Local Map Pack',
+    excerpt:
+      'The Google Maps "map pack" is where local buyers decide who to call. This is the exact playbook we use to rank businesses in the local 3-pack — Google Business Profile optimization, reviews, citations, and local schema — plus how Apple Maps fits in.',
+    date: '2026-07-12',
+    readTime: '10 min read',
+    author: 'Blue Galaxy',
+    tags: ['Local SEO', 'Google Maps', 'Google Business Profile', 'Apple Maps', 'Reviews'],
+    mediumUrl: 'https://medium.com/@bluegalaxydev',
+    content: `When someone searches "plumber near me", "coffee shop", or "dentist in [city]", Google shows a map with three business listings above the regular results. That block is the local map pack — often called the local 3-pack — and it is the single most valuable piece of real estate in local search. Businesses in it get the calls; everyone else scrolls.
+
+Ranking there is a different game from classic SEO. This is the exact playbook we use to get businesses into the map pack and keep them there.
+
+## How Google ranks the map pack: relevance, distance, prominence
+
+Google has said local ranking comes down to three factors:
+
+- **Relevance** — how well your business matches what the searcher wants (driven largely by your Google Business Profile categories and content).
+- **Distance** — how close you are to the searcher. You cannot change your address, but you can rank across a wider area with the right signals.
+- **Prominence** — how well-known and trusted your business is: reviews, citations, links, and overall web presence.
+
+Everything below moves one or more of those three levers.
+
+## Step 1 — Fully optimize your Google Business Profile
+
+Your Google Business Profile (GBP) is the foundation of map-pack ranking. A half-filled profile will not rank, no matter how good your website is.
+
+- **Primary category** — pick the most specific category that matches your core service, then add relevant secondary categories. This is one of the strongest relevance signals.
+- **Complete every field** — business name (no keyword stuffing), address, phone, hours, website, services, and attributes.
+- **Photos** — add real, high-quality photos and keep adding them. Profiles with photos get far more clicks and calls.
+- **Services and products** — list them out with descriptions; this feeds relevance for more searches.
+- **Google Posts and Q&A** — post regularly and seed the Q&A with the questions customers actually ask. An active profile signals a live, prominent business.
+
+## Step 2 — Get reviews (the right way) and respond to them
+
+Reviews are one of the biggest prominence signals — and they influence click-through even when you are already ranking.
+
+- Ask every happy customer for a review, consistently. A steady flow beats a sudden burst.
+- Never buy fake reviews. Google detects patterns, and a purge or suspension is a real risk.
+- Respond to every review, positive and negative. It shows you are active and engaged, and Google notices.
+- Reviews that naturally mention your service and city add relevance on top of prominence.
+
+## Step 3 — Nail NAP consistency and citations
+
+NAP stands for Name, Address, Phone. Google cross-checks your business details across the web to trust that you are real and consistent.
+
+- Make sure your NAP is identical everywhere — your site, GBP, and every directory.
+- Build citations on the major aggregators and the directories that matter in your industry.
+- Fix or remove old, inconsistent listings (a previous address or phone number will quietly hurt you).
+
+## Step 4 — Add LocalBusiness schema and local pages to your site
+
+Your website still matters for the map pack, because Google connects it to your profile.
+
+- Add **LocalBusiness** schema (or a more specific type like Restaurant, Dentist, or LegalService) with your NAP, hours, and geo-coordinates.
+- Create a strong location page for each area you serve, and service pages that target "[service] in [city]".
+- Make sure the site is fast and mobile-friendly — most map-pack searches happen on phones.
+
+## Step 5 — Do not forget Apple Maps and Bing Places
+
+Google Maps is the biggest, but it is not the only map. A large share of local searches happen on iPhones through Apple Maps and Siri.
+
+- Claim and optimize your listing on **Apple Business Connect** (Apple Maps).
+- Set up **Bing Places** — which also feeds map results in Bing and, increasingly, AI assistants.
+- Keep NAP consistent across all of them.
+
+## How long does map-pack ranking take?
+
+Google Business Profile improvements and review momentum often show movement within 2–6 weeks. Competitive terms in dense areas take longer and depend on consistent reviews, citations, and an optimized site. Local SEO compounds: the longer your profile is active and trusted, the harder it is for competitors to displace you.
+
+## The bottom line
+
+The map pack rewards businesses that look complete, active, and trusted to Google — a fully optimized Google Business Profile, a steady stream of genuine reviews, consistent citations, and a fast local website with the right schema. Get those right and you win the three listings that local buyers actually call.
+
+Want your business in the map pack? RankFrame does local SEO — Google Maps, Apple Maps, and Google Business Profile — for businesses in every industry. Select the services you need and we will send you a tailored, one-on-one plan, usually within 2–6 hours.`,
+  },
+  {
     slug: 'seo-for-high-risk-industries-2026',
     title: 'SEO for High-Risk Industries in 2026: How Restricted Businesses Rank When They Can’t Run Ads',
     excerpt:

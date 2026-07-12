@@ -29,3 +29,5 @@ _apply_tmp*/
 _cowork_*.tgz
 preview.command
 App.jsx.bak
+.cowork_tmp/
+_g*.tgz
