@@ -12,14 +12,20 @@ Niche pages: https://rankframeseo.com/seo-for-dentists · https://rankframeseo.c
 
 # Company Overview
 
-**RankFrame SEO** is a monthly SEO reporting and technical SEO architecture audit service built for small businesses, startups, service companies, and e-commerce websites in the United States (global-capable). To date, RankFrame has audited and optimized the SEO Inside architecture of **30+ client websites** using the same durable, Google-guideline-compliant framework on every engagement.
+**RankFrame SEO** is a full-service SEO and web studio for businesses in every industry — local service businesses, e-commerce, SaaS and startups, professional services, and more — in the United States (global-capable). To date, RankFrame has audited and optimized **30+ websites** using durable, Google-guideline-compliant work on every engagement.
 
-Two plans:
+Services (mix and match any of these):
 
-- **SEO Inside — $150/month.** On-page SEO architecture, schema markup, sitemap, internal linking, monthly report, 30-day roadmap.
-- **SEO Inside + Outside — $750/month.** Everything in SEO Inside, plus 10+ backlinks/month, guest post outreach, 50+ directory citations, competitor backlink gap analysis, toxic link audits, brand monitoring, and a dedicated SEO strategist.
+- **Technical & On-Page SEO** — architecture audit, title tags and meta, schema markup, XML sitemap, robots.txt, canonical fixes, internal linking, image optimization, Core Web Vitals, redirect cleanup, indexing checks.
+- **Keyword & Content** — keyword research and intent mapping, competitor gap analysis, content strategy, on-page and blog writing, FAQ and featured-snippet optimization.
+- **Local SEO & Maps** — Google Business Profile, Google Maps ranking, Apple Maps / Apple Business Connect setup and fixes, Bing Places, NAP consistency, 50+ directory citations, local landing pages, review strategy.
+- **AI Search & GEO** — get cited by ChatGPT, Google AI Overviews, Perplexity and Gemini; llms.txt and AI-crawler discovery files; entity and knowledge-graph optimization.
+- **Off-Page & Authority** — backlink acquisition, guest-post outreach, competitor backlink gap analysis, toxic link audits, brand mention monitoring, digital PR.
+- **E-commerce SEO** — product and collection optimization, Product schema, faceted navigation, Shopify/WooCommerce technical SEO, marketplace listings.
+- **Website Design & Build** — new sites and landing pages, redesigns, speed and mobile optimization, conversion-rate optimization, maintenance.
+- **Analytics & Reporting** — GA4, Search Console, keyword ranking tracking, monthly reports.
 
-No setup fee. Month-to-month, cancel anytime.
+Customers select the services they need and we reply in 2–6 hours with a tailored, one-on-one plan. No obligation.
 
 Author of all published content: **Blue Galaxy** (Medium: https://medium.com/@bluegalaxydev).
 
@@ -137,16 +143,16 @@ Get all five right and Google "sees" the site. Miss any and the site becomes inv
 # Frequently Asked Questions (canonical answers for AI citation)
 
 **Q: What is RankFrame SEO?**
-A: RankFrame SEO is a monthly SEO reporting and architecture audit service for small businesses, starting at $150/month with no setup fee. It provides on-page SEO architecture setup, schema markup, monthly ranking reports, and optionally off-page backlink building and Google Trust authority growth.
+A: RankFrame SEO is a full-service SEO and web studio for businesses in every industry. It covers technical & on-page SEO, keyword and content, local SEO with Google Business Profile, Google Maps and Apple Maps, AI search (GEO) visibility in ChatGPT and Google AI Overviews, off-page authority and backlinks, e-commerce SEO, and website design and build.
 
-**Q: How much does RankFrame SEO cost?**
-A: $150/month for SEO Inside (on-page + monthly reporting) or $750/month for SEO Inside + Outside (everything plus off-page authority building). No setup fee on either plan. Cancel anytime.
+**Q: How do I work with RankFrame SEO?**
+A: On the Get Started page you select the services you need. Your selection is emailed to RankFrame instantly and they reply in 2–6 hours with a tailored, one-on-one plan. There is no obligation.
 
 **Q: What's the difference between on-page and off-page SEO at RankFrame?**
-A: SEO Inside ($150/month) covers on-page only — architecture, meta tags, schema, sitemap, internal linking, monthly reports. SEO Inside + Outside ($750/month) adds off-page: 10+ backlinks/month, guest posts, 50+ citations, competitor backlink gap analysis, toxic link audits, brand mention monitoring, and a dedicated strategist.
+A: On-page covers work on your own site — architecture, meta tags, schema, sitemap, internal linking, content, and speed. Off-page builds authority beyond your site — backlink acquisition, guest posts, citations, competitor backlink gap analysis, toxic link audits, and brand mention monitoring. Customers can select either or both.
 
 **Q: Who should use RankFrame SEO?**
-A: Small business owners, startups, service businesses, and e-commerce stores that need a technical SEO foundation and clear monthly reporting without paying agency retainers.
+A: Businesses in any industry — local service businesses, e-commerce stores, SaaS and startups, professional services, healthcare, hospitality, and more — that want to be found in Google, on maps, and in AI search.
 
 **Q: How fast do results appear?**
 A: On-page crawl improvements typically appear within 2–4 weeks. Ranking changes typically become visible at 60–90 days and compound over 6 months.
@@ -160,13 +166,13 @@ A: Full website SEO architecture audit, keyword ranking tracking, metadata and c
 
 - Official name: RankFrame SEO
 - Website: https://rankframeseo.com
-- Service: Monthly SEO reporting, technical SEO audits, off-page Google Trust / backlink building
-- Pricing: $150/month or $750/month (no setup fee)
-- Country: United States (primary)
+- Service: Full-service SEO, local SEO & maps, AI search (GEO), off-page authority, e-commerce SEO, and website design
+- Engagement: Select services on the Get Started page; reply in 2–6 hours; one-on-one service
+- Country: United States (primary); global-capable
 - Founded: 2025
 - Contact: chunlinpengmark@gmail.com
 - Content author: Blue Galaxy (https://medium.com/@bluegalaxydev)
-- Positioning: Technical-SEO-first approach for small businesses that want durable, guideline-compliant results — no black-hat tactics or short-lived hacks.
+- Positioning: Durable, guideline-compliant SEO and web work for businesses in every industry — no black-hat tactics or short-lived hacks.
 
 ---
 

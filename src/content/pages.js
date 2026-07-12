@@ -226,10 +226,10 @@ export const seoStatistics = [
 export const aboutContent = {
   headline: 'About RankFrame SEO',
   tagline:
-    'Technical-SEO-first monthly reporting for small businesses that want durable results, not short-lived hacks. 30+ client websites audited and optimized with the RankFrame SEO Inside framework.',
+    'A full-service SEO and web studio for businesses in every industry — technical SEO, local & maps, AI search, authority building, and website design. Durable results, not short-lived hacks. 30+ websites audited and optimized.',
   paragraphs: [
-    'RankFrame SEO is a monthly SEO reporting and technical architecture audit service. To date we have audited and optimized the SEO Inside architecture of 30+ small-business websites — service companies, e-commerce stores, and trade-show platforms — running the same durable, Google-guideline-compliant framework for every engagement. We exist because roughly 70% of small-business websites are effectively invisible to Google — not because their products or content are weak, but because their site architecture cannot be parsed by search engine crawlers. Our job is to fix the foundation so the content can actually compete.',
-    'Every plan starts with a full architecture audit: meta tags, schema markup, internal linking, crawlability, indexing signals, Core Web Vitals, and keyword-ranking visibility. From there, clients receive a monthly performance report with prioritized next steps — no 40-page PDFs nobody reads.',
+    'RankFrame SEO is a full-service SEO studio. To date we have audited and optimized 30+ websites across many industries — local service businesses, e-commerce stores, professional services, and trade-show platforms — running durable, Google-guideline-compliant work on every engagement. We exist because roughly 70% of business websites are effectively invisible to Google — not because their products or content are weak, but because their site architecture, local presence, and authority signals are not set up for search engines and AI to parse. Our job is to fix the whole foundation so you can actually compete.',
+    'You choose exactly what you need: technical and on-page SEO, keyword and content work, local SEO with Google Business Profile, Google Maps and Apple Maps, AI search (GEO) visibility so ChatGPT and Google AI Overviews cite you, off-page authority and backlinks, e-commerce SEO, or a brand-new website build. Every engagement includes clear, prioritized reporting — no 40-page PDFs nobody reads.',
     'We do not use PBNs, link farms, or any tactic Google penalizes. Every recommendation we make is documented in Google\'s own search guidelines. That means slower first wins in some cases, but durable rankings that compound instead of collapsing at the next core update.',
   ],
   founder: {
@@ -243,14 +243,12 @@ export const aboutContent = {
   },
   plans: [
     {
-      name: 'SEO Inside',
-      price: '$150/month',
-      description: 'On-page SEO architecture setup, schema markup, sitemap, internal linking, and monthly reporting.',
+      name: 'SEO, Local & AI Search',
+      description: 'Technical & on-page SEO, keyword and content, local SEO with Google Business Profile, Google Maps and Apple Maps, plus AI search (GEO) visibility so ChatGPT and Google AI Overviews cite you.',
     },
     {
-      name: 'SEO Inside + Outside',
-      price: '$750/month',
-      description: 'Everything in SEO Inside, plus 10+ monthly backlinks, guest post outreach, 50+ business directory citations, competitor gap analysis, toxic link audits, and a dedicated SEO strategist.',
+      name: 'Authority, E-commerce & Web Design',
+      description: 'Backlink and authority building, competitor gap analysis, e-commerce SEO for Shopify and WooCommerce, and modern website design and build — all with clear monthly reporting.',
     },
   ],
   contact: {

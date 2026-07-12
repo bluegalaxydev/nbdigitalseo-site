@@ -5,13 +5,33 @@
     <link>https://rankframeseo.com/blog</link>
     <description>Technical SEO playbooks, architecture audits, and Google Trust building insights for small businesses.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 Apr 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 12 Jul 2026 00:00:00 GMT</lastBuildDate>
     <atom:link href="https://rankframeseo.com/rss.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://rankframeseo.com/og-image.png</url>
       <title>RankFrame SEO Blog</title>
       <link>https://rankframeseo.com/blog</link>
     </image>
+    <item>
+      <title>The Small Business Backlink Playbook: How to Earn 10 Quality Links a Month Without Paying for Them</title>
+      <link>https://rankframeseo.com/blog/backlink-playbook-small-business-2026</link>
+      <guid isPermaLink="true">https://rankframeseo.com/blog/backlink-playbook-small-business-2026</guid>
+      <pubDate>Mon, 20 Apr 2026 00:00:00 GMT</pubDate>
+      <description>Backlinks are still the single strongest ranking signal — but the tactics that worked in 2018 will get you penalized in 2026. Here's the outreach and citation strategy we use to earn 10+ high-authority links per month for small businesses.</description>
+      <category>Backlinks</category>
+      <category>Off-Page SEO</category>
+      <category>Link Building</category>
+    </item>
+    <item>
+      <title>What 30+ Small-Business SEO Audits Revealed: The Architecture Failures Quietly Costing Sites Millions</title>
+      <link>https://rankframeseo.com/blog/what-30-small-business-seo-audits-revealed-2026</link>
+      <guid isPermaLink="true">https://rankframeseo.com/blog/what-30-small-business-seo-audits-revealed-2026</guid>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 GMT</pubDate>
+      <description>Over 30 technical SEO audits later, the same seven architecture failures keep appearing — and none of them are about content quality. Here is what the pattern looks like, why Google silently punishes it, and what we learned fixing it on a trade-show platform leaking up to $575K/month in organic value.</description>
+      <category>Research</category>
+      <category>Technical SEO</category>
+      <category>Case Study</category>
+    </item>
     <item>
       <title>GEO in 2026: How to Get Your Website Cited by ChatGPT, Claude, and Perplexity</title>
       <link>https://rankframeseo.com/blog/geo-optimization-chatgpt-claude-perplexity-2026</link>

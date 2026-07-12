@@ -12,6 +12,118 @@ const cityRouteFromKey = (k) => 'city-' + k;
 
 const SITE_URL = 'https://rankframeseo.com';
 
+// ─── Full service catalog. All-industry. Customers select what they need on
+// the /get-started page and the selection is emailed via Formspree. ───
+const SERVICE_GROUPS = [
+  {
+    group: 'Technical & On-Page SEO',
+    blurb: 'The foundation search engines actually read.',
+    items: [
+      'SEO architecture & site-structure audit',
+      'Title tags & meta description optimization',
+      'Heading (H1–H6) & content structure',
+      'Schema / structured data (JSON-LD) markup',
+      'XML sitemap creation & submission',
+      'Canonical tags & duplicate-content fixes',
+      'Internal linking strategy',
+      'Image alt text & media optimization',
+      'Core Web Vitals & page-speed optimization',
+      'Broken link, 404 & redirect cleanup',
+      'HTTPS, security & indexing checks',
+    ],
+  },
+  {
+    group: 'Keyword & Content',
+    blurb: 'Rank for what your customers actually search.',
+    items: [
+      'Keyword research & search-intent mapping',
+      'Competitor keyword gap analysis',
+      'Content strategy & topic clusters',
+      'On-page content writing & optimization',
+      'Blog & article SEO writing',
+      'Landing-page copy optimization',
+      'Content refresh of existing pages',
+      'FAQ & featured-snippet optimization',
+    ],
+  },
+  {
+    group: 'Local SEO & Maps',
+    blurb: 'Own the map pack in every city you serve.',
+    items: [
+      'Google Business Profile setup & optimization',
+      'Google Maps listing & ranking',
+      'Apple Maps / Business Connect setup & fixes',
+      'Bing Places for Business',
+      'NAP consistency across the web',
+      '50+ business directory citations',
+      'Local landing pages by city / service area',
+      'Review generation & response strategy',
+      'LocalBusiness schema markup',
+    ],
+  },
+  {
+    group: 'AI Search & GEO',
+    blurb: 'Get cited by ChatGPT, Gemini, Perplexity & Google AI.',
+    items: [
+      'Get your brand cited in ChatGPT answers',
+      'Google AI Overviews optimization',
+      'Perplexity & Gemini visibility',
+      'llms.txt & AI-crawler discovery files',
+      'Entity & knowledge-graph optimization',
+      'AI-friendly structured content',
+    ],
+  },
+  {
+    group: 'Off-Page & Authority',
+    blurb: 'Build the trust signals Google rewards.',
+    items: [
+      'Backlink acquisition (quality links)',
+      'Guest-post outreach on high-authority sites',
+      'Competitor backlink gap analysis',
+      'Toxic backlink audit & disavow',
+      'Brand mention monitoring & link reclamation',
+      'Digital PR & outreach',
+      'Domain authority growth tracking',
+    ],
+  },
+  {
+    group: 'E-commerce SEO',
+    blurb: 'For Shopify, WooCommerce, Amazon & more.',
+    items: [
+      'Product & collection page optimization',
+      'Product schema (price, rating, availability)',
+      'Faceted navigation & crawl control',
+      'Shopify / WooCommerce technical SEO',
+      'Marketplace / Amazon listing optimization',
+    ],
+  },
+  {
+    group: 'Website Design & Build',
+    blurb: 'Fast, modern sites built to rank from day one.',
+    items: [
+      'New website design & build',
+      'Landing-page design & development',
+      'Website redesign / rebuild',
+      'Speed & performance optimization',
+      'Mobile & responsive optimization',
+      'Conversion-rate optimization (CRO)',
+      'Ongoing maintenance & support',
+    ],
+  },
+  {
+    group: 'Analytics & Reporting',
+    blurb: 'See exactly what is working, every month.',
+    items: [
+      'Google Analytics 4 setup',
+      'Google Search Console setup & monitoring',
+      'Keyword ranking tracking',
+      'Monthly SEO performance reports',
+      'Conversion & goal tracking',
+      'Competitor monitoring',
+    ],
+  },
+];
+
 /* ─── AI Terminal Animation for Hero (30s cycle, particle FX) ─── */
 function AITerminal() {
   const canvasRef = useRef(null);
@@ -54,7 +166,7 @@ function AITerminal() {
         if (p.y > canvas.offsetHeight) p.y = 0;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(245,184,75,${p.a})`;
+        ctx.fillStyle = `rgba(16,185,129,${p.a})`;
         ctx.fill();
       });
       // draw connections
@@ -67,7 +179,7 @@ function AITerminal() {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(245,184,75,${0.08 * (1 - dist / 80)})`;
+            ctx.strokeStyle = `rgba(16,185,129,${0.08 * (1 - dist / 80)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -161,7 +273,7 @@ function AITerminal() {
   const typeColor = { cmd: '#f5b84b', dim: '#6b7280', info: '#60a5fa', warn: '#fbbf24', success: '#34d399' };
 
   return (
-    <div className="gold-glow relative overflow-hidden rounded-[2rem] border border-amber-500/20 bg-[#0b0b0b] text-white">
+    <div className="gold-glow relative overflow-hidden rounded-[2rem] border border-emerald-500/20 bg-[#0b0b0b] text-white">
       {/* Particle background */}
       <canvas ref={canvasRef} className="pointer-events-none absolute inset-0 h-full w-full opacity-60" style={{ zIndex: 0 }} />
 
@@ -185,12 +297,12 @@ function AITerminal() {
         {/* Status + progress bar */}
         <div className="border-b border-gray-800/40 bg-[#0e0e0e]/80 px-5 py-2.5 backdrop-blur-sm">
           <div className="flex items-center justify-between">
-            <span className="font-mono text-[11px] text-amber-400/90">{statusText}</span>
+            <span className="font-mono text-[11px] text-emerald-500/90">{statusText}</span>
             <span className="font-mono text-[11px] text-gray-600">{progress}%</span>
           </div>
           <div className="mt-1.5 h-[3px] w-full overflow-hidden rounded-full bg-gray-800">
             <div
-              className="h-full rounded-full bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-300 shadow-[0_0_12px_rgba(245,184,75,0.5)]"
+              className="h-full rounded-full bg-gradient-to-r from-emerald-500 via-emerald-500 to-sky-300 shadow-[0_0_12px_rgba(16,185,129,0.5)]"
               style={{ width: `${progress}%`, transition: 'width 0.8s cubic-bezier(0.4,0,0.2,1)' }}
             />
           </div>
@@ -209,7 +321,7 @@ function AITerminal() {
               {line.text}
             </div>
           ))}
-          <span className="inline-block h-3.5 w-[6px] animate-pulse bg-amber-400/60" />
+          <span className="inline-block h-3.5 w-[6px] animate-pulse bg-emerald-500/60" />
         </div>
 
         {/* Result cards overlay */}
@@ -222,10 +334,10 @@ function AITerminal() {
               {metrics.map((m, i) => (
                 <div
                   key={m.label}
-                  className="rounded-xl border border-amber-500/15 bg-amber-500/5 p-3 text-center backdrop-blur-sm"
+                  className="rounded-xl border border-emerald-500/15 bg-emerald-500/5 p-3 text-center backdrop-blur-sm"
                   style={{ opacity: 0, animation: `fadeSlideIn 0.4s ease-out ${i * 0.1}s forwards` }}
                 >
-                  <div className="text-lg font-bold text-amber-400">{m.value}</div>
+                  <div className="text-lg font-bold text-emerald-500">{m.value}</div>
                   <div className="text-[10px] font-semibold text-gray-300">{m.label}</div>
                   <div className="text-[9px] text-gray-600">{m.sub}</div>
                 </div>
@@ -237,8 +349,8 @@ function AITerminal() {
         {/* Bottom bar */}
         <div className="flex items-center justify-between border-t border-gray-800/40 bg-[#0e0e0e]/80 px-5 py-2.5 backdrop-blur-sm">
           <div className="flex items-center gap-2">
-            <div className="h-1 w-1 rounded-full bg-amber-400 shadow-[0_0_4px_rgba(245,184,75,0.6)]" />
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-amber-400/70">Fully Automated</span>
+            <div className="h-1 w-1 rounded-full bg-emerald-500 shadow-[0_0_4px_rgba(16,185,129,0.6)]" />
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-emerald-500/70">Fully Automated</span>
           </div>
           <span className="font-mono text-[10px] text-gray-600">AI-Powered SEO Analysis</span>
         </div>
@@ -277,11 +389,59 @@ function FadeIn({ children, className = '', delay = 0 }) {
       className={className}
       style={{
         opacity: vis ? 1 : 0,
-        transform: vis ? 'translateY(0)' : 'translateY(24px)',
-        transition: `opacity 0.7s ease ${delay}s, transform 0.7s ease ${delay}s`,
+        transform: vis ? 'translateY(0)' : 'translateY(44px)',
+        filter: vis ? 'blur(0)' : 'blur(8px)',
+        transition: `opacity 0.9s cubic-bezier(0.22,1,0.36,1) ${delay}s, transform 1s cubic-bezier(0.22,1,0.36,1) ${delay}s, filter 0.9s ease ${delay}s`,
+        willChange: 'opacity, transform',
       }}
     >
       {children}
+    </div>
+  );
+}
+
+/* ─── Premium light hero visual: a floating "your plan" card ─── */
+function HeroServicePanel({ goTo }) {
+  const preview = [
+    { g: 'Technical & On-Page SEO', n: 11 },
+    { g: 'Local SEO & Maps', n: 9 },
+    { g: 'AI Search & GEO', n: 6 },
+    { g: 'Off-Page & Authority', n: 7 },
+    { g: 'Website Design & Build', n: 7 },
+  ];
+  return (
+    <div className="relative">
+      <div className="pointer-events-none absolute -inset-6 -z-10 rounded-[3rem] bg-[radial-gradient(ellipse_at_top,rgba(20,184,166,0.14),transparent_60%)] blur-2xl" />
+      <div className="overflow-hidden rounded-[2rem] border border-[#e1f1ee] bg-white/80 shadow-[0_20px_60px_-24px_rgba(13,148,136,0.25)] backdrop-blur">
+        <div className="flex items-center justify-between border-b border-[#e5f3f0] bg-gradient-to-r from-white to-[#edf9f7] px-6 py-4">
+          <div className="text-sm font-bold tracking-tight text-gray-900">Build your SEO plan</div>
+          <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-semibold text-emerald-700">Every industry</span>
+        </div>
+        <div className="space-y-3 px-6 py-6">
+          {preview.map((p, i) => (
+            <div
+              key={p.g}
+              className="reveal-card flex items-center justify-between rounded-2xl border border-[#e5f3f0] bg-[#f3fbfb] px-4 py-3"
+              style={{ animationDelay: `${0.15 * i}s` }}
+            >
+              <div className="flex items-center gap-3">
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">✓</span>
+                <span className="text-sm font-medium text-gray-800">{p.g}</span>
+              </div>
+              <span className="text-xs font-semibold text-emerald-700">{p.n} services</span>
+            </div>
+          ))}
+        </div>
+        <div className="border-t border-[#e5f3f0] bg-gradient-to-r from-[#edf9f7] to-white px-6 py-5">
+          <button
+            onClick={() => goTo('/get-started')}
+            className="btn-shimmer w-full rounded-full px-6 py-3.5 text-sm font-bold text-white shadow transition hover:scale-[1.01]"
+          >
+            Build my plan →
+          </button>
+          <p className="mt-3 text-center text-xs text-gray-500">Selection is emailed to us · Reply in 2–6 hours</p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -296,12 +456,15 @@ export default function AISeoMarketingLandingPage() {
     notes: '',
   });
 
-  const stripeUrls = {
-    inside: 'https://buy.stripe.com/8x2cMXbuO81d1Qkbjb9AA00',
-    outside: 'https://buy.stripe.com/eVqeV556q5T51Qkbjb9AA01',
-  };
-  const formspreeEndpoint = 'https://formspree.io/f/xykbbzye';
-  const [selectedPlan, setSelectedPlan] = useState('inside');
+  const formspreeEndpoint = 'https://formspree.io/f/mkodwayp';
+  const [selectedServices, setSelectedServices] = useState([]);
+  const [submitStatus, setSubmitStatus] = useState('idle'); // idle | sending | error
+
+  const toggleService = useCallback((name) => {
+    setSelectedServices((prev) =>
+      prev.includes(name) ? prev.filter((s) => s !== name) : [...prev, name]
+    );
+  }, []);
 
   useEffect(() => {
     const onRouteChange = () => setRoute(getRoute());
@@ -341,14 +504,14 @@ export default function AISeoMarketingLandingPage() {
       ...Object.fromEntries(CITY_KEYS.map((k) => [cityRouteFromKey(k), cities[k].title])),
     };
     const descriptions = {
-      home: 'RankFrame SEO delivers on-page SEO architecture setup and off-page Google Trust building. SEO Inside from $150/month. Full SEO growth from $750/month.',
-      checkout: 'Submit your website details and start your monthly SEO reporting service. $150/month. No setup fee.',
-      success: 'Your RankFrame SEO subscription is confirmed. We will begin your monthly SEO audit and report.',
+      home: 'Full-service SEO for every industry — technical & on-page SEO, local SEO with Google & Apple Maps, AI search (GEO) visibility in ChatGPT and Google AI Overviews, backlink authority, e-commerce SEO, and website design. Select the services you need.',
+      checkout: 'Select the SEO and web services you need and we reply in 2–6 hours with a tailored one-on-one plan.',
+      success: 'Thanks — your service request has been received. We will reply in 2–6 hours to start a one-on-one conversation.',
       blog: 'Articles, playbooks, and case studies on technical SEO, architecture, schema markup, Core Web Vitals and off-page trust building.',
       glossary: 'Plain-English definitions of 20 essential SEO and GEO terms: Core Web Vitals, schema markup, E-E-A-T, canonical tags, AI Overviews, llms.txt, and more.',
       statistics: '15 current SEO statistics with sources — organic search share, SERP click-through rates, Core Web Vitals thresholds, and RankFrame audit benchmarks.',
-      about: 'RankFrame SEO is a monthly technical SEO reporting service for small businesses. Founder bio, service plans, and the audit methodology behind the PACK EXPO case study.',
-      'get-started': 'Tell us about your site and we\'ll send back a custom SEO audit proposal within 1 business day. Plans start at $150/month. 30+ sites optimized.',
+      about: 'RankFrame SEO is a full-service SEO and web studio for businesses in every industry. Founder bio, services, and the audit methodology behind the PACK EXPO case study.',
+      'get-started': 'Select the SEO, local SEO, AI search, and website services you need. We reply in 2–6 hours with a tailored one-on-one plan. Every industry welcome.',
       ...Object.fromEntries(NICHE_KEYS.map((k) => [nicheRouteFromKey(k), niches[k].metaDescription])),
       ...Object.fromEntries(CITY_KEYS.map((k) => [cityRouteFromKey(k), cities[k].metaDescription])),
     };
@@ -448,7 +611,7 @@ export default function AISeoMarketingLandingPage() {
       alternateName: 'RankFrame',
       url: SITE_URL,
       logo: SITE_URL + '/favicon.svg',
-      description: 'Monthly SEO reporting and technical architecture audit service for small businesses. 30+ websites audited and optimized — on-page SEO setup, schema markup, and off-page Google Trust building. Plans from $150/month with no setup fee.',
+      description: 'Full-service SEO studio for businesses in every industry. 30+ websites audited and optimized. Technical & on-page SEO, keyword & content, local SEO with Google and Apple Maps, AI search (GEO) visibility in ChatGPT and Google AI Overviews, off-page authority building, e-commerce SEO, website design, and monthly reporting.',
       slogan: '30+ websites audited. Monthly SEO reporting built on technical SEO that Google actually rewards.',
       foundingDate: '2025',
       knowsAbout: [
@@ -537,26 +700,31 @@ export default function AISeoMarketingLandingPage() {
       setJsonLd('service', {
         '@context': 'https://schema.org',
         '@type': 'Service',
-        serviceType: 'SEO Reporting & Architecture Audit',
+        serviceType: 'SEO, Local SEO, AI Search (GEO) & Website Design',
         provider: { '@type': 'Organization', name: 'RankFrame SEO', url: SITE_URL },
         areaServed: { '@type': 'Country', name: 'United States' },
-        description: 'On-page SEO architecture setup, monthly reports, keyword ranking tracking, and off-page Google Trust building for small businesses.',
-        offers: [
-          { '@type': 'Offer', name: 'SEO Inside', price: '150', priceCurrency: 'USD', url: SITE_URL + '/#pricing', description: 'On-page SEO architecture setup + monthly reporting' },
-          { '@type': 'Offer', name: 'SEO Inside + Outside', price: '750', priceCurrency: 'USD', url: SITE_URL + '/#pricing', description: 'Full on-page + off-page Google Trust building' },
-        ],
+        description: 'Full-service SEO for businesses in every industry — technical & on-page SEO, keyword & content, local SEO and Google/Apple Maps, AI search (GEO) visibility in ChatGPT and Google AI Overviews, off-page authority building, e-commerce SEO, website design, and monthly reporting. Select the services you need.',
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: 'SEO & Web Services',
+          itemListElement: SERVICE_GROUPS.map((g) => ({
+            '@type': 'OfferCatalog',
+            name: g.group,
+            itemListElement: g.items.map((s) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: s } })),
+          })),
+        },
       });
 
       setJsonLd('faqpage', {
         '@context': 'https://schema.org',
         '@type': 'FAQPage',
         mainEntity: [
-          { '@type': 'Question', name: 'What happens after I subscribe?', acceptedAnswer: { '@type': 'Answer', text: 'You submit your site details, our AI audit workflow begins, and you receive your first structured SEO review with recommendations.' } },
-          { '@type': 'Question', name: 'What is the difference between SEO Inside and SEO Outside?', acceptedAnswer: { '@type': 'Answer', text: 'SEO Inside ($150/month) covers on-page optimization — architecture setup, meta tags, schema markup, sitemap, and internal linking with monthly reporting. SEO Inside + Outside ($750/month) includes everything in SEO Inside, plus external backlink acquisition, guest post outreach, 50+ business directory citations, competitor backlink gap analysis, toxic link audits, and a dedicated SEO strategist.' } },
-          { '@type': 'Question', name: 'Is there any setup fee?', acceptedAnswer: { '@type': 'Answer', text: 'No. Both plans have no setup fee. Start at $150/month for SEO Inside, or $750/month for SEO Inside + Outside.' } },
-          { '@type': 'Question', name: 'Who is this service best for?', acceptedAnswer: { '@type': 'Answer', text: 'SEO Inside is ideal for small businesses and startups that need a solid SEO foundation. SEO Inside + Outside is for businesses ready to aggressively grow their Google rankings and domain authority.' } },
-          { '@type': 'Question', name: 'How fast do you review a website?', acceptedAnswer: { '@type': 'Answer', text: 'We review core SEO structure, technical issues, indexing signals, and keyword visibility efficiently, then organize the findings into a clean monthly report.' } },
-          { '@type': 'Question', name: 'Do you support ecommerce and service websites?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The service is suitable for service businesses, ecommerce sites, and general company websites that need better SEO structure and reporting.' } },
+          { '@type': 'Question', name: 'What services do you offer?', acceptedAnswer: { '@type': 'Answer', text: 'We cover the full range of SEO and web work: technical & on-page SEO, keyword research and content, local SEO with Google Business Profile, Google Maps and Apple Maps, AI search (GEO) visibility so you get cited by ChatGPT and Google AI Overviews, off-page authority and backlink building, e-commerce SEO, website design and build, plus analytics and monthly reporting. You choose exactly which services you need.' } },
+          { '@type': 'Question', name: 'How does it work?', acceptedAnswer: { '@type': 'Answer', text: 'On our Get Started page you select the services you are interested in. Your selection is emailed to us instantly and we reply in 2–6 hours with a tailored, one-on-one plan. There is no obligation.' } },
+          { '@type': 'Question', name: 'Which industries do you work with?', acceptedAnswer: { '@type': 'Answer', text: 'Every industry — local service businesses, e-commerce stores, SaaS and tech, professional services, healthcare, hospitality, and more. The SEO fundamentals that move rankings apply across all of them.' } },
+          { '@type': 'Question', name: 'Can you get my business cited by ChatGPT and AI search?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Generative Engine Optimization (GEO) makes your site citation-ready for ChatGPT, Gemini, Perplexity, and Google AI Overviews through structured data, entity optimization, llms.txt discovery files, and AI-friendly content.' } },
+          { '@type': 'Question', name: 'Do you add and fix Google Maps and Apple Maps listings?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. We set up and optimize Google Business Profile and Google Maps rankings, and set up or fix Apple Maps / Apple Business Connect and Bing Places, with consistent NAP data and directory citations.' } },
+          { '@type': 'Question', name: 'Do you also build websites?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. We design and build fast, modern websites and landing pages engineered to rank from day one, and can redesign or optimize an existing site for speed, mobile, and conversions.' } },
         ],
       });
 
@@ -637,16 +805,16 @@ export default function AISeoMarketingLandingPage() {
         name: 'RankFrame SEO',
         url: SITE_URL,
         image: SITE_URL + '/og-image.png',
-        description: 'Monthly SEO reporting, architecture audits, and Google Trust building for small businesses.',
-        priceRange: '$150–$750/month',
+        description: 'Full-service SEO, local SEO, AI search (GEO) visibility, off-page authority, e-commerce SEO, and website design for businesses in every industry.',
         areaServed: { '@type': 'Country', name: 'United States' },
         hasOfferCatalog: {
           '@type': 'OfferCatalog',
-          name: 'SEO Plans',
-          itemListElement: [
-            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'SEO Inside' }, price: '150', priceCurrency: 'USD' },
-            { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'SEO Inside + Outside' }, price: '750', priceCurrency: 'USD' },
-          ],
+          name: 'SEO & Web Services',
+          itemListElement: SERVICE_GROUPS.map((g) => ({
+            '@type': 'OfferCatalog',
+            name: g.group,
+            itemListElement: g.items.map((s) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: s } })),
+          })),
         },
       });
 
@@ -760,14 +928,10 @@ export default function AISeoMarketingLandingPage() {
       setJsonLd('getstarted-service', {
         '@context': 'https://schema.org',
         '@type': 'Service',
-        serviceType: 'Monthly SEO Reporting & Architecture Audit',
+        serviceType: 'SEO, Local SEO, AI Search (GEO) & Website Design',
         provider: { '@type': 'Organization', name: 'RankFrame SEO', url: SITE_URL },
         areaServed: { '@type': 'Country', name: 'United States' },
-        description: 'Custom SEO audit proposal for small-business websites. Response within 1 business day. Plans start at $150/month with no setup fee.',
-        offers: [
-          { '@type': 'Offer', name: 'SEO Inside', price: '150', priceCurrency: 'USD' },
-          { '@type': 'Offer', name: 'SEO Inside + Outside', price: '750', priceCurrency: 'USD' },
-        ],
+        description: 'Select the SEO and web services you need and we reply in 2–6 hours with a tailored, one-on-one plan. For businesses in every industry.',
       });
       // clean up legacy keys if a previous render wrote them
       setJsonLd('freeaudit-contactpage', null);
@@ -796,10 +960,6 @@ export default function AISeoMarketingLandingPage() {
         areaServed,
         description: n.metaDescription,
         url: SITE_URL + '/' + n.slug,
-        offers: [
-          { '@type': 'Offer', name: 'SEO Inside', price: '150', priceCurrency: 'USD' },
-          { '@type': 'Offer', name: 'SEO Inside + Outside', price: '750', priceCurrency: 'USD' },
-        ],
       });
       setJsonLd('niche-faq', {
         '@context': 'https://schema.org',
@@ -897,12 +1057,12 @@ export default function AISeoMarketingLandingPage() {
   }, [route]);
 
   const deliverables = [
-    { title: 'Monthly SEO performance report', icon: '01' },
-    { title: 'Full website SEO architecture audit', icon: '02' },
-    { title: 'Keyword ranking and visibility tracking', icon: '03' },
-    { title: 'Metadata, indexing, and crawlability review', icon: '04' },
-    { title: 'Technical SEO issues with action steps', icon: '05' },
-    { title: '30-day priority roadmap for improvements', icon: '06' },
+    { title: 'Technical & on-page SEO, done right', icon: '01' },
+    { title: 'Local SEO — Google & Apple Maps', icon: '02' },
+    { title: 'AI search (GEO) visibility', icon: '03' },
+    { title: 'Backlinks & authority building', icon: '04' },
+    { title: 'Website design, speed & fixes', icon: '05' },
+    { title: 'Clear reporting & priority roadmap', icon: '06' },
   ];
 
   const process = [
@@ -924,34 +1084,34 @@ export default function AISeoMarketingLandingPage() {
   ];
 
   const highlights = [
-    'On-page SEO architecture setup',
-    'Off-page Google Trust building',
-    'Monthly SEO reporting',
-    'Technical SEO checks included',
-    'Plans from $150/month',
+    'Technical & on-page SEO',
+    'Local SEO — Google & Apple Maps',
+    'AI search (GEO) — ChatGPT & AI Overviews',
+    'Off-page authority & backlinks',
+    'Website design & build',
   ];
 
   const trustPoints = [
-    { text: 'SEO architecture and reporting', num: '100+', label: 'Sites audited' },
-    { text: 'Keyword ranking visibility tracking', num: '30', label: 'Day report cycle' },
-    { text: 'Technical SEO checks with action steps', num: '50+', label: 'Checks per audit' },
-    { text: 'Built for small businesses', num: '$0', label: 'Setup fee' },
+    { text: 'Websites audited and optimized', num: '30+', label: 'Sites optimized' },
+    { text: 'Every industry, every platform', num: 'All', label: 'Industries served' },
+    { text: 'Services you can mix and match', num: '50+', label: 'Services offered' },
+    { text: 'One-on-one, no account-manager layers', num: '1:1', label: 'Direct service' },
   ];
 
   const benefits = [
-    { title: 'On-Page SEO Architecture Setup', desc: 'We build your site\'s SEO foundation — meta tags, schema, sitemap, internal linking' },
-    { title: 'Off-Page Google Trust Building', desc: 'Backlinks, citations, and authority signals that earn Google\'s trust' },
-    { title: 'Actionable keyword ranking insights', desc: 'Know exactly where you rank and how to move up' },
-    { title: 'Metadata & crawlability checks', desc: 'Ensure Google sees and indexes your pages correctly' },
-    { title: 'Two-tier pricing for every budget', desc: 'Start with on-page SEO, scale to full authority building' },
-    { title: 'Clear SEO direction', desc: 'Prioritized roadmap so you know what to fix first' },
+    { title: 'Technical & On-Page SEO', desc: 'Architecture, meta tags, schema, sitemaps, speed, and internal linking done right' },
+    { title: 'Local SEO & Maps', desc: 'Google Business Profile, Google Maps, and Apple Maps setup and fixes' },
+    { title: 'AI Search (GEO)', desc: 'Get cited by ChatGPT, Gemini, Perplexity, and Google AI Overviews' },
+    { title: 'Off-Page Authority', desc: 'Backlinks, citations, and trust signals that earn Google\'s confidence' },
+    { title: 'Website Design & Build', desc: 'Fast, modern sites and landing pages built to rank from day one' },
+    { title: 'Clear direction & reporting', desc: 'A prioritized roadmap and monthly reports so you know what\'s working' },
   ];
 
   const whoFor = [
-    'Small business owners who want clear SEO direction',
-    'Website owners with low or unstable traffic',
-    'Startups that need fast SEO insights without hiring an agency',
-    'Companies that want simple monthly reporting without complexity',
+    'Local service businesses that want to own the map pack',
+    'E-commerce stores that need product and category pages to rank',
+    'SaaS and startups that want visibility in Google and AI search',
+    'Any business — in any industry — that wants to be found online',
   ];
 
   const whySeoMatters = [
@@ -963,32 +1123,30 @@ export default function AISeoMarketingLandingPage() {
 
   const faqs = [
     {
-      q: 'What happens after I subscribe?',
-      a: 'You submit your site details, our AI audit workflow begins, and you receive your first structured SEO review with recommendations.',
+      q: 'What services do you offer?',
+      a: 'The full range of SEO and web work: technical & on-page SEO, keyword research and content, local SEO with Google Business Profile, Google Maps and Apple Maps, AI search (GEO) so you get cited by ChatGPT and Google AI Overviews, off-page authority and backlinks, e-commerce SEO, website design and build, plus analytics and monthly reporting. You choose exactly what you need.',
     },
     {
-      q: 'What is the difference between SEO Inside and SEO Outside?',
-      a: 'SEO Inside ($150/month) covers on-page optimization — architecture setup, meta tags, schema markup, sitemap, and internal linking with monthly reporting. SEO Inside + Outside ($750/month) includes everything in SEO Inside, plus external backlink acquisition (10+ quality links/month), guest post outreach on high-DA sites, 50+ business directory citations, competitor backlink gap analysis, toxic link audits, brand mention monitoring, and a dedicated SEO strategist for long-term deep collaboration.',
+      q: 'How does it work?',
+      a: 'On the Get Started page you select the services you\'re interested in. Your selection is emailed to us instantly and we reply in 2–6 hours with a tailored, one-on-one plan. There\'s no obligation.',
     },
     {
-      q: 'Is there any setup fee?',
-      a: 'No. Both plans have no setup fee. Start at $150/month for SEO Inside, or $750/month for the complete SEO Inside + Outside package.',
+      q: 'Which industries do you work with?',
+      a: 'Every industry — local service businesses, e-commerce, SaaS and tech, professional services, healthcare, hospitality, and more. The SEO fundamentals that move rankings apply everywhere.',
     },
     {
-      q: 'Who is this service best for?',
-      a: 'SEO Inside is ideal for small businesses and startups that need a solid SEO foundation. SEO Inside + Outside is for businesses ready to aggressively grow their Google rankings and domain authority.',
+      q: 'Can you get my business cited by ChatGPT and AI search?',
+      a: 'Yes. Generative Engine Optimization (GEO) makes your site citation-ready for ChatGPT, Gemini, Perplexity, and Google AI Overviews through structured data, entity optimization, llms.txt discovery files, and AI-friendly content.',
     },
     {
-      q: 'How fast do you review a website?',
-      a: 'We review core SEO structure, technical issues, indexing signals, and keyword visibility efficiently, then organize the findings into a clean monthly report.',
+      q: 'Do you add and fix Google Maps and Apple Maps listings?',
+      a: 'Yes. We set up and optimize Google Business Profile and Google Maps rankings, and set up or fix Apple Maps / Apple Business Connect and Bing Places, with consistent NAP data and directory citations.',
     },
     {
-      q: 'Do you support ecommerce and service websites?',
-      a: 'Yes. The service is suitable for service businesses, ecommerce sites, and general company websites that need better SEO structure and reporting.',
+      q: 'Do you also build websites?',
+      a: 'Yes. We design and build fast, modern websites and landing pages engineered to rank from day one, and can redesign or optimize an existing site for speed, mobile, and conversions.',
     },
   ];
-
-  const nextChargeText = useMemo(() => 'Billed monthly · Cancel anytime', []);
 
   const goTo = useCallback((next) => {
     // Accepts paths like '/', '/checkout', '/blog', '/blog/slug',
@@ -1007,17 +1165,19 @@ export default function AISeoMarketingLandingPage() {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleCheckout = async (e) => {
+  const handleServiceRequest = async (e) => {
     e.preventDefault();
+    setSubmitStatus('sending');
     const payload = {
       fullName: form.fullName,
       phone: form.phone,
       email: form.email,
       website: form.website,
+      services: selectedServices.length ? selectedServices.join('\n• ') : 'No specific services selected',
+      servicesCount: selectedServices.length,
       notes: form.notes,
-      submittedAt: new Date().toISOString(),
+      _subject: `New service request — RankFrame SEO (${selectedServices.length} services)`,
     };
-    localStorage.setItem('seoLeadDraft', JSON.stringify(payload));
     try {
       const response = await fetch(formspreeEndpoint, {
         method: 'POST',
@@ -1027,170 +1187,42 @@ export default function AISeoMarketingLandingPage() {
       if (!response.ok) throw new Error('Form submit failed');
     } catch (error) {
       console.error('Formspree submit failed:', error);
-      alert('We could not submit your details right now. Please try again.');
+      setSubmitStatus('error');
       return;
     }
-    window.location.href = stripeUrls[selectedPlan];
+    setSubmitStatus('idle');
+    goTo('/success');
   };
-
-  /* ═══════════ CHECKOUT PAGE ═══════════ */
-  if (route === 'checkout') {
-    return (
-      <div className="grain-overlay min-h-screen bg-[#0a0a0a] text-gray-100">
-        <SiteHeader goTo={goTo} />
-        <main className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
-          <div className="mb-8">
-            <button
-              onClick={() => goTo('/')}
-              className="rounded-full border border-gray-700 bg-[#141414] px-4 py-2 text-sm font-semibold text-gray-300 transition hover:border-amber-500/50 hover:text-amber-400"
-            >
-              ← Back to site
-            </button>
-          </div>
-
-          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-            <section className="rounded-[2rem] border border-gray-800 bg-[#141414] p-8 shadow-sm md:p-10">
-              <div className="text-sm font-semibold uppercase tracking-[0.25em] text-amber-500">Client Details</div>
-              <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white">Tell us about your business</h1>
-              <p className="mt-4 max-w-2xl text-lg leading-8 text-gray-400">Fill in your contact details and website URL first. Then continue to secure checkout.</p>
-
-              <form id="lead-checkout-form" onSubmit={handleCheckout} className="mt-10 grid gap-5">
-                {[
-                  { label: 'Full name', name: 'fullName', type: 'text', ph: 'Your full name' },
-                  { label: 'Phone number', name: 'phone', type: 'text', ph: 'Your phone number' },
-                  { label: 'Email', name: 'email', type: 'email', ph: 'you@company.com' },
-                  { label: 'Website URL', name: 'website', type: 'text', ph: 'https://yourwebsite.com' },
-                ].map((f) => (
-                  <div key={f.name}>
-                    <label className="mb-2 block text-sm font-semibold text-gray-300">{f.label}</label>
-                    <input
-                      name={f.name}
-                      type={f.type}
-                      value={form[f.name]}
-                      onChange={handleInput}
-                      required
-                      className="w-full rounded-2xl border border-gray-700 bg-[#1a1a1a] px-5 py-4 text-white outline-none transition focus:border-amber-500 focus:ring-1 focus:ring-amber-500/30"
-                      placeholder={f.ph}
-                    />
-                  </div>
-                ))}
-                <div>
-                  <label className="mb-2 block text-sm font-semibold text-gray-300">Notes</label>
-                  <textarea
-                    name="notes"
-                    value={form.notes}
-                    onChange={handleInput}
-                    rows={4}
-                    className="w-full rounded-2xl border border-gray-700 bg-[#1a1a1a] px-5 py-4 text-white outline-none transition focus:border-amber-500 focus:ring-1 focus:ring-amber-500/30"
-                    placeholder="Anything you want us to know about your website or goals"
-                  />
-                </div>
-              </form>
-            </section>
-
-            <aside className="space-y-6">
-              {/* Plan selector tabs */}
-              <div className="flex rounded-full border border-gray-700 bg-[#111111] p-1">
-                <button
-                  onClick={() => setSelectedPlan('inside')}
-                  className={`flex-1 rounded-full px-4 py-3 text-sm font-bold transition ${selectedPlan === 'inside' ? 'bg-amber-500 text-black' : 'text-gray-400 hover:text-white'}`}
-                >
-                  SEO Inside · $150/mo
-                </button>
-                <button
-                  onClick={() => setSelectedPlan('outside')}
-                  className={`flex-1 rounded-full px-4 py-3 text-sm font-bold transition ${selectedPlan === 'outside' ? 'bg-amber-500 text-black' : 'text-gray-400 hover:text-white'}`}
-                >
-                  Inside + Outside · $750/mo
-                </button>
-              </div>
-
-              {/* Dynamic plan card */}
-              <div className="gold-glow rounded-[2rem] border border-amber-500/20 bg-[#111111] p-8 text-white shadow-xl md:p-10">
-                <div className="text-sm font-semibold uppercase tracking-[0.25em] text-amber-400">
-                  {selectedPlan === 'inside' ? 'SEO Inside' : 'SEO Inside + Outside'}
-                </div>
-                <h2 className="mt-4 text-3xl font-semibold">
-                  {selectedPlan === 'inside' ? 'On-Page SEO' : 'Complete SEO Growth'}
-                </h2>
-                <p className="mt-4 text-base leading-7 text-gray-400">
-                  {selectedPlan === 'inside'
-                    ? 'Submit your details, then continue to secure Stripe checkout for your monthly on-page SEO architecture & reporting service.'
-                    : 'Submit your details, then continue to secure Stripe checkout. Includes everything in SEO Inside plus external backlink building & long-term deep SEO partnership.'}
-                </p>
-
-                {selectedPlan === 'outside' && (
-                  <div className="mt-4 grid grid-cols-2 gap-2 text-xs text-gray-500">
-                    <span>✓ 10+ backlinks/month</span>
-                    <span>✓ Guest post outreach</span>
-                    <span>✓ 50+ directory citations</span>
-                    <span>✓ Competitor gap analysis</span>
-                    <span>✓ DA & trust flow tracking</span>
-                    <span>✓ Dedicated SEO strategist</span>
-                  </div>
-                )}
-
-                <button
-                  type="submit"
-                  form="lead-checkout-form"
-                  className="btn-shimmer mt-8 w-full rounded-full px-8 py-4 text-sm font-bold text-black shadow-lg transition hover:scale-[1.02]"
-                >
-                  Subscribe — {selectedPlan === 'inside' ? '$150' : '$750'}/mo →
-                </button>
-
-                <div className="mt-6 rounded-[1.5rem] border border-amber-500/10 bg-amber-500/5 p-6">
-                  <div className="flex items-end justify-between gap-4 border-b border-white/10 pb-5">
-                    <div>
-                      <div className="text-sm uppercase tracking-[0.22em] text-gray-400">Plan</div>
-                      <div className="mt-2 text-xl font-semibold">{selectedPlan === 'inside' ? 'SEO Inside' : 'SEO Inside + Outside'}</div>
-                    </div>
-                    <div className="text-3xl font-semibold text-amber-400">
-                      {selectedPlan === 'inside' ? '$150' : '$750'}<span className="text-base font-normal text-gray-400">/mo</span>
-                    </div>
-                  </div>
-                  <div className="space-y-4 pt-5 text-gray-300">
-                    <div className="flex items-center justify-between"><span>Billing</span><span>{nextChargeText}</span></div>
-                    <div className="flex items-center justify-between"><span>Setup fee</span><span className="text-amber-400">$0</span></div>
-                  </div>
-                </div>
-              </div>
-            </aside>
-          </div>
-        </main>
-        <SiteFooter />
-      </div>
-    );
-  }
 
   /* ═══════════ SUCCESS PAGE ═══════════ */
   if (route === 'success') {
     return (
-      <div className="grain-overlay min-h-screen bg-[#0a0a0a] text-gray-100">
+      <div className="grain-overlay min-h-screen bg-[#f3fbfb] text-gray-900">
         <SiteHeader goTo={goTo} />
         <main className="mx-auto flex max-w-4xl items-center px-6 py-20 lg:px-10">
-          <section className="gold-glow w-full rounded-[2.5rem] border border-gray-800 bg-[#141414] p-10 text-center shadow-xl md:p-14">
-            <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-amber-500/10 text-3xl text-amber-500">✓</div>
-            <div className="mt-8 text-sm font-semibold uppercase tracking-[0.3em] text-amber-500">Payment Successful</div>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl">Thanks for your payment</h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-400">
-              Your order has been received successfully. We will begin your SEO audit and follow up using the details you provided.
+          <section className="gold-glow w-full rounded-[2.5rem] border border-[#e1f1ee] bg-white p-10 text-center shadow-xl md:p-14">
+            <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-emerald-500/10 text-3xl text-emerald-600">✓</div>
+            <div className="mt-8 text-sm font-semibold uppercase tracking-[0.3em] text-emerald-600">Request Received</div>
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">Thanks — we've got your request</h1>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-600">
+              Your selected services have been sent to our team. We'll review your site and reply in 2–6 hours to start a one-on-one conversation about your goals.
             </p>
             <div className="mx-auto mt-10 grid max-w-2xl gap-4 text-left sm:grid-cols-2">
-              <div className="rounded-2xl bg-[#1a1a1a] p-5 ring-1 ring-gray-800">
-                <div className="text-sm font-semibold uppercase tracking-[0.2em] text-gray-500">Customer</div>
-                <div className="mt-2 text-lg font-semibold text-white">{form.fullName || 'Your name'}</div>
-                <div className="mt-1 text-gray-400">{form.email || 'your@email.com'}</div>
+              <div className="rounded-2xl bg-[#eef9f8] p-5 ring-1 ring-[#e1f1ee]">
+                <div className="text-sm font-semibold uppercase tracking-[0.2em] text-gray-500">Contact</div>
+                <div className="mt-2 text-lg font-semibold text-gray-900">{form.fullName || 'Your name'}</div>
+                <div className="mt-1 text-gray-600">{form.email || 'your@email.com'}</div>
               </div>
-              <div className="rounded-2xl bg-[#1a1a1a] p-5 ring-1 ring-gray-800">
-                <div className="text-sm font-semibold uppercase tracking-[0.2em] text-gray-500">Plan</div>
-                <div className="mt-2 text-lg font-semibold text-white">RankFrame SEO Service</div>
-                <div className="mt-1 text-gray-400">Monthly subscription · No setup fee</div>
+              <div className="rounded-2xl bg-[#eef9f8] p-5 ring-1 ring-[#e1f1ee]">
+                <div className="text-sm font-semibold uppercase tracking-[0.2em] text-gray-500">Services requested</div>
+                <div className="mt-2 text-lg font-semibold text-gray-900">{selectedServices.length || '—'} selected</div>
+                <div className="mt-1 text-gray-600">We'll tailor a one-on-one plan</div>
               </div>
             </div>
             <div className="mt-10">
               <button
                 onClick={() => goTo('/')}
-                className="btn-shimmer rounded-full px-8 py-4 text-sm font-bold text-black shadow-lg transition hover:scale-[1.02]"
+                className="btn-shimmer rounded-full px-8 py-4 text-sm font-bold text-white shadow-lg transition hover:scale-[1.02]"
               >
                 Return to homepage
               </button>
@@ -1206,30 +1238,30 @@ export default function AISeoMarketingLandingPage() {
   /* ═══════════ GLOSSARY ═══════════ */
   if (route === 'glossary') {
     return (
-      <div className="grain-overlay min-h-screen bg-[#0a0a0a] text-gray-100">
+      <div className="grain-overlay min-h-screen bg-[#f3fbfb] text-gray-900">
         <SiteHeader goTo={goTo} />
         <main className="mx-auto max-w-4xl px-6 py-20 lg:px-10">
           <div className="mb-12 text-center">
-            <div className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-500">Reference</div>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl">SEO &amp; GEO Glossary</h1>
-            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-400">
+            <div className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-600">Reference</div>
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">SEO &amp; GEO Glossary</h1>
+            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-600">
               Plain-English definitions of 20 terms every small business should know — from Core Web Vitals and schema markup to llms.txt, AI Overviews, and Generative Engine Optimization.
             </p>
           </div>
           <dl className="space-y-8">
             {glossaryTerms.map((t) => (
-              <div key={t.term} id={t.term.toLowerCase().replace(/[^a-z0-9]+/g, '-')} className="rounded-2xl border border-gray-800 bg-[#141414] p-7">
+              <div key={t.term} id={t.term.toLowerCase().replace(/[^a-z0-9]+/g, '-')} className="rounded-2xl border border-[#e1f1ee] bg-white p-7">
                 <dt>
-                  <h2 className="text-xl font-semibold text-white md:text-2xl">{t.term}</h2>
-                  <p className="mt-1 text-sm text-amber-400">{t.short}</p>
+                  <h2 className="text-xl font-semibold text-gray-900 md:text-2xl">{t.term}</h2>
+                  <p className="mt-1 text-sm text-emerald-600">{t.short}</p>
                 </dt>
-                <dd className="mt-4 text-base leading-7 text-gray-300">{t.definition}</dd>
+                <dd className="mt-4 text-base leading-7 text-gray-700">{t.definition}</dd>
               </div>
             ))}
           </dl>
-          <div className="mt-14 rounded-2xl border border-amber-500/30 bg-[#141414] p-7 text-center">
-            <p className="text-gray-300">Need the architecture behind these concepts implemented on your site?</p>
-            <a href="/#pricing" onClick={(e) => { e.preventDefault(); goTo('/#pricing'); }} className="mt-4 inline-block rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-black transition hover:bg-amber-400">
+          <div className="mt-14 rounded-2xl border border-emerald-500/30 bg-white p-7 text-center">
+            <p className="text-gray-700">Need the architecture behind these concepts implemented on your site?</p>
+            <a href="/#pricing" onClick={(e) => { e.preventDefault(); goTo('/#pricing'); }} className="mt-4 inline-block rounded-full bg-emerald-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-500">
               See RankFrame SEO Plans →
             </a>
           </div>
@@ -1242,29 +1274,29 @@ export default function AISeoMarketingLandingPage() {
   /* ═══════════ STATISTICS ═══════════ */
   if (route === 'statistics') {
     return (
-      <div className="grain-overlay min-h-screen bg-[#0a0a0a] text-gray-100">
+      <div className="grain-overlay min-h-screen bg-[#f3fbfb] text-gray-900">
         <SiteHeader goTo={goTo} />
         <main className="mx-auto max-w-5xl px-6 py-20 lg:px-10">
           <div className="mb-12 text-center">
-            <div className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-500">Data Set</div>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl">SEO Statistics 2026</h1>
-            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-400">
+            <div className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-600">Data Set</div>
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">SEO Statistics 2026</h1>
+            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-600">
               15 current statistics with sources — including benchmarks from RankFrame SEO's own audit dataset. Cite freely (CC BY 4.0) when writing about small-business SEO, technical SEO, or Core Web Vitals.
             </p>
           </div>
           <div className="grid gap-5 md:grid-cols-2">
             {seoStatistics.map((s, i) => (
-              <div key={i} className="rounded-2xl border border-gray-800 bg-[#141414] p-6">
+              <div key={i} className="rounded-2xl border border-[#e1f1ee] bg-white p-6">
                 <div className="text-xs font-semibold uppercase tracking-[0.25em] text-gray-500">{s.category}</div>
-                <div className="mt-3 text-4xl font-bold text-amber-400">{s.stat}</div>
-                <p className="mt-3 text-base leading-7 text-gray-300">{s.claim}</p>
+                <div className="mt-3 text-4xl font-bold text-emerald-600">{s.stat}</div>
+                <p className="mt-3 text-base leading-7 text-gray-700">{s.claim}</p>
                 <p className="mt-4 text-xs text-gray-500">Source: {s.source}</p>
               </div>
             ))}
           </div>
-          <div className="mt-14 rounded-2xl border border-amber-500/30 bg-[#141414] p-7 text-center">
-            <p className="text-gray-300">Want the audit data behind these numbers applied to your site?</p>
-            <a href="/#pricing" onClick={(e) => { e.preventDefault(); goTo('/#pricing'); }} className="mt-4 inline-block rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-black transition hover:bg-amber-400">
+          <div className="mt-14 rounded-2xl border border-emerald-500/30 bg-white p-7 text-center">
+            <p className="text-gray-700">Want the audit data behind these numbers applied to your site?</p>
+            <a href="/#pricing" onClick={(e) => { e.preventDefault(); goTo('/#pricing'); }} className="mt-4 inline-block rounded-full bg-emerald-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-500">
               Start a RankFrame SEO Audit →
             </a>
           </div>
@@ -1277,57 +1309,54 @@ export default function AISeoMarketingLandingPage() {
   /* ═══════════ ABOUT ═══════════ */
   if (route === 'about') {
     return (
-      <div className="grain-overlay min-h-screen bg-[#0a0a0a] text-gray-100">
+      <div className="grain-overlay min-h-screen bg-[#f3fbfb] text-gray-900">
         <SiteHeader goTo={goTo} />
         <main className="mx-auto max-w-3xl px-6 py-20 lg:px-10">
           <div className="mb-10 text-center">
-            <div className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-500">About</div>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl">{aboutContent.headline}</h1>
-            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-400">{aboutContent.tagline}</p>
+            <div className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-600">About</div>
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">{aboutContent.headline}</h1>
+            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-600">{aboutContent.tagline}</p>
           </div>
 
-          <section className="space-y-5 text-base leading-8 text-gray-300">
+          <section className="space-y-5 text-base leading-8 text-gray-700">
             {aboutContent.paragraphs.map((p, i) => (<p key={i}>{p}</p>))}
           </section>
 
-          <section className="mt-14 rounded-2xl border border-gray-800 bg-[#141414] p-7">
+          <section className="mt-14 rounded-2xl border border-[#e1f1ee] bg-white p-7">
             <div className="text-xs font-semibold uppercase tracking-[0.25em] text-gray-500">Founder</div>
-            <h2 className="mt-3 text-2xl font-semibold text-white">{aboutContent.founder.name}</h2>
-            <p className="mt-1 text-sm text-amber-400">{aboutContent.founder.role}</p>
-            <p className="mt-4 text-base leading-7 text-gray-300">{aboutContent.founder.bio}</p>
+            <h2 className="mt-3 text-2xl font-semibold text-gray-900">{aboutContent.founder.name}</h2>
+            <p className="mt-1 text-sm text-emerald-600">{aboutContent.founder.role}</p>
+            <p className="mt-4 text-base leading-7 text-gray-700">{aboutContent.founder.bio}</p>
             <div className="mt-5 flex flex-wrap gap-2">
               {aboutContent.founder.expertise.map((e) => (
-                <span key={e} className="rounded-full border border-gray-700 bg-[#1a1a1a] px-3 py-1 text-xs text-gray-400">{e}</span>
+                <span key={e} className="rounded-full border border-[#d7ece8] bg-[#eef9f8] px-3 py-1 text-xs text-gray-600">{e}</span>
               ))}
             </div>
             <div className="mt-5 flex gap-4 text-sm">
               {aboutContent.founder.links.map((l) => (
-                <a key={l.url} href={l.url} target="_blank" rel="noopener noreferrer" className="text-amber-400 underline underline-offset-2 hover:text-amber-300">{l.label} →</a>
+                <a key={l.url} href={l.url} target="_blank" rel="noopener noreferrer" className="text-emerald-600 underline underline-offset-2 hover:text-emerald-400">{l.label} →</a>
               ))}
             </div>
           </section>
 
           <section className="mt-10 grid gap-5 md:grid-cols-2">
             {aboutContent.plans.map((p) => (
-              <div key={p.name} className="rounded-2xl border border-gray-800 bg-[#141414] p-6">
-                <div className="text-xs font-semibold uppercase tracking-[0.25em] text-gray-500">Plan</div>
-                <div className="mt-3 flex items-baseline justify-between">
-                  <h3 className="text-xl font-semibold text-white">{p.name}</h3>
-                  <span className="text-lg font-bold text-amber-400">{p.price}</span>
-                </div>
-                <p className="mt-3 text-sm leading-6 text-gray-400">{p.description}</p>
+              <div key={p.name} className="rounded-2xl border border-[#e1f1ee] bg-white p-6">
+                <div className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-600">What we offer</div>
+                <h3 className="mt-3 text-xl font-semibold text-gray-900">{p.name}</h3>
+                <p className="mt-3 text-sm leading-6 text-gray-600">{p.description}</p>
               </div>
             ))}
           </section>
 
-          <section className="mt-10 rounded-2xl border border-gray-800 bg-[#141414] p-6 text-sm text-gray-400">
+          <section className="mt-10 rounded-2xl border border-[#e1f1ee] bg-white p-6 text-sm text-gray-600">
             <div className="text-xs font-semibold uppercase tracking-[0.25em] text-gray-500">Contact</div>
-            <p className="mt-3">Email: <a href={`mailto:${aboutContent.contact.email}`} className="text-amber-400 underline underline-offset-2">{aboutContent.contact.email}</a></p>
+            <p className="mt-3">Email: <a href={`mailto:${aboutContent.contact.email}`} className="text-emerald-600 underline underline-offset-2">{aboutContent.contact.email}</a></p>
             <p className="mt-1">Primary country: {aboutContent.contact.country}</p>
           </section>
 
           <div className="mt-12 text-center">
-            <a href="/#pricing" onClick={(e) => { e.preventDefault(); goTo('/#pricing'); }} className="inline-block rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-black transition hover:bg-amber-400">
+            <a href="/#pricing" onClick={(e) => { e.preventDefault(); goTo('/#pricing'); }} className="inline-block rounded-full bg-emerald-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-500">
               Start Your Audit →
             </a>
           </div>
@@ -1337,105 +1366,117 @@ export default function AISeoMarketingLandingPage() {
     );
   }
 
-  /* ═══════════ GET STARTED ═══════════ */
+  /* ═══════════ GET STARTED — SERVICE SELECTION ═══════════ */
   if (route === 'get-started') {
     return (
-      <div className="grain-overlay min-h-screen bg-[#0a0a0a] text-gray-100">
+      <div className="grain-overlay min-h-screen bg-[#f3fbfb] text-gray-900">
         <SiteHeader goTo={goTo} />
-        <main className="mx-auto max-w-3xl px-6 py-20 lg:px-10">
-          <div className="mb-10 text-center">
-            <div className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-500">Get Started</div>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl">Start Your SEO Audit</h1>
-            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-400">
-              Tell us about your site. Within 1 business day we'll send back a custom audit proposal — exactly what we'd fix first, which plan fits, and what results look like at 90 days. <span className="text-amber-400">30+ sites already optimized with the SEO Inside framework.</span>
+        <main className="mx-auto max-w-5xl px-6 py-20 lg:px-10">
+          <div className="mb-12 text-center">
+            <div className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-600">Build your plan</div>
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">
+              Select the services you need
+            </h1>
+            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-600">
+              Pick everything you're interested in — across any industry. We'll receive your selection instantly and reply in 2–6 hours with a tailored, one-on-one plan. No obligation.
             </p>
           </div>
 
-          <section className="rounded-2xl border border-amber-500/30 bg-[#141414] p-7 md:p-10">
-            <form
-              action="https://formsubmit.co/chunlinpengmark@gmail.com"
-              method="POST"
-              className="space-y-5"
-            >
-              <input type="hidden" name="_subject" value="New SEO audit inquiry — RankFrame" />
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_next" value="https://rankframeseo.com/success" />
-              <input type="text" name="_honey" style={{ display: 'none' }} />
+          <form onSubmit={handleServiceRequest} className="grid gap-8 lg:grid-cols-[1.35fr_0.85fr]">
+            {/* ── Service catalog ── */}
+            <div className="space-y-6">
+              {SERVICE_GROUPS.map((g) => (
+                <FadeIn key={g.group} className="reveal-card rounded-3xl border border-[#e1f1ee] bg-white/80 p-6 backdrop-blur md:p-8">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <h2 className="text-lg font-bold text-gray-900">{g.group}</h2>
+                    <span className="text-xs text-gray-500">{g.blurb}</span>
+                  </div>
+                  <div className="mt-4 flex flex-wrap gap-2.5">
+                    {g.items.map((item) => {
+                      const active = selectedServices.includes(item);
+                      return (
+                        <button
+                          type="button"
+                          key={item}
+                          onClick={() => toggleService(item)}
+                          aria-pressed={active}
+                          className={`rounded-full border px-4 py-2 text-sm font-medium transition ${
+                            active
+                              ? 'border-emerald-500 bg-emerald-500 text-white shadow-sm'
+                              : 'border-[#d7ece8] bg-[#f3fbfb] text-gray-700 hover:border-emerald-500 hover:text-emerald-700'
+                          }`}
+                        >
+                          <span className="mr-1.5">{active ? '✓' : '+'}</span>{item}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
 
-              <div>
-                <label htmlFor="name" className="block text-sm font-semibold text-gray-300">Your name</label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  required
-                  autoComplete="name"
-                  className="mt-2 w-full rounded-xl border border-gray-700 bg-[#0f0f0f] px-4 py-3 text-base text-white placeholder-gray-500 focus:border-amber-500/70 focus:outline-none"
-                  placeholder="Jane Smith"
-                />
+            {/* ── Contact + submit (sticky) ── */}
+            <aside className="lg:sticky lg:top-24 h-fit">
+              <div className="gold-glow rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-white to-[#edf9f7] p-6 shadow-xl md:p-8">
+                <div className="flex items-center justify-between">
+                  <div className="text-sm font-semibold uppercase tracking-[0.22em] text-emerald-600">Your request</div>
+                  <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-bold text-emerald-700">
+                    {selectedServices.length} selected
+                  </span>
+                </div>
+
+                <div className="mt-5 space-y-4">
+                  <div>
+                    <label className="mb-1.5 block text-sm font-semibold text-gray-700">Your name</label>
+                    <input name="fullName" type="text" required value={form.fullName} onChange={handleInput} autoComplete="name" placeholder="Jane Smith"
+                      className="w-full rounded-xl border border-[#d7ece8] bg-white px-4 py-3 text-base text-gray-900 placeholder-gray-400 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20" />
+                  </div>
+                  <div>
+                    <label className="mb-1.5 block text-sm font-semibold text-gray-700">Email</label>
+                    <input name="email" type="email" required value={form.email} onChange={handleInput} autoComplete="email" placeholder="you@business.com"
+                      className="w-full rounded-xl border border-[#d7ece8] bg-white px-4 py-3 text-base text-gray-900 placeholder-gray-400 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20" />
+                  </div>
+                  <div>
+                    <label className="mb-1.5 block text-sm font-semibold text-gray-700">Website <span className="font-normal text-gray-400">(optional)</span></label>
+                    <input name="website" type="text" value={form.website} onChange={handleInput} placeholder="https://yoursite.com"
+                      className="w-full rounded-xl border border-[#d7ece8] bg-white px-4 py-3 text-base text-gray-900 placeholder-gray-400 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20" />
+                  </div>
+                  <div>
+                    <label className="mb-1.5 block text-sm font-semibold text-gray-700">Anything else? <span className="font-normal text-gray-400">(optional)</span></label>
+                    <textarea name="notes" rows={3} value={form.notes} onChange={handleInput} placeholder="Your industry, goals, or biggest concern…"
+                      className="w-full rounded-xl border border-[#d7ece8] bg-white px-4 py-3 text-base text-gray-900 placeholder-gray-400 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20" />
+                  </div>
+                </div>
+
+                {submitStatus === 'error' && (
+                  <p className="mt-4 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-600">
+                    Something went wrong sending your request. Please try again in a moment.
+                  </p>
+                )}
+
+                <button type="submit" disabled={submitStatus === 'sending'}
+                  className="btn-shimmer mt-6 w-full rounded-full px-6 py-4 text-base font-bold text-white shadow-lg transition hover:scale-[1.01] disabled:opacity-60">
+                  {submitStatus === 'sending' ? 'Sending…' : selectedServices.length ? `Send my ${selectedServices.length}-service request →` : 'Send my request →'}
+                </button>
+                <p className="mt-4 text-center text-xs text-gray-500">
+                  No obligation · We reply in 2–6 hours
+                </p>
               </div>
 
-              <div>
-                <label htmlFor="email" className="block text-sm font-semibold text-gray-300">Email</label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  autoComplete="email"
-                  className="mt-2 w-full rounded-xl border border-gray-700 bg-[#0f0f0f] px-4 py-3 text-base text-white placeholder-gray-500 focus:border-amber-500/70 focus:outline-none"
-                  placeholder="you@yourbusiness.com"
-                />
+              <div className="mt-5 grid gap-3 text-sm">
+                {[
+                  ['One-on-one service', 'Work directly with us — no account-manager layers.'],
+                  ['Every industry', 'Local shops, e-commerce, SaaS, professional services & more.'],
+                  ['2–6 hours', 'We reply with a tailored plan, fast.'],
+                ].map(([t, d]) => (
+                  <div key={t} className="rounded-2xl border border-[#e1f1ee] bg-white/70 p-4">
+                    <div className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-600">{t}</div>
+                    <p className="mt-1.5 leading-6 text-gray-600">{d}</p>
+                  </div>
+                ))}
               </div>
-
-              <div>
-                <label htmlFor="website" className="block text-sm font-semibold text-gray-300">Website URL</label>
-                <input
-                  id="website"
-                  name="website"
-                  type="url"
-                  required
-                  placeholder="https://yourwebsite.com"
-                  className="mt-2 w-full rounded-xl border border-gray-700 bg-[#0f0f0f] px-4 py-3 text-base text-white placeholder-gray-500 focus:border-amber-500/70 focus:outline-none"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="concern" className="block text-sm font-semibold text-gray-300">Biggest SEO concern <span className="text-gray-500 font-normal">(optional)</span></label>
-                <textarea
-                  id="concern"
-                  name="concern"
-                  rows={4}
-                  className="mt-2 w-full rounded-xl border border-gray-700 bg-[#0f0f0f] px-4 py-3 text-base text-white placeholder-gray-500 focus:border-amber-500/70 focus:outline-none"
-                  placeholder="e.g. rankings dropped after the last Google update, product pages aren't indexed, AI search ignores us..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="btn-shimmer w-full rounded-full px-6 py-4 text-base font-bold text-black transition hover:scale-[1.01]"
-              >
-                Request my audit proposal →
-              </button>
-
-              <p className="text-center text-xs text-gray-500">
-                Or email us directly: <a href="mailto:chunlinpengmark@gmail.com" className="text-amber-400 underline underline-offset-2">chunlinpengmark@gmail.com</a>
-              </p>
-            </form>
-          </section>
-
-          <section className="mt-10 grid gap-5 md:grid-cols-3 text-sm">
-            {[
-              ['What you get', 'A custom audit proposal outlining the top fixes for your site and which plan fits — $150 or $750/mo.'],
-              ['Response time', '1 business day from submission — directly from the founder.'],
-              ['No setup fee', 'Month-to-month plans. Cancel anytime. 30+ sites already optimized.'],
-            ].map(([t, d]) => (
-              <div key={t} className="rounded-2xl border border-gray-800 bg-[#141414] p-5">
-                <div className="text-xs font-semibold uppercase tracking-[0.25em] text-amber-400">{t}</div>
-                <p className="mt-3 leading-6 text-gray-400">{d}</p>
-              </div>
-            ))}
-          </section>
+            </aside>
+          </form>
         </main>
         <SiteFooter />
       </div>
@@ -1457,56 +1498,56 @@ export default function AISeoMarketingLandingPage() {
       ? 'What RankFrame does for e-commerce stores'
       : `What RankFrame does for ${n.h1.replace(/^SEO for /, '').toLowerCase()}`;
     return (
-      <div className="grain-overlay min-h-screen bg-[#0a0a0a] text-gray-100">
+      <div className="grain-overlay min-h-screen bg-[#f3fbfb] text-gray-900">
         <SiteHeader goTo={goTo} />
         <main className="mx-auto max-w-4xl px-6 py-20 lg:px-10">
           <div className="mb-10">
-            <div className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-500">{pageType}</div>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl">{n.h1}</h1>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-gray-400">{n.subhead}</p>
+            <div className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-600">{pageType}</div>
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">{n.h1}</h1>
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-gray-600">{n.subhead}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <button
                 onClick={() => goTo('/get-started')}
-                className="btn-shimmer rounded-full px-6 py-3 text-sm font-bold text-black transition hover:scale-[1.02]"
+                className="btn-shimmer rounded-full px-6 py-3 text-sm font-bold text-white transition hover:scale-[1.02]"
               >
                 Request Your Audit →
               </button>
               <button
                 onClick={() => goTo('/#pricing')}
-                className="rounded-full border border-gray-700 bg-[#141414] px-6 py-3 text-sm font-semibold text-gray-300 transition hover:border-amber-500/50 hover:text-amber-400"
+                className="rounded-full border border-[#d7ece8] bg-white px-6 py-3 text-sm font-semibold text-gray-700 transition hover:border-emerald-500/50 hover:text-emerald-600"
               >
-                See pricing
+                See what we do
               </button>
             </div>
           </div>
 
           <section className="mt-6 grid gap-5 md:grid-cols-3">
             {n.stats.map((s, i) => (
-              <div key={i} className="rounded-2xl border border-gray-800 bg-[#141414] p-6">
-                <div className="text-3xl font-bold text-amber-400">{s.label}</div>
-                <p className="mt-3 text-sm leading-6 text-gray-400">{s.text}</p>
+              <div key={i} className="rounded-2xl border border-[#e1f1ee] bg-white p-6">
+                <div className="text-3xl font-bold text-emerald-600">{s.label}</div>
+                <p className="mt-3 text-sm leading-6 text-gray-600">{s.text}</p>
               </div>
             ))}
           </section>
 
           <section className="mt-14">
-            <h2 className="text-2xl font-semibold text-white md:text-3xl">Sound familiar?</h2>
+            <h2 className="text-2xl font-semibold text-gray-900 md:text-3xl">Sound familiar?</h2>
             <ul className="mt-6 space-y-3">
               {n.painPoints.map((p, i) => (
-                <li key={i} className="flex gap-3 rounded-xl border border-gray-800 bg-[#141414] p-4 text-gray-300">
-                  <span className="text-amber-400">→</span>
+                <li key={i} className="flex gap-3 rounded-xl border border-[#e1f1ee] bg-white p-4 text-gray-700">
+                  <span className="text-emerald-600">→</span>
                   <span className="leading-7">{p}</span>
                 </li>
               ))}
             </ul>
           </section>
 
-          <section className="mt-14 rounded-2xl border border-amber-500/20 bg-[#141414] p-7 md:p-10">
-            <h2 className="text-2xl font-semibold text-white md:text-3xl">{whatWeDoLabel}</h2>
+          <section className="mt-14 rounded-2xl border border-emerald-500/20 bg-white p-7 md:p-10">
+            <h2 className="text-2xl font-semibold text-gray-900 md:text-3xl">{whatWeDoLabel}</h2>
             <ul className="mt-6 space-y-3">
               {n.whatWeDo.map((p, i) => (
-                <li key={i} className="flex gap-3 text-gray-300">
-                  <span className="text-amber-400">✓</span>
+                <li key={i} className="flex gap-3 text-gray-700">
+                  <span className="text-emerald-600">✓</span>
                   <span className="leading-7">{p}</span>
                 </li>
               ))}
@@ -1514,7 +1555,7 @@ export default function AISeoMarketingLandingPage() {
             <div className="mt-8 flex flex-wrap gap-3">
               <button
                 onClick={() => goTo('/get-started')}
-                className="btn-shimmer rounded-full px-6 py-3 text-sm font-bold text-black transition hover:scale-[1.02]"
+                className="btn-shimmer rounded-full px-6 py-3 text-sm font-bold text-white transition hover:scale-[1.02]"
               >
                 Request Your Audit →
               </button>
@@ -1522,26 +1563,26 @@ export default function AISeoMarketingLandingPage() {
           </section>
 
           <section className="mt-14">
-            <h2 className="text-2xl font-semibold text-white md:text-3xl">FAQ</h2>
+            <h2 className="text-2xl font-semibold text-gray-900 md:text-3xl">FAQ</h2>
             <div className="mt-6 space-y-4">
               {n.faq.map((f, i) => (
-                <details key={i} className="rounded-2xl border border-gray-800 bg-[#141414] p-6 open:border-amber-500/30">
-                  <summary className="cursor-pointer text-lg font-semibold text-white">{f.q}</summary>
-                  <p className="mt-4 text-base leading-7 text-gray-300">{f.a}</p>
+                <details key={i} className="rounded-2xl border border-[#e1f1ee] bg-white p-6 open:border-emerald-500/30">
+                  <summary className="cursor-pointer text-lg font-semibold text-gray-900">{f.q}</summary>
+                  <p className="mt-4 text-base leading-7 text-gray-700">{f.a}</p>
                 </details>
               ))}
             </div>
           </section>
 
-          <div className="mt-14 rounded-2xl border border-amber-500/30 bg-[#141414] p-7 text-center">
-            <p className="text-lg text-gray-300">Ready to see exactly what's holding your rankings back?</p>
+          <div className="mt-14 rounded-2xl border border-emerald-500/30 bg-white p-7 text-center">
+            <p className="text-lg text-gray-700">Ready to see exactly what's holding your rankings back?</p>
             <button
               onClick={() => goTo('/get-started')}
-              className="btn-shimmer mt-5 rounded-full px-7 py-4 text-sm font-bold text-black transition hover:scale-[1.02]"
+              className="btn-shimmer mt-5 rounded-full px-7 py-4 text-sm font-bold text-white transition hover:scale-[1.02]"
             >
               Start Your SEO Audit →
             </button>
-            <p className="mt-4 text-xs text-gray-500">30+ sites optimized · Response in 1 business day · From $150/mo</p>
+            <p className="mt-4 text-xs text-gray-500">30+ sites optimized · One-on-one service · Reply in 2–6 hours</p>
           </div>
         </main>
         <SiteFooter />
@@ -1551,13 +1592,13 @@ export default function AISeoMarketingLandingPage() {
 
   if (route === 'blog') {
     return (
-      <div className="grain-overlay min-h-screen bg-[#0a0a0a] text-gray-100">
+      <div className="grain-overlay min-h-screen bg-[#f3fbfb] text-gray-900">
         <SiteHeader goTo={goTo} />
         <main className="mx-auto max-w-5xl px-6 py-20 lg:px-10">
           <div className="mb-10 text-center">
-            <div className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-500">RankFrame Blog</div>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl">SEO Architecture Insights</h1>
-            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-400">
+            <div className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-600">RankFrame Blog</div>
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">SEO Architecture Insights</h1>
+            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-600">
               Playbooks, audits, and field notes on technical SEO, schema markup, internal linking, and Core Web Vitals — written for small businesses that want to stop being invisible on Google.
             </p>
           </div>
@@ -1568,27 +1609,27 @@ export default function AISeoMarketingLandingPage() {
                 key={post.slug}
                 href={`/blog/${post.slug}`}
                 onClick={(e) => { e.preventDefault(); goTo(`/blog/${post.slug}`); }}
-                className="group block rounded-[2rem] border border-gray-800 bg-[#141414] p-8 transition hover:border-amber-500/40 hover:bg-[#181818] md:p-10"
+                className="group block rounded-[2rem] border border-[#e1f1ee] bg-white p-8 transition hover:border-emerald-500/40 hover:bg-[#181818] md:p-10"
               >
                 <div className="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.25em] text-gray-500">
                   <time dateTime={post.date}>{formatDate(post.date)}</time>
                   <span>·</span>
                   <span>{post.readTime}</span>
                   <span>·</span>
-                  <span className="text-amber-500">{post.author}</span>
+                  <span className="text-emerald-600">{post.author}</span>
                 </div>
-                <h2 className="mt-4 text-2xl font-semibold tracking-tight text-white transition group-hover:text-amber-400 md:text-3xl">
+                <h2 className="mt-4 text-2xl font-semibold tracking-tight text-gray-900 transition group-hover:text-emerald-600 md:text-3xl">
                   {post.title}
                 </h2>
-                <p className="mt-4 text-base leading-7 text-gray-400">{post.excerpt}</p>
+                <p className="mt-4 text-base leading-7 text-gray-600">{post.excerpt}</p>
                 <div className="mt-6 flex flex-wrap gap-2">
                   {post.tags.map((tag) => (
-                    <span key={tag} className="rounded-full border border-gray-700 bg-[#1a1a1a] px-3 py-1 text-xs text-gray-400">
+                    <span key={tag} className="rounded-full border border-[#d7ece8] bg-[#eef9f8] px-3 py-1 text-xs text-gray-600">
                       {tag}
                     </span>
                   ))}
                 </div>
-                <div className="mt-6 text-sm font-semibold text-amber-400 transition group-hover:translate-x-1">
+                <div className="mt-6 text-sm font-semibold text-emerald-600 transition group-hover:translate-x-1">
                   Read article →
                 </div>
               </a>
@@ -1605,14 +1646,14 @@ export default function AISeoMarketingLandingPage() {
     const post = getPostBySlug(getBlogSlug());
     if (!post) {
       return (
-        <div className="grain-overlay min-h-screen bg-[#0a0a0a] text-gray-100">
+        <div className="grain-overlay min-h-screen bg-[#f3fbfb] text-gray-900">
           <SiteHeader goTo={goTo} />
           <main className="mx-auto max-w-3xl px-6 py-24 text-center lg:px-10">
-            <h1 className="text-4xl font-semibold text-white">Article not found</h1>
-            <p className="mt-4 text-gray-400">The article you're looking for doesn't exist or has been moved.</p>
+            <h1 className="text-4xl font-semibold text-gray-900">Article not found</h1>
+            <p className="mt-4 text-gray-600">The article you're looking for doesn't exist or has been moved.</p>
             <button
               onClick={() => goTo('/blog')}
-              className="mt-10 rounded-full border border-gray-700 bg-[#141414] px-5 py-3 text-sm font-semibold text-gray-300 transition hover:border-amber-500/50 hover:text-amber-400"
+              className="mt-10 rounded-full border border-[#d7ece8] bg-white px-5 py-3 text-sm font-semibold text-gray-700 transition hover:border-emerald-500/50 hover:text-emerald-600"
             >
               ← Back to blog
             </button>
@@ -1622,13 +1663,13 @@ export default function AISeoMarketingLandingPage() {
       );
     }
     return (
-      <div className="grain-overlay min-h-screen bg-[#0a0a0a] text-gray-100">
+      <div className="grain-overlay min-h-screen bg-[#f3fbfb] text-gray-900">
         <SiteHeader goTo={goTo} />
         <main className="mx-auto max-w-3xl px-6 py-16 lg:px-10">
           <div className="mb-8">
             <button
               onClick={() => goTo('/blog')}
-              className="rounded-full border border-gray-700 bg-[#141414] px-4 py-2 text-sm font-semibold text-gray-300 transition hover:border-amber-500/50 hover:text-amber-400"
+              className="rounded-full border border-[#d7ece8] bg-white px-4 py-2 text-sm font-semibold text-gray-700 transition hover:border-emerald-500/50 hover:text-emerald-600"
             >
               ← All articles
             </button>
@@ -1640,15 +1681,15 @@ export default function AISeoMarketingLandingPage() {
                 <span>·</span>
                 <span>{post.readTime}</span>
                 <span>·</span>
-                <span className="text-amber-500">{post.author}</span>
+                <span className="text-emerald-600">{post.author}</span>
               </div>
-              <h1 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
+              <h1 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-gray-900 md:text-5xl">
                 {post.title}
               </h1>
-              <p className="mt-6 text-lg leading-8 text-gray-400">{post.excerpt}</p>
+              <p className="mt-6 text-lg leading-8 text-gray-600">{post.excerpt}</p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
-                  <span key={tag} className="rounded-full border border-gray-700 bg-[#1a1a1a] px-3 py-1 text-xs text-gray-400">
+                  <span key={tag} className="rounded-full border border-[#d7ece8] bg-[#eef9f8] px-3 py-1 text-xs text-gray-600">
                     {tag}
                   </span>
                 ))}
@@ -1659,24 +1700,24 @@ export default function AISeoMarketingLandingPage() {
               <Markdown source={post.content} />
             </div>
 
-            <aside className="mt-14 rounded-[2rem] border border-amber-500/20 bg-gradient-to-br from-[#141414] to-[#1a1a1a] p-8 md:p-10">
-              <div className="text-sm font-semibold uppercase tracking-[0.25em] text-amber-400">Ready to fix your SEO architecture?</div>
-              <h3 className="mt-3 text-2xl font-semibold text-white md:text-3xl">Get a monthly SEO audit from RankFrame</h3>
-              <p className="mt-4 text-base leading-7 text-gray-400">
-                We handle title tags, schema markup, internal linking, and technical fixes starting at <span className="text-amber-400 font-semibold">$150/month</span>. Add backlink building and authority growth at <span className="text-amber-400 font-semibold">$750/month</span>.
+            <aside className="mt-14 rounded-[2rem] border border-emerald-500/20 bg-gradient-to-br from-white to-[#eef9f8] p-8 md:p-10">
+              <div className="text-sm font-semibold uppercase tracking-[0.25em] text-emerald-600">Ready to grow your rankings?</div>
+              <h3 className="mt-3 text-2xl font-semibold text-gray-900 md:text-3xl">Get a tailored SEO plan from RankFrame</h3>
+              <p className="mt-4 text-base leading-7 text-gray-600">
+                From technical fixes and schema to Google Maps, AI search visibility, backlinks, and website builds — pick the services you need and we'll send a one-on-one plan in 2–6 hours.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <button
-                  onClick={() => goTo('/checkout')}
-                  className="btn-shimmer rounded-full px-6 py-3 text-sm font-bold text-black transition hover:scale-[1.02]"
+                  onClick={() => goTo('/get-started')}
+                  className="btn-shimmer rounded-full px-6 py-3 text-sm font-bold text-white transition hover:scale-[1.02]"
                 >
-                  Start your SEO report
+                  Get started
                 </button>
                 <button
                   onClick={() => goTo('#pricing')}
-                  className="rounded-full border border-gray-700 bg-[#141414] px-6 py-3 text-sm font-semibold text-gray-300 transition hover:border-amber-500/50 hover:text-amber-400"
+                  className="rounded-full border border-[#d7ece8] bg-white px-6 py-3 text-sm font-semibold text-gray-700 transition hover:border-emerald-500/50 hover:text-emerald-600"
                 >
-                  See pricing
+                  See what we do
                 </button>
               </div>
             </aside>
@@ -1689,67 +1730,62 @@ export default function AISeoMarketingLandingPage() {
 
   /* ═══════════ HOME PAGE ═══════════ */
   return (
-    <div className="grain-overlay min-h-screen bg-[#0a0a0a] text-gray-100">
+    <div className="grain-overlay min-h-screen bg-[#f3fbfb] text-gray-900">
       <SiteHeader goTo={goTo} />
 
       <main>
         {/* ── HERO ── */}
-        <section id="home" className="relative overflow-hidden border-t border-gray-800/50">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(217,170,62,0.1),transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(217,170,62,0.05),transparent_50%)]" />
+        <section id="home" className="relative overflow-hidden border-t border-[#e1f1ee]/50">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(56,189,248,0.10),transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(20,184,166,0.06),transparent_50%)]" />
           {/* Decorative gold line */}
-          <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
+          <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent" />
 
           <div className="mx-auto grid max-w-7xl gap-16 px-6 py-24 lg:grid-cols-[1.1fr_0.9fr] lg:px-10 lg:py-32">
             <FadeIn className="relative z-10">
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-5 py-2.5 text-sm font-medium text-amber-400">
-                <span className="inline-block h-2 w-2 rounded-full bg-amber-400 animate-pulse" />
-                AI-Powered SEO Services
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-5 py-2.5 text-sm font-medium text-emerald-700">
+                <span className="inline-block h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                SEO · Local · AI Search · Web Design — every industry
               </div>
 
-              <h1 className="max-w-3xl text-5xl font-bold leading-[1.1] tracking-tight text-white md:text-6xl lg:text-[4.25rem]">
-                SEO architecture audits &{' '}
-                <span className="bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent">
-                  monthly ranking reports
+              <h1 className="max-w-3xl text-5xl font-bold leading-[1.1] tracking-tight text-gray-900 md:text-6xl lg:text-[4.25rem]">
+                Everything SEO,{' '}
+                <span className="bg-gradient-to-r from-emerald-500 via-teal-500 to-sky-500 bg-clip-text text-transparent">
+                  done for you
                 </span>
               </h1>
 
-              <p className="mt-8 max-w-2xl text-lg leading-8 text-gray-400">
-                We review your website's SEO architecture, keyword ranking performance, technical issues, metadata, indexing signals, and internal linking structure — then deliver a clean monthly report with clear next steps.
+              <p className="mt-8 max-w-2xl text-lg leading-8 text-gray-600">
+                Technical SEO, Google & Apple Maps, getting cited by ChatGPT and Google AI Overviews, backlinks and authority, e-commerce, and modern website design. Pick exactly what you need — we'll send you a tailored, one-on-one plan.
               </p>
 
-              <p className="mt-6 text-2xl font-bold tracking-tight text-white">
-                $150<span className="text-lg font-normal text-gray-500">/month</span>
-                <span className="ml-4 text-sm font-medium text-amber-400/80">No setup fee</span>
-              </p>
-
-              <p className="mt-3 text-sm font-medium text-gray-400">
-                <span className="text-amber-400 font-semibold">30+ websites</span> audited and optimized with the RankFrame SEO Inside framework.
+              <p className="mt-6 text-sm font-medium text-gray-600">
+                <span className="text-emerald-700 font-semibold">30+ websites</span> optimized — for businesses in every industry.
               </p>
 
               <div className="mt-10 flex flex-wrap gap-4">
                 <button
                   onClick={() => goTo('/get-started')}
-                  className="btn-shimmer group rounded-full px-7 py-4 text-sm font-bold text-black transition hover:scale-[1.02]"
+                  className="btn-shimmer group rounded-full px-7 py-4 text-sm font-bold text-white transition hover:scale-[1.02]"
                 >
-                  Start Your SEO Audit <span className="inline-block transition group-hover:translate-x-1">→</span>
+                  Select your services <span className="inline-block transition group-hover:translate-x-1">→</span>
                 </button>
                 <a
-                  href="#case-study"
-                  className="group rounded-full border border-gray-700 bg-[#141414] px-7 py-4 text-sm font-semibold text-gray-300 transition hover:border-amber-500/50 hover:text-amber-400"
+                  href="#pricing"
+                  className="group rounded-full border border-[#d7ece8] bg-white px-7 py-4 text-sm font-semibold text-gray-700 transition hover:border-emerald-500/50 hover:text-emerald-600"
                 >
-                  View Case Study <span className="inline-block transition group-hover:translate-x-1">→</span>
+                  See what we do <span className="inline-block transition group-hover:translate-x-1">→</span>
                 </a>
               </div>
 
               {/* Mini stat cards */}
               <div className="mt-14 grid gap-4 sm:grid-cols-3">
                 {[
-                  ['30+ Sites Audited', 'Live client base — not theory, proven results'],
-                  ['Monthly Reports', 'Clear SEO findings every 30 days'],
-                  ['AI Technical Audit', 'Structure, metadata, and Google checks'],
+                  ['50+ Services', 'Mix and match exactly what you need'],
+                  ['Every Industry', 'Local, e-commerce, SaaS, services & more'],
+                  ['1-on-1 Service', 'Work directly with us, reply in 2–6 hours'],
                 ].map(([title, text], i) => (
-                  <FadeIn key={title} delay={0.1 + i * 0.08} className="card-hover-glow rounded-2xl border border-gray-800 bg-[#141414]/80 p-5 backdrop-blur">
-                    <div className="text-sm font-semibold text-amber-400">{title}</div>
+                  <FadeIn key={title} delay={0.1 + i * 0.08} className="card-hover-glow rounded-2xl border border-[#e1f1ee] bg-white/80 p-5 backdrop-blur">
+                    <div className="text-sm font-semibold text-emerald-700">{title}</div>
                     <div className="mt-2 text-sm leading-6 text-gray-500">{text}</div>
                   </FadeIn>
                 ))}
@@ -1757,7 +1793,7 @@ export default function AISeoMarketingLandingPage() {
             </FadeIn>
 
             <FadeIn delay={0.2} className="relative z-10">
-              <AITerminal />
+              <HeroServicePanel goTo={goTo} />
             </FadeIn>
           </div>
         </section>
@@ -1769,9 +1805,9 @@ export default function AISeoMarketingLandingPage() {
         <section className="mx-auto max-w-7xl px-6 py-12 lg:px-10" aria-label="Key metrics">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {trustPoints.map((item, i) => (
-              <FadeIn key={item.num} delay={i * 0.08} className="card-hover-glow rounded-[1.5rem] border border-gray-800 bg-[#141414] p-6 text-center">
-                <div className="text-3xl font-bold text-amber-400">{item.num}</div>
-                <div className="mt-1 text-sm font-semibold text-gray-200">{item.label}</div>
+              <FadeIn key={item.num} delay={i * 0.08} className="card-hover-glow rounded-[1.5rem] border border-[#e1f1ee] bg-white p-6 text-center">
+                <div className="text-3xl font-bold text-emerald-600">{item.num}</div>
+                <div className="mt-1 text-sm font-semibold text-gray-700">{item.label}</div>
                 <div className="mt-3 text-xs text-gray-500">{item.text}</div>
               </FadeIn>
             ))}
@@ -1783,22 +1819,22 @@ export default function AISeoMarketingLandingPage() {
         {/* ── WHY SEO MATTERS ── */}
         <section id="why-seo" className="mx-auto max-w-7xl px-6 py-20 lg:px-10" aria-label="Why SEO matters">
           <FadeIn>
-            <div className="rounded-[2.5rem] border border-amber-500/15 bg-gradient-to-b from-[#12120a] to-[#0a0a0a] p-10 md:p-14">
+            <div className="rounded-[2.5rem] border border-emerald-500/20 bg-gradient-to-b from-white to-[#eef9f7] p-10 md:p-14 shadow-sm">
               <div className="text-center">
-                <div className="text-xs font-bold uppercase tracking-[0.35em] text-amber-500">Why SEO Matters</div>
-                <h2 className="mt-5 text-4xl font-bold tracking-tight text-white md:text-5xl">
+                <div className="text-xs font-bold uppercase tracking-[0.35em] text-emerald-600">Why SEO Matters</div>
+                <h2 className="mt-5 text-4xl font-bold tracking-tight text-gray-900 md:text-5xl">
                   Without SEO, your website is{' '}
-                  <span className="bg-gradient-to-r from-amber-400 to-yellow-300 bg-clip-text text-transparent">invisible</span>
+                  <span className="bg-gradient-to-r from-emerald-500 to-sky-300 bg-clip-text text-transparent">invisible</span>
                 </h2>
-                <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-400">
+                <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-600">
                   Search engine optimization is not optional — it is the foundation of how customers discover your business online. Every day without proper SEO is a day your competitors are outranking you.
                 </p>
               </div>
 
               <div className="mx-auto mt-14 grid max-w-4xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
                 {whySeoMatters.map((item, i) => (
-                  <FadeIn key={item.stat} delay={i * 0.1} className="rounded-2xl border border-amber-500/10 bg-[#0a0a0a] p-6 text-center">
-                    <div className="text-4xl font-bold text-amber-400">{item.stat}</div>
+                  <FadeIn key={item.stat} delay={i * 0.1} className="rounded-2xl border border-emerald-500/10 bg-[#f3fbfb] p-6 text-center">
+                    <div className="text-4xl font-bold text-emerald-600">{item.stat}</div>
                     <div className="mt-3 text-sm leading-6 text-gray-500">{item.label}</div>
                   </FadeIn>
                 ))}
@@ -1810,9 +1846,9 @@ export default function AISeoMarketingLandingPage() {
                   ['Your competitors are investing in SEO right now', 'If you are not actively monitoring your SEO health, someone else is ranking for the keywords your customers use. The longer you wait, the harder and more expensive it becomes to catch up.'],
                   ['Technical issues silently kill your rankings', 'Broken links, missing metadata, poor indexing coverage, and weak site architecture can cause Google to deprioritize your pages — even if your content is excellent. Regular audits catch these problems before they cost you traffic.'],
                 ].map(([title, desc], i) => (
-                  <FadeIn key={title} delay={i * 0.08} className="card-hover-glow rounded-2xl border border-gray-800 bg-[#111111] p-7">
-                    <h3 className="text-lg font-bold text-amber-400">{title}</h3>
-                    <p className="mt-3 text-base leading-7 text-gray-400">{desc}</p>
+                  <FadeIn key={title} delay={i * 0.08} className="card-hover-glow rounded-2xl border border-[#e1f1ee] bg-[#f4fcfb] p-7">
+                    <h3 className="text-lg font-bold text-emerald-600">{title}</h3>
+                    <p className="mt-3 text-base leading-7 text-gray-600">{desc}</p>
                   </FadeIn>
                 ))}
               </div>
@@ -1824,21 +1860,21 @@ export default function AISeoMarketingLandingPage() {
         <section id="services" className="mx-auto max-w-7xl px-6 py-16 lg:px-10" aria-label="Services">
           <FadeIn>
             <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-              <div className="rounded-[2rem] bg-[#141414] p-10 ring-1 ring-gray-800">
-                <div className="text-xs font-bold uppercase tracking-[0.35em] text-amber-500">What You Get</div>
-                <h2 className="mt-5 text-4xl font-bold tracking-tight text-white">
-                  Monthly AI SEO service built for clarity and action.
+              <div className="rounded-[2rem] bg-white p-10 ring-1 ring-[#e1f1ee]">
+                <div className="text-xs font-bold uppercase tracking-[0.35em] text-emerald-600">What You Get</div>
+                <h2 className="mt-5 text-4xl font-bold tracking-tight text-gray-900">
+                  Full-service SEO built for clarity and action.
                 </h2>
-                <p className="mt-6 text-lg leading-8 text-gray-400">
-                  Every month, we inspect your website with AI and give you a concise, actionable report that shows what matters most.
+                <p className="mt-6 text-lg leading-8 text-gray-600">
+                  Pick the services you need and we handle the rest — technical fixes, local and maps, AI search, authority, and web design — with clear reporting that shows what matters most.
                 </p>
                 <div className="gold-divider mt-8" />
                 <div className="mt-8">
-                  <div className="text-xs font-bold uppercase tracking-[0.25em] text-amber-500/70">Who This Is For</div>
+                  <div className="text-xs font-bold uppercase tracking-[0.25em] text-emerald-600/70">Who This Is For</div>
                   <div className="mt-4 space-y-3">
                     {whoFor.map((item) => (
-                      <div key={item} className="flex items-start gap-3 text-sm text-gray-400">
-                        <span className="mt-0.5 text-amber-500">→</span>
+                      <div key={item} className="flex items-start gap-3 text-sm text-gray-600">
+                        <span className="mt-0.5 text-emerald-600">→</span>
                         <span>{item}</span>
                       </div>
                     ))}
@@ -1848,11 +1884,11 @@ export default function AISeoMarketingLandingPage() {
 
               <div className="grid gap-4 sm:grid-cols-2">
                 {deliverables.map((item, i) => (
-                  <FadeIn key={item.title} delay={i * 0.06} className="card-hover-glow rounded-[1.5rem] border border-gray-800 bg-[#141414] p-6">
-                    <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500/20 to-amber-600/10 text-sm font-bold text-amber-400">
+                  <FadeIn key={item.title} delay={i * 0.06} className="card-hover-glow rounded-[1.5rem] border border-[#e1f1ee] bg-white p-6">
+                    <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 text-sm font-bold text-emerald-600">
                       {item.icon}
                     </div>
-                    <div className="text-base font-semibold leading-7 text-gray-200">{item.title}</div>
+                    <div className="text-base font-semibold leading-7 text-gray-700">{item.title}</div>
                   </FadeIn>
                 ))}
               </div>
@@ -1865,13 +1901,13 @@ export default function AISeoMarketingLandingPage() {
         {/* ── CASE STUDY: PACK EXPO ── */}
         <article id="case-study" className="mx-auto max-w-7xl px-6 py-16 lg:px-10" aria-label="Case study">
           <FadeIn>
-            <div className="rounded-[2.5rem] border border-gray-800 bg-[#141414] p-10 md:p-14">
+            <div className="rounded-[2.5rem] border border-[#e1f1ee] bg-white p-10 md:p-14">
               <div className="max-w-3xl">
-                <div className="text-xs font-bold uppercase tracking-[0.35em] text-amber-500">Real Case Study</div>
-                <h2 className="mt-5 text-4xl font-bold tracking-tight text-white md:text-5xl">
+                <div className="text-xs font-bold uppercase tracking-[0.35em] text-emerald-600">Real Case Study</div>
+                <h2 className="mt-5 text-4xl font-bold tracking-tight text-gray-900 md:text-5xl">
                   PACK EXPO International — Marketing Audit Report
                 </h2>
-                <p className="mt-6 text-lg leading-8 text-gray-400">
+                <p className="mt-6 text-lg leading-8 text-gray-600">
                   We analyzed packexpointernational.com, one of the largest packaging trade shows in North America with 77,500 attendees and 2,600+ exhibitors. Our audit uncovered significant opportunities across 6 categories — proving that even major brands have critical SEO and marketing gaps.
                 </p>
               </div>
@@ -1879,18 +1915,18 @@ export default function AISeoMarketingLandingPage() {
               <div className="mt-12 grid gap-8 lg:grid-cols-[1fr_0.95fr]">
                 <div className="grid gap-6 md:grid-cols-2">
                   {/* Score Card */}
-                  <FadeIn delay={0.1} className="rounded-[1.5rem] bg-[#1a1a1a] p-7 ring-1 ring-gray-800">
+                  <FadeIn delay={0.1} className="rounded-[1.5rem] bg-[#eef9f8] p-7 ring-1 ring-[#e1f1ee]">
                     <div className="text-xs font-bold uppercase tracking-[0.25em] text-gray-500">Overall Score</div>
                     <div className="mt-5 flex items-end gap-2">
-                      <span className="text-6xl font-bold text-amber-400">66</span>
+                      <span className="text-6xl font-bold text-emerald-600">66</span>
                       <span className="mb-2 text-2xl text-gray-600">/100</span>
                     </div>
-                    <div className="mt-2 text-base font-bold text-amber-500">Grade: C+</div>
+                    <div className="mt-2 text-base font-bold text-emerald-600">Grade: C+</div>
 
                     <div className="mt-6 space-y-3">
                       {[
                         ['Content & Messaging', 62, 'gray-200'],
-                        ['Conversion Optimization', 52, 'amber-400'],
+                        ['Conversion Optimization', 52, 'emerald-500'],
                         ['SEO & Discoverability', 72, 'gray-200'],
                         ['Competitive Positioning', 67, 'gray-200'],
                         ['Brand & Trust', 74, 'gray-200'],
@@ -1902,7 +1938,7 @@ export default function AISeoMarketingLandingPage() {
                             <span className={`text-${color} font-semibold`}>{score}/100</span>
                           </div>
                           <div className="mt-1 h-1 rounded-full bg-gray-800">
-                            <div className="score-bar h-1 rounded-full bg-gradient-to-r from-amber-500 to-amber-400" style={{ width: `${score}%` }} />
+                            <div className="score-bar h-1 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-500" style={{ width: `${score}%` }} />
                           </div>
                         </div>
                       ))}
@@ -1910,27 +1946,27 @@ export default function AISeoMarketingLandingPage() {
                   </FadeIn>
 
                   {/* Key Findings */}
-                  <FadeIn delay={0.15} className="rounded-[1.5rem] bg-[#1a1a1a] p-7 ring-1 ring-amber-500/15">
-                    <div className="text-xs font-bold uppercase tracking-[0.25em] text-amber-500">Key Findings</div>
+                  <FadeIn delay={0.15} className="rounded-[1.5rem] bg-[#eef9f8] p-7 ring-1 ring-emerald-500/15">
+                    <div className="text-xs font-bold uppercase tracking-[0.25em] text-emerald-600">Key Findings</div>
                     <div className="mt-5 space-y-3 text-sm">
-                      <div className="rounded-lg bg-red-500/10 px-3 py-2.5 text-red-400">Critical: No urgency mechanics on early bird pricing</div>
-                      <div className="rounded-lg bg-red-500/10 px-3 py-2.5 text-red-400">Critical: Homepage headline fails 5-second test</div>
-                      <div className="rounded-lg bg-amber-500/10 px-3 py-2.5 text-amber-400">High: Missing Event schema JSON-LD</div>
-                      <div className="rounded-lg bg-amber-500/10 px-3 py-2.5 text-amber-400">High: Zero competitor comparison pages</div>
-                      <div className="rounded-lg bg-blue-500/10 px-3 py-2.5 text-blue-400">Medium: Meta description exceeds 160 chars</div>
+                      <div className="rounded-lg bg-red-500/10 px-3 py-2.5 text-red-600">Critical: No urgency mechanics on early bird pricing</div>
+                      <div className="rounded-lg bg-red-500/10 px-3 py-2.5 text-red-600">Critical: Homepage headline fails 5-second test</div>
+                      <div className="rounded-lg bg-emerald-500/10 px-3 py-2.5 text-emerald-600">High: Missing Event schema JSON-LD</div>
+                      <div className="rounded-lg bg-emerald-500/10 px-3 py-2.5 text-emerald-600">High: Zero competitor comparison pages</div>
+                      <div className="rounded-lg bg-blue-500/10 px-3 py-2.5 text-blue-600">Medium: Meta description exceeds 160 chars</div>
                     </div>
                   </FadeIn>
                 </div>
 
                 {/* Impact */}
-                <FadeIn delay={0.2} className="gold-glow rounded-[1.5rem] border border-amber-500/20 bg-[#111111] p-8 text-white">
-                  <div className="text-xs font-bold uppercase tracking-[0.3em] text-amber-400">Impact Analysis</div>
+                <FadeIn delay={0.2} className="gold-glow rounded-[1.5rem] border border-emerald-500/20 bg-[#f4fcfb] p-8 text-gray-900">
+                  <div className="text-xs font-bold uppercase tracking-[0.3em] text-emerald-600">Impact Analysis</div>
                   <h3 className="mt-4 text-3xl font-bold tracking-tight">$200K–$575K/mo potential</h3>
-                  <p className="mt-5 text-base leading-7 text-gray-400">
+                  <p className="mt-5 text-base leading-7 text-gray-600">
                     Implementing all recommendations could drive $200,000–$575,000/month in incremental value through increased registrations and higher conversion rates.
                   </p>
 
-                  <div className="mt-8 space-y-3 text-[0.95rem] text-gray-200">
+                  <div className="mt-8 space-y-3 text-[0.95rem] text-gray-700">
                     {[
                       'Identified conversion optimization gaps (52/100)',
                       'Flagged missing structured data for Google rich results',
@@ -1938,22 +1974,22 @@ export default function AISeoMarketingLandingPage() {
                       'Delivered prioritized action plan: quick wins → strategic',
                     ].map((text) => (
                       <div key={text} className="flex items-start gap-3">
-                        <span className="mt-1 text-amber-500">✔</span>
+                        <span className="mt-1 text-emerald-600">✔</span>
                         <span>{text}</span>
                       </div>
                     ))}
                   </div>
 
-                  <div className="mt-8 rounded-xl border border-amber-500/10 bg-amber-500/5 p-5">
+                  <div className="mt-8 rounded-xl border border-emerald-500/10 bg-emerald-500/5 p-5">
                     <div className="text-xs uppercase tracking-[0.2em] text-gray-500">Estimated Impact</div>
-                    <div className="mt-2 text-2xl font-bold text-amber-400">+15–25% registration conversion</div>
+                    <div className="mt-2 text-2xl font-bold text-emerald-600">+15–25% registration conversion</div>
                   </div>
 
                   <a
                     href="/case-study-pack-expo.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-shimmer mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-bold text-black shadow-lg transition hover:scale-[1.02]"
+                    className="btn-shimmer mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-bold text-white shadow-lg transition hover:scale-[1.02]"
                   >
                     Download Full Case Study PDF →
                   </a>
@@ -1968,16 +2004,16 @@ export default function AISeoMarketingLandingPage() {
         {/* ── BENEFITS ── */}
         <section className="mx-auto max-w-7xl px-6 py-16 lg:px-10" aria-label="Benefits">
           <div className="mb-10 text-center">
-            <div className="text-xs font-bold uppercase tracking-[0.35em] text-amber-500">Benefits</div>
-            <h2 className="mt-4 text-4xl font-bold tracking-tight text-white">Why businesses choose RankFrame</h2>
+            <div className="text-xs font-bold uppercase tracking-[0.35em] text-emerald-600">Benefits</div>
+            <h2 className="mt-4 text-4xl font-bold tracking-tight text-gray-900">Why businesses choose RankFrame</h2>
           </div>
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {benefits.map((item, i) => (
-              <FadeIn key={item.title} delay={i * 0.06} className="card-hover-glow rounded-[1.5rem] border border-gray-800 bg-[#141414] p-7">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500/20 to-amber-600/10 text-base text-amber-500">
+              <FadeIn key={item.title} delay={i * 0.06} className="card-hover-glow rounded-[1.5rem] border border-[#e1f1ee] bg-white p-7">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 text-base text-emerald-600">
                   ✦
                 </div>
-                <div className="mt-5 text-base font-bold text-gray-100">{item.title}</div>
+                <div className="mt-5 text-base font-bold text-gray-900">{item.title}</div>
                 <div className="mt-2 text-sm leading-6 text-gray-500">{item.desc}</div>
               </FadeIn>
             ))}
@@ -1988,8 +2024,8 @@ export default function AISeoMarketingLandingPage() {
         <section id="how-it-works" className="mx-auto max-w-7xl px-6 py-20 lg:px-10" aria-label="How it works">
           <FadeIn>
             <div className="mb-12 text-center">
-              <div className="text-xs font-bold uppercase tracking-[0.35em] text-amber-500">How It Works</div>
-              <h2 className="mt-4 text-4xl font-bold tracking-tight text-white md:text-5xl">
+              <div className="text-xs font-bold uppercase tracking-[0.35em] text-emerald-600">How It Works</div>
+              <h2 className="mt-4 text-4xl font-bold tracking-tight text-gray-900 md:text-5xl">
                 Three steps to better SEO
               </h2>
             </div>
@@ -1997,12 +2033,12 @@ export default function AISeoMarketingLandingPage() {
 
           <div className="grid gap-6 md:grid-cols-3">
             {process.map((item, i) => (
-              <FadeIn key={item.step} delay={i * 0.1} className="card-hover-glow group rounded-[1.5rem] border border-gray-800 bg-[#141414] p-8">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500 to-amber-600 text-lg font-bold text-black shadow-lg shadow-amber-500/20 transition group-hover:scale-110">
+              <FadeIn key={item.step} delay={i * 0.1} className="card-hover-glow group rounded-[1.5rem] border border-[#e1f1ee] bg-white p-8">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 text-lg font-bold text-white shadow-lg shadow-emerald-500/20 transition group-hover:scale-110">
                   {item.step}
                 </div>
-                <h3 className="mt-6 text-xl font-bold text-white">{item.title}</h3>
-                <p className="mt-3 text-base leading-7 text-gray-400">{item.text}</p>
+                <h3 className="mt-6 text-xl font-bold text-gray-900">{item.title}</h3>
+                <p className="mt-3 text-base leading-7 text-gray-600">{item.text}</p>
               </FadeIn>
             ))}
           </div>
@@ -2011,21 +2047,21 @@ export default function AISeoMarketingLandingPage() {
         {/* ── FOCUS / MISSION (dark gold section) ── */}
         <section id="focus" className="mx-auto max-w-7xl px-6 py-8 lg:px-10" aria-label="Our focus">
           <FadeIn>
-            <div className="relative overflow-hidden rounded-[2.5rem] bg-[#111111] px-8 py-16 text-center md:px-16">
+            <div className="relative overflow-hidden rounded-[2.5rem] bg-[#f4fcfb] px-8 py-16 text-center md:px-16">
               {/* Decorative corner accents */}
-              <div className="absolute left-0 top-0 h-32 w-32 bg-gradient-to-br from-amber-500/10 to-transparent" />
-              <div className="absolute bottom-0 right-0 h-32 w-32 bg-gradient-to-tl from-amber-500/10 to-transparent" />
-              <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
-              <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
+              <div className="absolute left-0 top-0 h-32 w-32 bg-gradient-to-br from-emerald-500/10 to-transparent" />
+              <div className="absolute bottom-0 right-0 h-32 w-32 bg-gradient-to-tl from-emerald-500/10 to-transparent" />
+              <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent" />
+              <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent" />
 
               <div className="relative z-10">
-                <div className="text-xs font-bold uppercase tracking-[0.35em] text-amber-500/80">What We Focus On</div>
-                <h2 className="mt-5 text-4xl font-bold tracking-tight text-white md:text-5xl">
+                <div className="text-xs font-bold uppercase tracking-[0.35em] text-emerald-600/80">What We Focus On</div>
+                <h2 className="mt-5 text-4xl font-bold tracking-tight text-gray-900 md:text-5xl">
                   SEO structure. Monthly reporting.{' '}
-                  <span className="bg-gradient-to-r from-amber-400 to-yellow-300 bg-clip-text text-transparent">Keyword visibility.</span>
+                  <span className="bg-gradient-to-r from-emerald-500 to-sky-300 bg-clip-text text-transparent">Keyword visibility.</span>
                 </h2>
-                <div className="mx-auto mt-6 h-px w-16 bg-amber-500/50" />
-                <p className="mx-auto mt-10 max-w-3xl text-xl leading-9 text-gray-300">
+                <div className="mx-auto mt-6 h-px w-16 bg-emerald-500/50" />
+                <p className="mx-auto mt-10 max-w-3xl text-xl leading-9 text-gray-700">
                   We review how your website is structured, how search engines interpret it, and where visibility can be improved.
                 </p>
                 <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-500">
@@ -2036,89 +2072,50 @@ export default function AISeoMarketingLandingPage() {
           </FadeIn>
         </section>
 
-        {/* ── PRICING ── */}
-        <section id="pricing" className="mx-auto max-w-6xl px-6 pb-12 pt-20 lg:px-10" aria-label="Pricing">
+        {/* ── SERVICES ── */}
+        <section id="pricing" className="mx-auto max-w-6xl px-6 pb-12 pt-20 lg:px-10" aria-label="Services">
           <FadeIn>
             <div className="text-center mb-12">
-              <div className="text-xs font-bold uppercase tracking-[0.35em] text-amber-500">Pricing</div>
-              <h2 className="mt-5 text-4xl font-bold tracking-tight text-white md:text-5xl">
-                Choose your SEO growth plan
+              <div className="text-xs font-bold uppercase tracking-[0.35em] text-emerald-600">What we do</div>
+              <h2 className="mt-5 text-4xl font-bold tracking-tight text-gray-900 md:text-5xl">
+                Everything SEO — pick exactly what you need
               </h2>
-              <p className="mt-4 text-lg text-gray-400">Start with on-page SEO, or go all-in with Google Trust authority building.</p>
+              <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
+                From technical fixes and Google Maps to getting cited by ChatGPT and building your website — for businesses in every industry. Select the services you want and we'll send you a tailored one-on-one plan.
+              </p>
             </div>
 
-            <div className="grid gap-8 md:grid-cols-2">
-              {/* SEO Inside Plan */}
-              <div className="rounded-[2rem] border border-gray-800 bg-[#141414] p-8 md:p-10 text-left">
-                <div className="text-xs font-bold uppercase tracking-[0.3em] text-amber-500/70">Foundation</div>
-                <h3 className="mt-3 text-2xl font-bold text-white">SEO Inside</h3>
-                <p className="mt-2 text-sm text-gray-400">On-page SEO architecture setup & monthly reporting</p>
-                <div className="mt-6">
-                  <span className="text-5xl font-bold text-white">$150</span>
-                  <span className="text-xl text-gray-500">/month</span>
-                </div>
-                <p className="mt-2 text-sm text-amber-400/70">No setup fee · Cancel anytime</p>
-                <div className="mt-8 space-y-3">
-                  {[
-                    'Full SEO architecture audit & setup',
-                    'Meta tags, schema markup, sitemap optimization',
-                    'Internal linking structure review',
-                    'Keyword ranking tracking',
-                    'Technical SEO issue identification',
-                    'Monthly performance report',
-                    '30-day priority roadmap',
-                  ].map((item) => (
-                    <div key={item} className="flex items-start gap-3 text-sm text-gray-300">
-                      <span className="mt-0.5 text-amber-500">✓</span> {item}
-                    </div>
-                  ))}
-                </div>
-                <button
-                  onClick={() => { setSelectedPlan('inside'); goTo('/checkout'); }}
-                  className="mt-8 w-full rounded-full border border-amber-500/30 bg-transparent px-6 py-3.5 text-sm font-bold text-amber-400 transition hover:bg-amber-500/10"
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {SERVICE_GROUPS.map((g, i) => (
+                <FadeIn
+                  key={g.group}
+                  delay={0.05 * i}
+                  className="reveal-card group rounded-3xl border border-[#e1f1ee] bg-white/70 p-6 backdrop-blur transition hover:-translate-y-1 hover:shadow-xl"
                 >
-                  Start SEO Inside →
-                </button>
-              </div>
+                  <h3 className="text-lg font-bold text-gray-900">{g.group}</h3>
+                  <p className="mt-1 text-sm text-emerald-700">{g.blurb}</p>
+                  <ul className="mt-4 space-y-2">
+                    {g.items.slice(0, 6).map((item) => (
+                      <li key={item} className="flex items-start gap-2.5 text-sm text-gray-700">
+                        <span className="mt-0.5 text-emerald-500">✓</span> {item}
+                      </li>
+                    ))}
+                    {g.items.length > 6 && (
+                      <li className="text-sm font-medium text-emerald-700">+ {g.items.length - 6} more</li>
+                    )}
+                  </ul>
+                </FadeIn>
+              ))}
+            </div>
 
-              {/* SEO Inside + Outside Plan */}
-              <div className="gold-glow relative rounded-[2rem] border border-amber-500/30 bg-[#141414] p-8 md:p-10 text-left">
-                <div className="absolute -top-3 right-8 rounded-full bg-amber-500 px-4 py-1 text-xs font-bold text-black">RECOMMENDED</div>
-                <div className="text-xs font-bold uppercase tracking-[0.3em] text-amber-500">Complete Growth</div>
-                <h3 className="mt-3 text-2xl font-bold text-white">SEO Inside + Outside</h3>
-                <p className="mt-2 text-sm text-gray-400">Full on-page setup + off-page backlink building & long-term deep SEO partnership</p>
-                <div className="mt-6">
-                  <span className="text-5xl font-bold text-white">$750</span>
-                  <span className="text-xl text-gray-500">/month</span>
-                </div>
-                <p className="mt-2 text-sm text-amber-400/70">Everything in SEO Inside, plus dedicated authority building</p>
-                <div className="mt-8 space-y-3">
-                  {[
-                    'Everything in SEO Inside plan included',
-                    'External backlink strategy & acquisition (10+ quality links/month)',
-                    'Guest post outreach on high-DA sites',
-                    'Google Business Profile optimization',
-                    'Business directory & citation building (50+ directories)',
-                    'Competitor backlink gap analysis & reverse engineering',
-                    'Content marketing for natural link attraction',
-                    'Domain authority (DA) & trust flow growth tracking',
-                    'Toxic backlink audit & disavow management',
-                    'Brand mention monitoring & link reclamation',
-                    'Dedicated SEO strategist for long-term partnership',
-                    'Monthly off-page SEO progress report with ROI metrics',
-                  ].map((item) => (
-                    <div key={item} className="flex items-start gap-3 text-sm text-gray-300">
-                      <span className="mt-0.5 text-amber-500">✓</span> {item}
-                    </div>
-                  ))}
-                </div>
-                <button
-                  onClick={() => { setSelectedPlan('outside'); goTo('/checkout'); }}
-                  className="btn-shimmer mt-8 w-full rounded-full px-6 py-3.5 text-sm font-bold text-black shadow-lg transition hover:scale-[1.02]"
-                >
-                  Start Full SEO Growth →
-                </button>
-              </div>
+            <div className="mt-12 text-center">
+              <button
+                onClick={() => goTo('/get-started')}
+                className="btn-shimmer inline-flex rounded-full px-9 py-4 text-base font-bold text-white shadow-lg transition hover:scale-[1.02]"
+              >
+                Choose your services →
+              </button>
+              <p className="mt-4 text-sm text-gray-500">Free to ask · One-on-one service · Reply in 2–6 hours</p>
             </div>
           </FadeIn>
         </section>
@@ -2126,16 +2123,16 @@ export default function AISeoMarketingLandingPage() {
         {/* ── FAQ ── */}
         <section className="mx-auto max-w-7xl px-6 py-10 lg:px-10" aria-label="FAQ">
           <FadeIn>
-            <div className="rounded-[2.5rem] border border-gray-800 bg-[#141414] p-10 md:p-14">
+            <div className="rounded-[2.5rem] border border-[#e1f1ee] bg-white p-10 md:p-14">
               <div className="text-center">
-                <div className="text-xs font-bold uppercase tracking-[0.35em] text-amber-500">FAQ</div>
-                <h2 className="mt-4 text-4xl font-bold tracking-tight text-white">Common questions</h2>
+                <div className="text-xs font-bold uppercase tracking-[0.35em] text-emerald-600">FAQ</div>
+                <h2 className="mt-4 text-4xl font-bold tracking-tight text-gray-900">Common questions</h2>
               </div>
               <div className="mt-10 grid gap-4 md:grid-cols-2">
                 {faqs.map((item) => (
-                  <div key={item.q} className="card-hover-glow rounded-xl border border-gray-800 bg-[#1a1a1a] p-6">
-                    <div className="text-base font-bold text-white">{item.q}</div>
-                    <div className="mt-3 text-sm leading-7 text-gray-400">{item.a}</div>
+                  <div key={item.q} className="card-hover-glow rounded-xl border border-[#e1f1ee] bg-[#eef9f8] p-6">
+                    <div className="text-base font-bold text-gray-900">{item.q}</div>
+                    <div className="mt-3 text-sm leading-7 text-gray-600">{item.a}</div>
                   </div>
                 ))}
               </div>
@@ -2146,20 +2143,20 @@ export default function AISeoMarketingLandingPage() {
         {/* ── FINAL CTA ── */}
         <section className="mx-auto max-w-5xl px-6 pb-24 pt-12 lg:px-10" aria-label="Get started">
           <FadeIn>
-            <div className="relative overflow-hidden rounded-[2.5rem] border border-amber-500/20 bg-[#111111] px-8 py-14 text-center text-white md:px-14">
-              <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-amber-500/40 to-transparent" />
-              <div className="text-xs font-bold uppercase tracking-[0.35em] text-amber-400">Ready to start?</div>
+            <div className="relative overflow-hidden rounded-[2.5rem] border border-emerald-500/20 bg-[#f4fcfb] px-8 py-14 text-center text-gray-900 md:px-14">
+              <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent" />
+              <div className="text-xs font-bold uppercase tracking-[0.35em] text-emerald-600">Ready to start?</div>
               <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">
-                Get your first AI SEO report today
+                Tell us what you need — we'll handle the rest
               </h2>
-              <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-400">
-                Submit your website, complete checkout, and we'll begin your monthly SEO reporting workflow.
+              <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-600">
+                Select the services you want and we'll send you a tailored, one-on-one plan in 2–6 hours. No obligation.
               </p>
               <button
-                onClick={() => goTo('/checkout')}
-                className="btn-shimmer mt-8 inline-flex rounded-full px-10 py-4 text-sm font-bold text-black shadow-lg transition hover:scale-[1.03]"
+                onClick={() => goTo('/get-started')}
+                className="btn-shimmer mt-8 inline-flex rounded-full px-10 py-4 text-sm font-bold text-white shadow-lg transition hover:scale-[1.03]"
               >
-                Get My SEO Report →
+                Get my tailored plan →
               </button>
             </div>
           </FadeIn>
@@ -2175,12 +2172,13 @@ export default function AISeoMarketingLandingPage() {
 function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const navLinks = [
+    ['/#pricing', 'Services'],
     ['/#why-seo', 'Why SEO'],
-    ['/#services', 'Services'],
-    ['/#case-study', 'Case Study'],
+    ['/#services', 'What You Get'],
     ['/#how-it-works', 'How It Works'],
-    ['/#pricing', 'Pricing'],
+    ['/#case-study', 'Case Study'],
     ['/blog', 'Blog'],
+    ['/get-started', 'Get Started'],
   ];
 
   const handleNavClick = (e, href) => {
@@ -2190,26 +2188,26 @@ function SiteHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-800/50 bg-[#0a0a0a]/95 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-[#e1f1ee]/50 bg-[#f3fbfb]/95 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
         <a href="/" onClick={(e) => handleNavClick(e, '/')} className="text-left">
-          <div className="text-2xl font-bold tracking-tight text-white lg:text-3xl">
-            Rank<span className="bg-gradient-to-r from-amber-400 to-amber-500 bg-clip-text text-transparent">Frame</span>
+          <div className="text-2xl font-bold tracking-tight text-gray-900 lg:text-3xl">
+            Rank<span className="bg-gradient-to-r from-emerald-500 to-sky-500 bg-clip-text text-transparent">Frame</span>
           </div>
-          <div className="text-[0.65rem] uppercase tracking-[0.3em] text-gray-600">SEO Architecture & Reporting</div>
+          <div className="text-[0.65rem] uppercase tracking-[0.3em] text-gray-600">SEO · Local · AI Search · Web Design</div>
         </a>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-8 text-sm font-medium text-gray-400 md:flex" aria-label="Main navigation">
+        <nav className="hidden items-center gap-8 text-sm font-medium text-gray-600 md:flex" aria-label="Main navigation">
           {navLinks.map(([href, label]) => (
-            <a key={href} href={href} onClick={(e) => handleNavClick(e, href)} className="transition hover:text-amber-400">{label}</a>
+            <a key={href} href={href} onClick={(e) => handleNavClick(e, href)} className="transition hover:text-emerald-600">{label}</a>
           ))}
         </nav>
 
         {/* Mobile hamburger */}
         <button
           onClick={() => setMenuOpen((o) => !o)}
-          className="flex h-10 w-10 items-center justify-center rounded-xl border border-gray-800 bg-[#141414] text-gray-300 md:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#e1f1ee] bg-white text-gray-700 md:hidden"
           aria-label="Toggle menu"
         >
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
@@ -2223,14 +2221,14 @@ function SiteHeader() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <nav className="border-t border-gray-800/50 bg-[#0a0a0a] px-6 pb-6 pt-4 md:hidden" aria-label="Mobile navigation">
+        <nav className="border-t border-[#e1f1ee]/50 bg-[#f3fbfb] px-6 pb-6 pt-4 md:hidden" aria-label="Mobile navigation">
           <div className="grid gap-2">
             {navLinks.map(([href, label]) => (
               <a
                 key={href}
                 href={href}
                 onClick={(e) => handleNavClick(e, href)}
-                className="rounded-xl bg-[#141414] px-5 py-3 text-sm font-medium text-gray-300 transition hover:text-amber-400"
+                className="rounded-xl bg-white px-5 py-3 text-sm font-medium text-gray-700 transition hover:text-emerald-600"
               >
                 {label}
               </a>
@@ -2244,12 +2242,20 @@ function SiteHeader() {
 
 function navigateAnchor(href) {
   if (href.startsWith('/#')) {
+    const id = href.slice(2);
     if (window.location.pathname !== '/') {
+      // Coming from another route: switch to home, then the route effect scrolls to the hash.
       window.history.pushState({}, '', href);
       window.dispatchEvent(new PopStateEvent('popstate'));
     } else {
+      // Already on home: route won't change, so scroll to the section directly.
       window.history.replaceState({}, '', href);
-      window.dispatchEvent(new HashChangeEvent('hashchange'));
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        window.dispatchEvent(new HashChangeEvent('hashchange'));
+      }
     }
   } else {
     window.history.pushState({}, '', href);
@@ -2264,16 +2270,16 @@ function SiteFooter() {
     navigateAnchor(href);
   };
   return (
-    <footer className="border-t border-gray-800/50 bg-[#080808]" aria-label="Footer">
+    <footer className="border-t border-[#e1f1ee] bg-[#eef9f8]" aria-label="Footer">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
         <div className="grid gap-12 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
           {/* Brand */}
           <div>
-            <div className="text-2xl font-bold tracking-tight text-white">
-              Rank<span className="bg-gradient-to-r from-amber-400 to-amber-500 bg-clip-text text-transparent">Frame</span> SEO
+            <div className="text-2xl font-bold tracking-tight text-gray-900">
+              Rank<span className="bg-gradient-to-r from-emerald-500 to-sky-500 bg-clip-text text-transparent">Frame</span> SEO
             </div>
-            <p className="mt-4 max-w-sm text-sm leading-7 text-gray-500">
-              Monthly SEO architecture audits, keyword ranking reports, and technical SEO reviews for businesses that want clear direction and measurable progress.
+            <p className="mt-4 max-w-sm text-sm leading-7 text-gray-600">
+              Full-service SEO, local & map optimization, AI search visibility, and website design for businesses in every industry — clear direction and measurable progress.
             </p>
           </div>
 
@@ -2283,9 +2289,8 @@ function SiteFooter() {
             <nav className="mt-5 grid gap-3" aria-label="Footer navigation">
               {[
                 ['/get-started', 'Get Started'],
-                ['/#services', 'SEO Services'],
+                ['/#pricing', 'Services'],
                 ['/#case-study', 'Case Study'],
-                ['/#pricing', 'Pricing'],
                 ['/blog', 'Blog'],
                 ['/glossary', 'SEO Glossary'],
                 ['/statistics', 'SEO Statistics'],
@@ -2293,20 +2298,20 @@ function SiteFooter() {
                 ['/seo-for-ecommerce', 'SEO for E-commerce'],
                 ['/about', 'About'],
               ].map(([href, label]) => (
-                <a key={href} href={href} onClick={(e) => footerLinkClick(e, href)} className="text-sm text-gray-400 transition hover:text-amber-400">{label}</a>
+                <a key={href} href={href} onClick={(e) => footerLinkClick(e, href)} className="text-sm text-gray-600 transition hover:text-emerald-600">{label}</a>
               ))}
             </nav>
           </div>
 
           {/* Service Info */}
           <div>
-            <div className="text-xs font-bold uppercase tracking-[0.3em] text-gray-500">Service</div>
-            <div className="mt-5 space-y-3 text-sm text-gray-400">
-              <div>Monthly SEO Report</div>
-              <div>Architecture Audit</div>
-              <div>Keyword Ranking Tracking</div>
-              <div>Technical SEO Checks</div>
-              <div className="pt-2 text-amber-400 font-semibold">Plans from $150/month · No setup fee</div>
+            <div className="text-xs font-bold uppercase tracking-[0.3em] text-gray-500">What we do</div>
+            <div className="mt-5 space-y-3 text-sm text-gray-600">
+              <div>Technical & On-Page SEO</div>
+              <div>Local SEO — Google & Apple Maps</div>
+              <div>AI Search (GEO) visibility</div>
+              <div>Website Design & Build</div>
+              <div className="pt-2 text-emerald-700 font-semibold">Every industry · One-on-one service</div>
             </div>
           </div>
         </div>
@@ -2316,9 +2321,9 @@ function SiteFooter() {
         <div className="mt-8 flex flex-col items-center justify-between gap-4 text-xs text-gray-600 sm:flex-row">
           <div>&copy; {new Date().getFullYear()} RankFrame SEO. All rights reserved.</div>
           <div className="flex gap-6">
-            <a href="/" onClick={(e) => footerLinkClick(e, '/')} className="transition hover:text-amber-400">Home</a>
-            <a href="/#pricing" onClick={(e) => footerLinkClick(e, '/#pricing')} className="transition hover:text-amber-400">Pricing</a>
-            <a href="/#case-study" onClick={(e) => footerLinkClick(e, '/#case-study')} className="transition hover:text-amber-400">Case Study</a>
+            <a href="/" onClick={(e) => footerLinkClick(e, '/')} className="transition hover:text-emerald-600">Home</a>
+            <a href="/#pricing" onClick={(e) => footerLinkClick(e, '/#pricing')} className="transition hover:text-emerald-600">Services</a>
+            <a href="/#case-study" onClick={(e) => footerLinkClick(e, '/#case-study')} className="transition hover:text-emerald-600">Case Study</a>
           </div>
         </div>
       </div>
@@ -2363,17 +2368,17 @@ function renderInline(text, keyPrefix) {
             } : undefined}
             target={isInternal ? undefined : '_blank'}
             rel={isInternal ? undefined : 'noopener noreferrer'}
-            className="text-amber-400 underline underline-offset-2 transition hover:text-amber-300"
+            className="text-emerald-600 underline underline-offset-2 transition hover:text-emerald-400"
           >
             {label}
           </a>
         );
       }
     } else if (tok.startsWith('**')) {
-      parts.push(<strong key={keyPrefix + '-b-' + i} className="text-white">{tok.slice(2, -2)}</strong>);
+      parts.push(<strong key={keyPrefix + '-b-' + i} className="text-gray-900">{tok.slice(2, -2)}</strong>);
     } else if (tok.startsWith('`')) {
       parts.push(
-        <code key={keyPrefix + '-c-' + i} className="rounded bg-[#1a1a1a] px-1.5 py-0.5 text-sm text-amber-300">
+        <code key={keyPrefix + '-c-' + i} className="rounded bg-[#eef9f8] px-1.5 py-0.5 text-sm text-emerald-400">
           {tok.slice(1, -1)}
         </code>
       );
@@ -2405,7 +2410,7 @@ function Markdown({ source }) {
       blocks.push(
         <pre
           key={'pre-' + i}
-          className="my-6 overflow-x-auto rounded-2xl border border-gray-800 bg-[#0f0f0f] p-5 text-sm leading-6 text-amber-100"
+          className="my-6 overflow-x-auto rounded-2xl border border-[#e1f1ee] bg-[#0f2b28] p-5 text-sm leading-6 text-gray-100"
         >
           <code>{buf.join('\n')}</code>
         </pre>
@@ -2415,7 +2420,7 @@ function Markdown({ source }) {
     // Headings
     if (line.startsWith('### ')) {
       blocks.push(
-        <h3 key={'h3-' + i} className="mt-10 mb-4 text-xl font-semibold text-white md:text-2xl">
+        <h3 key={'h3-' + i} className="mt-10 mb-4 text-xl font-semibold text-gray-900 md:text-2xl">
           {renderInline(line.slice(4), 'h3' + i)}
         </h3>
       );
@@ -2424,7 +2429,7 @@ function Markdown({ source }) {
     }
     if (line.startsWith('## ')) {
       blocks.push(
-        <h2 key={'h2-' + i} className="mt-12 mb-4 text-2xl font-semibold tracking-tight text-white md:text-3xl">
+        <h2 key={'h2-' + i} className="mt-12 mb-4 text-2xl font-semibold tracking-tight text-gray-900 md:text-3xl">
           {renderInline(line.slice(3), 'h2' + i)}
         </h2>
       );
@@ -2433,7 +2438,7 @@ function Markdown({ source }) {
     }
     if (line.startsWith('# ')) {
       blocks.push(
-        <h2 key={'h1-' + i} className="mt-12 mb-4 text-3xl font-semibold tracking-tight text-white md:text-4xl">
+        <h2 key={'h1-' + i} className="mt-12 mb-4 text-3xl font-semibold tracking-tight text-gray-900 md:text-4xl">
           {renderInline(line.slice(2), 'h1' + i)}
         </h2>
       );
@@ -2448,7 +2453,7 @@ function Markdown({ source }) {
         i += 1;
       }
       blocks.push(
-        <ul key={'ul-' + i} className="my-5 list-disc space-y-2 pl-6 text-gray-300">
+        <ul key={'ul-' + i} className="my-5 list-disc space-y-2 pl-6 text-gray-700">
           {items.map((it, idx) => (
             <li key={idx} className="leading-7">{renderInline(it, 'li' + idx)}</li>
           ))}
@@ -2464,7 +2469,7 @@ function Markdown({ source }) {
         i += 1;
       }
       blocks.push(
-        <ol key={'ol-' + i} className="my-5 list-decimal space-y-2 pl-6 text-gray-300">
+        <ol key={'ol-' + i} className="my-5 list-decimal space-y-2 pl-6 text-gray-700">
           {items.map((it, idx) => (
             <li key={idx} className="leading-7">{renderInline(it, 'oli' + idx)}</li>
           ))}
@@ -2492,7 +2497,7 @@ function Markdown({ source }) {
       i += 1;
     }
     blocks.push(
-      <p key={'p-' + i} className="my-5 text-base leading-8 text-gray-300 md:text-lg">
+      <p key={'p-' + i} className="my-5 text-base leading-8 text-gray-700 md:text-lg">
         {renderInline(paraBuf.join(' '), 'p' + i)}
       </p>
     );
@@ -2503,7 +2508,7 @@ function Markdown({ source }) {
 function getRouteFromPath(path) {
   // Strip query/hash
   const clean = path.split('?')[0].split('#')[0];
-  if (clean === '/checkout' || clean === '/checkout/') return 'checkout';
+  if (clean === '/checkout' || clean === '/checkout/') return 'get-started';
   if (clean === '/success' || clean === '/success/') return 'success';
   if (clean === '/glossary' || clean === '/glossary/') return 'glossary';
   if (clean === '/statistics' || clean === '/statistics/') return 'statistics';
