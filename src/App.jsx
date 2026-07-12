@@ -1075,6 +1075,11 @@ export default function AISeoMarketingLandingPage() {
         setJsonLd('breadcrumbs', null);
       }
     }
+
+    // Signal to the prerenderer that this route's <head> (title, canonical,
+    // meta, JSON-LD) has been fully applied, so it can snapshot the correct
+    // per-page HTML instead of the initial shell. No-op in normal browsing.
+    if (typeof window !== 'undefined') window.__PRERENDER_READY__ = true;
   }, [route]);
 
   const deliverables = [

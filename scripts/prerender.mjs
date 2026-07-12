@@ -138,19 +138,32 @@ for (const route of routes) {
   const page = await browser.newPage();
   try {
     await page.goto('http://localhost:' + PORT + route, {
-      waitUntil: 'networkidle0',
+      waitUntil: 'load',
       timeout: 30000,
     });
-    // Wait until the app has actually rendered its content.
+    // Wait until the app has rendered AND its per-route <head> (title,
+    // canonical, meta, JSON-LD) has been applied. The app sets
+    // window.__PRERENDER_READY__ = true at the end of its meta effect, so
+    // waiting for that flag guarantees we snapshot the correct per-page head
+    // instead of the initial shell.
     await page
       .waitForFunction(
         () => {
           const r = document.getElementById('root');
-          return r && r.querySelector('main, header') && document.title.length > 0;
+          return (
+            window.__PRERENDER_READY__ === true &&
+            r &&
+            r.children.length > 0 &&
+            document.title.length > 0
+          );
         },
-        { timeout: 15000 }
+        { timeout: 20000, polling: 50 }
       )
-      .catch(() => {});
+      .catch(() => {
+        console.warn('[prerender] ready-signal timeout on ' + route);
+      });
+    // Small settle so any final DOM writes (JSON-LD injection) are flushed.
+    await new Promise((r) => setTimeout(r, 120));
     const html = await page.content();
     outputs.push({ route, html });
     ok++;
