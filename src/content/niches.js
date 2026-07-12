@@ -274,6 +274,7 @@ export const niches = {
   },
   cbd: {
     slug: 'seo-for-cbd',
+    highRisk: true,
     title: 'SEO for CBD & Hemp Brands — High-Risk SEO | RankFrame SEO',
     metaDescription:
       'SEO for CBD, hemp, and supplement brands that are banned from Google and Meta ads. Compliant, durable organic SEO — technical, content, product schema, and authority — so restricted brands rank without paid ads.',
@@ -360,6 +361,221 @@ export const niches = {
       { label: '68%', text: 'of online experiences begin with a search engine.' },
       { label: '53%', text: 'of all website traffic comes from organic search.' },
       { label: '14.6%', text: 'close rate for SEO leads vs 1.7% for outbound marketing.' },
+    ],
+  },
+
+  peptides: {
+    slug: 'seo-for-peptides',
+    highRisk: true,
+    title: 'SEO for Peptide & Research-Chemical Brands — High-Risk SEO | RankFrame SEO',
+    metaDescription:
+      'SEO for peptide and research-compound brands that are banned from Google and Meta ads. Compliant, durable organic SEO — technical, content, schema, and authority — so restricted brands rank without paid ads.',
+    h1: 'SEO for Peptide & Research-Chemical Brands',
+    subhead:
+      'Peptide and research-compound brands are almost entirely locked out of paid ads. Organic search is your one dependable growth channel — and it happens to be the one we specialize in for restricted industries.',
+    painPoints: [
+      'Google and Meta reject or ban your ad accounts for the exact products you sell.',
+      'Compliance rules mean one wrong claim can get a page deindexed or a store shut down.',
+      'Generic agencies either refuse your industry or use link schemes that invite a manual penalty.',
+      'Your product and category pages have no schema, so Google can\'t parse what you sell.',
+    ],
+    whatWeDo: [
+      'Compliant technical SEO foundation — clean architecture, product/category schema, Core Web Vitals, and indexing control.',
+      'E-E-A-T-strong educational content that ranks for research and buyer questions without making non-compliant claims.',
+      'Durable, white-hat authority building — digital PR and genuine editorial links, never PBNs or spam that triggers penalties.',
+      'AI search (GEO) so your brand gets surfaced when buyers ask ChatGPT and Perplexity for suppliers and information.',
+      'Monthly ranking reports on your money keywords with a clear, compliance-aware roadmap.',
+    ],
+    faq: [
+      {
+        q: 'Why do peptide brands rely on SEO instead of ads?',
+        a: 'Peptides and research compounds are restricted or banned across Google Ads and Meta, so paid channels are unreliable or unavailable. Organic search reaches buyers actively looking for your products and can\'t be switched off by an ad-policy reviewer, which makes it the most dependable channel in the category.',
+      },
+      {
+        q: 'Is your peptide SEO compliant and penalty-safe?',
+        a: 'Yes. We build on Google-guideline-compliant technical work, genuinely useful content, and earned authority — never cloaking, PBNs, or link farms. High-risk categories are scrutinized more heavily, so durable white-hat work is the only smart approach.',
+      },
+      {
+        q: 'Do you have experience with restricted industries specifically?',
+        a: 'Yes — restricted and high-risk verticals are a core focus for us. We already rank CBD, supplement, and other ad-banned brands, and the same compliant playbook applies to peptide and research-compound stores.',
+      },
+    ],
+    stats: [
+      { label: '100%', text: 'of major ad platforms restrict this category — SEO is the reliable channel.' },
+      { label: '53%', text: 'of all website traffic comes from organic search.' },
+      { label: '14.6%', text: 'close rate for SEO leads vs 1.7% for outbound marketing.' },
+    ],
+  },
+
+  igaming: {
+    slug: 'seo-for-igaming',
+    highRisk: true,
+    title: 'SEO for iGaming, Casino & Betting Sites — High-Risk SEO | RankFrame SEO',
+    metaDescription:
+      'SEO for iGaming, online casino, sportsbook, and betting brands where paid ads are banned or heavily restricted. Compliant, durable organic SEO to rank in one of the most competitive verticals online.',
+    h1: 'SEO for iGaming & Betting Sites',
+    subhead:
+      'iGaming, casino, and sportsbook operators face ad bans, geo restrictions, and brutal competition. Organic and content-led SEO is how the durable players win — and it\'s exactly the high-risk work we specialize in.',
+    painPoints: [
+      'Google and Meta ads are banned or heavily geo-restricted for gambling, so paid growth is capped.',
+      'iGaming is one of the most competitive SEO verticals on earth, dominated by aggressive affiliates.',
+      'Affiliate and toxic-link exposure puts you one algorithm update away from a traffic collapse.',
+      'Compliance and licensing vary by region, so your content and targeting have to be handled carefully.',
+    ],
+    whatWeDo: [
+      'Technical SEO at scale — site architecture, crawl budget, hreflang for multi-region, schema, and Core Web Vitals.',
+      'Content and keyword strategy for high-intent gambling terms, game guides, and comparison pages that actually rank.',
+      'Toxic backlink audit and disavow, plus durable, white-hat authority building to survive core updates.',
+      'AI search (GEO) and entity optimization so your brand is surfaced in AI answers where compliant.',
+      'Region-aware reporting on rankings and visibility with a clear roadmap.',
+    ],
+    faq: [
+      {
+        q: 'Why is SEO critical for iGaming brands?',
+        a: 'Paid ads for gambling are banned or tightly geo-restricted on most major platforms, so operators can\'t simply buy traffic. Organic search and content are the durable way to acquire players, and the compounding authority is hard for competitors to copy overnight.',
+      },
+      {
+        q: 'How do you handle how competitive iGaming SEO is?',
+        a: 'We treat it as a technical and authority game: flawless architecture and crawl efficiency, region-specific content, aggressive toxic-link cleanup, and genuine editorial authority. In a vertical full of shortcuts, durable white-hat work is what survives core updates.',
+      },
+      {
+        q: 'Do you work within gambling compliance rules?',
+        a: 'Yes. Licensing and advertising rules vary by region, so we build content and targeting that respect the jurisdictions you operate in and avoid tactics that put your domain at risk.',
+      },
+    ],
+    stats: [
+      { label: '#1', text: 'iGaming is among the most competitive SEO verticals — technical execution decides winners.' },
+      { label: '53%', text: 'of all website traffic comes from organic search.' },
+      { label: '0.63%', text: 'of users ever click to page two — top rankings capture nearly all the traffic.' },
+    ],
+  },
+
+  crypto: {
+    slug: 'seo-for-crypto',
+    highRisk: true,
+    title: 'SEO for Crypto & Web3 Projects — High-Risk SEO | RankFrame SEO',
+    metaDescription:
+      'SEO for crypto, DeFi, and Web3 projects where paid ads are restricted or banned. Compliant, durable organic SEO — technical, content, entity, and authority — so your project ranks and gets cited by AI.',
+    h1: 'SEO for Crypto & Web3 Projects',
+    subhead:
+      'Crypto and Web3 projects are restricted across most ad platforms and move faster than paid campaigns can keep up. Organic search and AI visibility are the durable growth channels — and high-risk SEO is our specialty.',
+    painPoints: [
+      'Google and Meta restrict or ban crypto ads, so paid acquisition is unreliable or blocked.',
+      'Your project ranks for its own token name but nothing buyers actually search for.',
+      'Narratives move weekly and your content never ranks fast enough to catch the wave.',
+      'Thin docs and unstructured content mean neither Google nor AI engines can cite you.',
+    ],
+    whatWeDo: [
+      'Technical SEO foundation — architecture, schema, Core Web Vitals, and clean indexing for fast-moving sites.',
+      'Content and keyword strategy for high-intent terms ("how to [use case]", "best [category] crypto", comparisons).',
+      'Entity and knowledge-graph optimization so your project is understood as a distinct entity by Google and AI.',
+      'AI search (GEO) — llms.txt, structured content, and authority so ChatGPT and Perplexity cite your project.',
+      'Durable, white-hat authority building and monthly ranking reports.',
+    ],
+    faq: [
+      {
+        q: 'Why do crypto projects need SEO over ads?',
+        a: 'Crypto advertising is restricted or banned on most major platforms and subject to sudden policy changes. Organic search and AI visibility reach people actively researching your category and compound over time — a channel that can\'t be switched off by an ad reviewer.',
+      },
+      {
+        q: 'Can you get a crypto project cited by ChatGPT and AI search?',
+        a: 'Yes. AI citation depends on being indexed (especially in Bing, which powers ChatGPT search), structured and entity-clear content, an llms.txt file, and growing authority. We optimize for all of it so your project earns a channel paid ads can\'t touch.',
+      },
+      {
+        q: 'Is your crypto SEO compliant and penalty-safe?',
+        a: 'Yes — Google-guideline-compliant technical work, genuinely useful content, and earned authority only. We never use cloaking, PBNs, or link schemes that put a fast-moving domain at risk.',
+      },
+    ],
+    stats: [
+      { label: '100%', text: 'of major ad platforms restrict crypto advertising — SEO is the reliable channel.' },
+      { label: '53%', text: 'of all website traffic comes from organic search.' },
+      { label: '68%', text: 'of online experiences begin with a search engine.' },
+    ],
+  },
+
+  supplements: {
+    slug: 'seo-for-supplements',
+    highRisk: true,
+    title: 'SEO for Supplement & Nutraceutical Brands — High-Risk SEO | RankFrame SEO',
+    metaDescription:
+      'SEO for supplement, nutraceutical, and wellness brands facing ad restrictions and health-claim scrutiny. Compliant, durable organic SEO — technical, content, Product schema, and authority — to rank without ads.',
+    h1: 'SEO for Supplement & Nutraceutical Brands',
+    subhead:
+      'Supplement and nutraceutical brands face ad restrictions, health-claim scrutiny, and fierce e-commerce competition. Compliant organic SEO is the durable growth channel — and restricted verticals are exactly what we specialize in.',
+    painPoints: [
+      'Ad accounts get flagged or banned over health claims and restricted ingredients.',
+      'Amazon and DTC competitors outrank you on every "best [supplement] for [goal]" search.',
+      'Health-claim compliance means one careless page can trigger a deindex or worse.',
+      'Your product pages lack schema, so Google can\'t surface price, rating, or availability.',
+    ],
+    whatWeDo: [
+      'Technical and e-commerce SEO — Product schema (price, rating, availability), collection pages, crawl-budget control.',
+      'Compliant, E-E-A-T-strong content that ranks for buyer and research questions without risky health claims.',
+      'Local and marketplace optimization where relevant, plus review strategy that surfaces star ratings.',
+      'Durable, white-hat authority building — digital PR and genuine editorial links, never spam that risks penalties.',
+      'AI search (GEO) and monthly ranking reports so you grow in Google and get cited by ChatGPT.',
+    ],
+    faq: [
+      {
+        q: 'Why do supplement brands depend on SEO?',
+        a: 'Supplement and nutraceutical ads are frequently restricted or banned over health claims and ingredients, making paid growth unreliable. Organic search reaches buyers actively looking for solutions and compounds over time into a channel that can\'t be shut off by an ad reviewer.',
+      },
+      {
+        q: 'How do you handle health-claim compliance?',
+        a: 'We write content that ranks for buyer intent while staying within compliant, non-misleading language — no unsupported disease or cure claims. Restricted categories are scrutinized more heavily, so compliant, durable work protects your domain.',
+      },
+      {
+        q: 'Do you optimize supplement e-commerce stores?',
+        a: 'Yes. Supplement stores need Product schema across the catalog, unique collection-page copy, faceted-navigation control, and a clean canonical strategy — all part of what we set up.',
+      },
+    ],
+    stats: [
+      { label: '53%', text: 'of all website traffic comes from organic search.' },
+      { label: '14.6%', text: 'close rate for SEO leads vs 1.7% for outbound marketing.' },
+      { label: '0.63%', text: 'of users click to page two of Google — ranking on page one is everything.' },
+    ],
+  },
+
+  firearms: {
+    slug: 'seo-for-firearms',
+    highRisk: true,
+    title: 'SEO for Firearms & Ammo Retailers — High-Risk SEO | RankFrame SEO',
+    metaDescription:
+      'SEO for firearms, ammunition, and accessory retailers banned from Google and Meta ads. Compliant, durable organic SEO — technical, local, content, and authority — so restricted retailers rank without paid ads.',
+    h1: 'SEO for Firearms & Ammo Retailers',
+    subhead:
+      'Firearms and ammunition retailers are banned from paid ads across Google and Meta, so organic search is your single most reliable growth channel. We rank restricted retailers the compliant, durable way.',
+    painPoints: [
+      'Google and Meta ads are outright banned for firearms — paid acquisition isn\'t an option.',
+      'Local buyers search "gun store near me" but your Google Business Profile is thin or unverified.',
+      'Payment and platform restrictions already make growth hard; invisible search rankings make it worse.',
+      'Most agencies won\'t touch your industry, leaving you without real SEO help.',
+    ],
+    whatWeDo: [
+      'Technical and e-commerce SEO — architecture, Product schema, Core Web Vitals, and clean indexing.',
+      'Local SEO for physical stores and FFL dealers — Google Business Profile, Google Maps, Apple Maps, and citations.',
+      'Compliant content that ranks for buyer and how-to intent within platform and legal guidelines.',
+      'Durable, white-hat authority building — niche directories and genuine editorial links, never penalty-risking spam.',
+      'AI search (GEO) and monthly ranking reports so you grow where ads can never reach.',
+    ],
+    faq: [
+      {
+        q: 'Why is SEO essential for firearms retailers?',
+        a: 'Firearms and ammunition are banned from paid advertising on Google and Meta, so organic search is the only dependable way to reach buyers. Ranking can\'t be switched off by an ad-policy reviewer, and it compounds over time into a durable channel.',
+      },
+      {
+        q: 'Do you do local SEO for gun stores and FFL dealers?',
+        a: 'Yes. Local search drives most in-store firearm sales, so we optimize Google Business Profile, Google Maps, Apple Maps, categories, and citations so you show up for "gun store near me" and related searches.',
+      },
+      {
+        q: 'Is your firearms SEO compliant and safe?',
+        a: 'Yes. We build on Google-guideline-compliant technical work, useful content within legal and platform rules, and earned authority — never cloaking, PBNs, or spam. Durable white-hat work is the only approach that lasts in a scrutinized category.',
+      },
+    ],
+    stats: [
+      { label: '100%', text: 'of major ad platforms ban firearms advertising — SEO is the only reliable channel.' },
+      { label: '46%', text: 'of Google searches have local intent — the core of in-store gun sales.' },
+      { label: '53%', text: 'of all website traffic comes from organic search.' },
     ],
   },
 };

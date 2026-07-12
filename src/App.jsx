@@ -2,13 +2,16 @@ import { useEffect, useMemo, useState, useRef, useCallback } from 'react';
 import { posts, getPostBySlug } from './blog/posts.js';
 import { niches, getNicheBySlug } from './content/niches.js';
 import { cities, getCityBySlug } from './content/cities.js';
+import { crosses, crossesForCity } from './content/cross.js';
 import { glossaryTerms, seoStatistics, aboutContent } from './content/pages.js';
 
 // Route key helpers — kept in one place so router, schemas, and renders agree
 const NICHE_KEYS = Object.keys(niches);
 const CITY_KEYS = Object.keys(cities);
+const CROSS_KEYS = Object.keys(crosses);
 const nicheRouteFromKey = (k) => 'niche-' + k;
 const cityRouteFromKey = (k) => 'city-' + k;
+const crossRouteFromKey = (k) => 'cross-' + k;
 
 const SITE_URL = 'https://rankframeseo.com';
 
@@ -502,6 +505,7 @@ export default function AISeoMarketingLandingPage() {
       'get-started': 'Get Started — Select Your SEO & Web Services | RankFrame SEO',
       ...Object.fromEntries(NICHE_KEYS.map((k) => [nicheRouteFromKey(k), niches[k].title])),
       ...Object.fromEntries(CITY_KEYS.map((k) => [cityRouteFromKey(k), cities[k].title])),
+      ...Object.fromEntries(CROSS_KEYS.map((k) => [crossRouteFromKey(k), crosses[k].title])),
     };
     const descriptions = {
       home: 'Full-service SEO for every industry — technical & on-page SEO, local SEO with Google & Apple Maps, AI search (GEO) visibility in ChatGPT and Google AI Overviews, backlink authority, e-commerce SEO, and website design. Select the services you need.',
@@ -514,6 +518,7 @@ export default function AISeoMarketingLandingPage() {
       'get-started': 'Select the SEO, local SEO, AI search, and website services you need. We reply in 2–6 hours with a tailored one-on-one plan. Every industry welcome.',
       ...Object.fromEntries(NICHE_KEYS.map((k) => [nicheRouteFromKey(k), niches[k].metaDescription])),
       ...Object.fromEntries(CITY_KEYS.map((k) => [cityRouteFromKey(k), cities[k].metaDescription])),
+      ...Object.fromEntries(CROSS_KEYS.map((k) => [crossRouteFromKey(k), crosses[k].metaDescription])),
     };
 
     let title = titles[route] || titles.home;
@@ -522,6 +527,7 @@ export default function AISeoMarketingLandingPage() {
       home: '/', checkout: '/checkout', success: '/success', blog: '/blog', glossary: '/glossary', statistics: '/statistics', about: '/about', 'get-started': '/get-started',
       ...Object.fromEntries(NICHE_KEYS.map((k) => [nicheRouteFromKey(k), '/' + niches[k].slug])),
       ...Object.fromEntries(CITY_KEYS.map((k) => [cityRouteFromKey(k), '/' + cities[k].slug])),
+      ...Object.fromEntries(CROSS_KEYS.map((k) => [crossRouteFromKey(k), '/' + crosses[k].slug])),
     };
     let canonical = SITE_URL + (pathMap[route] || '/');
 
@@ -953,13 +959,16 @@ export default function AISeoMarketingLandingPage() {
       setJsonLd('freeaudit-service', null);
     }
 
-    // Niche + City buyer-intent pages — Service + FAQPage + WebPage schema
+    // Niche + City + Cross buyer-intent pages — Service + FAQPage + WebPage schema
     const nicheKey = route.startsWith('niche-') ? route.slice('niche-'.length) : null;
     const cityKey = route.startsWith('city-') ? route.slice('city-'.length) : null;
-    const n = nicheKey ? niches[nicheKey] : cityKey ? cities[cityKey] : null;
+    const crossKey = route.startsWith('cross-') ? route.slice('cross-'.length) : null;
+    const n = nicheKey ? niches[nicheKey] : cityKey ? cities[cityKey] : crossKey ? crosses[crossKey] : null;
     if (n) {
       const areaServed = cityKey
         ? { '@type': 'City', name: cities[cityKey].city }
+        : crossKey
+        ? { '@type': 'City', name: crosses[crossKey].city }
         : { '@type': 'Country', name: 'United States' };
       setJsonLd('niche-service', {
         '@context': 'https://schema.org',
@@ -1005,6 +1014,7 @@ export default function AISeoMarketingLandingPage() {
     let crumbEntry = crumbStatic[route];
     if (!crumbEntry && nicheKey) crumbEntry = { label: niches[nicheKey].h1, path: '/' + niches[nicheKey].slug };
     if (!crumbEntry && cityKey) crumbEntry = { label: cities[cityKey].h1, path: '/' + cities[cityKey].slug };
+    if (!crumbEntry && crossKey) crumbEntry = { label: crosses[crossKey].h1, path: '/' + crosses[crossKey].slug };
     if (crumbEntry) {
       setJsonLd('breadcrumbs', {
         '@context': 'https://schema.org',
@@ -1498,14 +1508,25 @@ export default function AISeoMarketingLandingPage() {
     );
   }
 
-  /* ═══════════ NICHE + CITY LANDING PAGES ═══════════ */
-  if (route.startsWith('niche-') || route.startsWith('city-')) {
+  /* ═══════════ NICHE + CITY + CROSS LANDING PAGES ═══════════ */
+  if (route.startsWith('niche-') || route.startsWith('city-') || route.startsWith('cross-')) {
     const isCity = route.startsWith('city-');
-    const dataKey = isCity ? route.slice('city-'.length) : route.slice('niche-'.length);
-    const n = isCity ? cities[dataKey] : niches[dataKey];
+    const isCross = route.startsWith('cross-');
+    const dataKey = isCross
+      ? route.slice('cross-'.length)
+      : isCity
+      ? route.slice('city-'.length)
+      : route.slice('niche-'.length);
+    const n = isCross ? crosses[dataKey] : isCity ? cities[dataKey] : niches[dataKey];
     if (!n) return null;
-    const pageType = isCity ? 'Location' : 'Niche';
-    const whatWeDoLabel = isCity
+    const pageType = isCross ? 'Local SEO' : isCity ? 'Location' : 'Niche';
+    // Cross pages link back to their city + industry; city pages link out to their crosses.
+    const relatedCrosses = isCity ? crossesForCity(dataKey) : [];
+    const parentCity = isCross ? cities[n.cityKey] : null;
+    const parentNiche = isCross ? niches[n.nicheKey] : null;
+    const whatWeDoLabel = isCross
+      ? `What RankFrame does for ${n.label.toLowerCase()} in ${n.city}`
+      : isCity
       ? `What RankFrame does for businesses in ${cities[dataKey].city}`
       : dataKey === 'dentists'
       ? 'What RankFrame does for dental practices'
@@ -1588,6 +1609,46 @@ export default function AISeoMarketingLandingPage() {
               ))}
             </div>
           </section>
+
+          {/* City page → industry cross-links (internal linking + crawl paths to cross pages) */}
+          {isCity && relatedCrosses.length > 0 && (
+            <section className="mt-14">
+              <h2 className="text-2xl font-semibold text-gray-900 md:text-3xl">Popular in {n.city}</h2>
+              <p className="mt-3 text-gray-600">Local SEO by industry across the {n.city} area:</p>
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                {relatedCrosses.map((x) => (
+                  <a
+                    key={x.slug}
+                    href={'/' + x.slug}
+                    onClick={(e) => { e.preventDefault(); goTo('/' + x.slug); }}
+                    className="card-hover-glow flex items-center justify-between rounded-xl border border-[#e1f1ee] bg-white px-5 py-4 transition hover:-translate-y-0.5"
+                  >
+                    <span className="text-sm font-bold text-gray-900">SEO for {x.label} in {x.city}</span>
+                    <span className="text-sm font-medium text-emerald-700">→</span>
+                  </a>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Cross page → parent city + industry links */}
+          {isCross && (
+            <section className="mt-14 rounded-2xl border border-[#e1f1ee] bg-white p-6">
+              <div className="text-sm font-semibold uppercase tracking-[0.25em] text-emerald-600">Related</div>
+              <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+                {parentCity && (
+                  <a href={'/' + parentCity.slug} onClick={(e) => { e.preventDefault(); goTo('/' + parentCity.slug); }} className="font-semibold text-emerald-700 underline underline-offset-2 hover:text-emerald-600">
+                    All SEO services in {parentCity.city} →
+                  </a>
+                )}
+                {parentNiche && (
+                  <a href={'/' + parentNiche.slug} onClick={(e) => { e.preventDefault(); goTo('/' + parentNiche.slug); }} className="font-semibold text-emerald-700 underline underline-offset-2 hover:text-emerald-600">
+                    {parentNiche.h1} (nationwide) →
+                  </a>
+                )}
+              </div>
+            </section>
+          )}
 
           <div className="mt-14 rounded-2xl border border-emerald-500/30 bg-white p-7 text-center">
             <p className="text-lg text-gray-700">Ready to see exactly what's holding your rankings back?</p>
@@ -2144,11 +2205,11 @@ export default function AISeoMarketingLandingPage() {
                 SEO for your industry
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-                We work with businesses in every industry — including high-risk and restricted verticals. Explore the playbook for yours, or just ask us about any field.
+                We work with businesses in every industry. Explore the playbook for yours, or just ask us about any field. Restricted and high-risk verticals have a dedicated section below.
               </p>
             </div>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {NICHE_KEYS.map((k, i) => (
+              {NICHE_KEYS.filter((k) => !niches[k].highRisk).map((k, i) => (
                 <FadeIn key={k} delay={i * 0.04}>
                   <a
                     href={'/' + niches[k].slug}
@@ -2193,6 +2254,63 @@ export default function AISeoMarketingLandingPage() {
                   </FadeIn>
                 ))}
               </div>
+            </div>
+          </FadeIn>
+        </section>
+
+        {/* ── High-Risk & Restricted Industries ── */}
+        <section id="high-risk" className="mx-auto max-w-6xl px-6 py-16 lg:px-10" aria-label="High-risk and restricted industry SEO">
+          <FadeIn>
+            <div className="overflow-hidden rounded-[2.5rem] border border-emerald-500/25 bg-gradient-to-br from-white via-[#f0faf8] to-[#eaf6ff] p-8 md:p-12">
+              <div className="max-w-3xl">
+                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-white/70 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.25em] text-emerald-700">
+                  Our specialty
+                </div>
+                <h2 className="mt-5 text-3xl font-bold tracking-tight text-gray-900 md:text-4xl">
+                  SEO for high-risk &amp; restricted industries
+                </h2>
+                <p className="mt-5 text-lg leading-8 text-gray-700">
+                  If you sell CBD, peptides, supplements, crypto, firearms, or run an iGaming or betting brand, Google and Meta ads are banned or throttled for your category — so paid growth is unreliable or impossible. That makes organic SEO your single most dependable channel, and it&apos;s the area we&apos;ve gone deepest in.
+                </p>
+                <p className="mt-4 text-lg leading-8 text-gray-700">
+                  We have more experience and get better results in restricted verticals than typical agencies — most of which either refuse these industries or use shady link schemes that invite a penalty. Our approach is fully compliant and white-hat: durable technical SEO, E-E-A-T-strong content, and earned authority that survives algorithm updates and can&apos;t be switched off by an ad reviewer.
+                </p>
+              </div>
+
+              <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {NICHE_KEYS.filter((k) => niches[k].highRisk).map((k, i) => (
+                  <FadeIn key={k} delay={i * 0.04}>
+                    <a
+                      href={'/' + niches[k].slug}
+                      onClick={(e) => { e.preventDefault(); goTo('/' + niches[k].slug); }}
+                      className="card-hover-glow block h-full rounded-2xl border border-emerald-500/20 bg-white p-5 transition hover:-translate-y-1"
+                    >
+                      <div className="text-base font-bold leading-6 text-gray-900">{niches[k].h1.replace(/^SEO for /, '')}</div>
+                      <div className="mt-2 text-sm font-medium text-emerald-700">See the playbook →</div>
+                    </a>
+                  </FadeIn>
+                ))}
+              </div>
+
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <button
+                  onClick={() => goTo('/get-started')}
+                  className="btn-shimmer rounded-full px-6 py-3 text-sm font-bold text-white transition hover:scale-[1.02]"
+                >
+                  Get restricted-industry SEO →
+                </button>
+                <a
+                  href="/blog/seo-for-high-risk-industries-2026"
+                  onClick={(e) => { e.preventDefault(); goTo('/blog/seo-for-high-risk-industries-2026'); }}
+                  className="text-sm font-semibold text-emerald-700 underline underline-offset-2 hover:text-emerald-600"
+                >
+                  Read the high-risk SEO playbook
+                </a>
+              </div>
+              <p className="mt-6 text-sm text-gray-500">
+                Don&apos;t see your restricted category? We likely cover it —{' '}
+                <button onClick={() => goTo('/get-started')} className="font-semibold text-emerald-700 underline underline-offset-2 hover:text-emerald-600">just ask</button>.
+              </p>
             </div>
           </FadeIn>
         </section>
@@ -2657,6 +2775,9 @@ function getRouteFromPath(path) {
   // Dynamic city routing — any slug defined in content/cities.js resolves automatically.
   const cityKey = CITY_KEYS.find((k) => cities[k].slug === nicheSlug);
   if (cityKey) return 'city-' + cityKey;
+  // Dynamic industry × city cross routing — e.g. /seo-for-restaurants-in-miami
+  const crossKey = CROSS_KEYS.find((k) => crosses[k].slug === nicheSlug);
+  if (crossKey) return 'cross-' + crossKey;
   if (clean === '/blog' || clean === '/blog/') return 'blog';
   if (clean.startsWith('/blog/')) return 'blog-post';
   return 'home';
