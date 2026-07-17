@@ -2440,9 +2440,9 @@ function SiteHeader() {
   const navLinks = [
     ['/#pricing', 'Services'],
     ['/#industries', 'Industries'],
-    ['/#why-seo', 'Why SEO'],
     ['/#how-it-works', 'How It Works'],
     ['/#case-study', 'Case Study'],
+    ['/seo-checklist', 'Free Tool'],
     ['/blog', 'Blog'],
     ['/get-started', 'Get Started'],
   ];
