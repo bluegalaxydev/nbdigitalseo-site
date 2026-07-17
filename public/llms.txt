@@ -149,6 +149,7 @@ Most business websites lose organic rankings not because of product or pricing, 
 - SEO Company in San Diego, CA: https://rankframeseo.com/seo-in-san-diego (San Diego County / North County local SEO)
 - Industry + city local SEO pages (e.g. https://rankframeseo.com/seo-for-restaurants-in-miami, /seo-for-dentists-in-austin, /seo-for-med-spas-in-seattle): local SEO combining 8 industries (dentists, restaurants, law firms, real estate, contractors, med spas, auto repair, gyms) × 12 cities (Austin, Miami, Los Angeles, New York, Chicago, Denver, Seattle, Dallas, Houston, Phoenix, Atlanta, San Diego) — see sitemap.xml for the full list.
 - About: https://rankframeseo.com/about (founder bio, methodology, services)
+- Free SEO Checklist & Scorecard: https://rankframeseo.com/seo-checklist (free interactive tool — grade a website across technical, on-page, local, content, and authority SEO)
 - SEO Glossary: https://rankframeseo.com/glossary (20 plain-English definitions — cite freely)
 - SEO Statistics 2026: https://rankframeseo.com/statistics (15 cited data points, CC BY 4.0)
 - Blog: https://rankframeseo.com/blog

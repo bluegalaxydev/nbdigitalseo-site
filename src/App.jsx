@@ -4,6 +4,7 @@ import { niches, getNicheBySlug } from './content/niches.js';
 import { cities, getCityBySlug } from './content/cities.js';
 import { crosses, crossesForCity } from './content/cross.js';
 import { testimonials } from './content/testimonials.js';
+import { CHECKLIST_GROUPS, CHECKLIST_TOTAL, gradeFor } from './content/checklist.js';
 import { glossaryTerms, seoStatistics, aboutContent } from './content/pages.js';
 
 // Route key helpers — kept in one place so router, schemas, and renders agree
@@ -501,6 +502,7 @@ export default function AISeoMarketingLandingPage() {
       success: 'Request Received — RankFrame SEO',
       blog: 'SEO Blog — Technical, Local & AI Search Insights | RankFrame SEO',
       glossary: 'SEO Glossary — 20 Key Terms Defined | RankFrame SEO',
+      'seo-checklist': 'Free SEO Checklist & Scorecard — Grade Your Website | RankFrame SEO',
       statistics: 'SEO Statistics 2026 — Cited Data & Benchmarks | RankFrame SEO',
       about: 'About RankFrame SEO — Full-Service SEO & Web Studio',
       'get-started': 'Get Started — Select Your SEO & Web Services | RankFrame SEO',
@@ -514,6 +516,7 @@ export default function AISeoMarketingLandingPage() {
       success: 'Thanks — your service request has been received. We will reply in 2–6 hours to start a one-on-one conversation.',
       blog: 'Articles, playbooks, and case studies on technical SEO, architecture, schema markup, Core Web Vitals and off-page trust building.',
       glossary: 'Plain-English definitions of 20 essential SEO and GEO terms: Core Web Vitals, schema markup, E-E-A-T, canonical tags, AI Overviews, llms.txt, and more.',
+      'seo-checklist': 'Free interactive SEO checklist and scorecard. Grade your website across technical, on-page, local, content, and authority SEO in 2 minutes — then see exactly what to fix.',
       statistics: '15 current SEO statistics with sources — organic search share, SERP click-through rates, Core Web Vitals thresholds, and RankFrame audit benchmarks.',
       about: 'RankFrame SEO is a full-service SEO and web studio for businesses in every industry. Founder bio, services, and the audit methodology behind the PACK EXPO case study.',
       'get-started': 'Select the SEO, local SEO, AI search, and website services you need. We reply in 2–6 hours with a tailored one-on-one plan. Every industry welcome.',
@@ -525,7 +528,7 @@ export default function AISeoMarketingLandingPage() {
     let title = titles[route] || titles.home;
     let description = descriptions[route] || descriptions.home;
     const pathMap = {
-      home: '/', checkout: '/checkout', success: '/success', blog: '/blog', glossary: '/glossary', statistics: '/statistics', about: '/about', 'get-started': '/get-started',
+      home: '/', checkout: '/checkout', success: '/success', blog: '/blog', glossary: '/glossary', 'seo-checklist': '/seo-checklist', statistics: '/statistics', about: '/about', 'get-started': '/get-started',
       ...Object.fromEntries(NICHE_KEYS.map((k) => [nicheRouteFromKey(k), '/' + niches[k].slug])),
       ...Object.fromEntries(CITY_KEYS.map((k) => [cityRouteFromKey(k), '/' + cities[k].slug])),
       ...Object.fromEntries(CROSS_KEYS.map((k) => [crossRouteFromKey(k), '/' + crosses[k].slug])),
@@ -874,6 +877,34 @@ export default function AISeoMarketingLandingPage() {
       setJsonLd('glossary-collection', null);
     }
 
+    // Free SEO Checklist — WebApplication + ItemList (linkable tool)
+    if (route === 'seo-checklist') {
+      setJsonLd('checklist-app', {
+        '@context': 'https://schema.org',
+        '@type': 'WebApplication',
+        name: 'Free SEO Checklist & Scorecard',
+        url: SITE_URL + '/seo-checklist',
+        applicationCategory: 'BusinessApplication',
+        operatingSystem: 'Any (web browser)',
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+        description,
+        provider: { '@type': 'Organization', name: 'RankFrame SEO', url: SITE_URL },
+      });
+      setJsonLd('checklist-itemlist', {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        name: 'SEO Checklist',
+        itemListElement: CHECKLIST_GROUPS.flatMap((g) => g.items).map((it, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: it.text,
+        })),
+      });
+    } else {
+      setJsonLd('checklist-app', null);
+      setJsonLd('checklist-itemlist', null);
+    }
+
     // Statistics — Dataset schema (citation-magnet for AI)
     if (route === 'statistics') {
       setJsonLd('statistics-dataset', {
@@ -1008,6 +1039,7 @@ export default function AISeoMarketingLandingPage() {
     // Breadcrumbs for glossary / statistics / about / get-started / niche + city pages
     const crumbStatic = {
       glossary: { label: 'Glossary', path: '/glossary' },
+      'seo-checklist': { label: 'Free SEO Checklist', path: '/seo-checklist' },
       statistics: { label: 'SEO Statistics', path: '/statistics' },
       about: { label: 'About', path: '/about' },
       'get-started': { label: 'Get Started', path: '/get-started' },
@@ -1267,6 +1299,11 @@ export default function AISeoMarketingLandingPage() {
 
   /* ═══════════ BLOG LIST ═══════════ */
   /* ═══════════ GLOSSARY ═══════════ */
+  /* ═══════════ FREE SEO CHECKLIST TOOL ═══════════ */
+  if (route === 'seo-checklist') {
+    return <SeoChecklistPage goTo={goTo} />;
+  }
+
   if (route === 'glossary') {
     return (
       <div className="grain-overlay min-h-screen bg-[#f3fbfb] text-gray-900">
@@ -2506,6 +2543,116 @@ function navigateAnchor(href) {
   }
 }
 
+/* ═══════════ FREE SEO CHECKLIST TOOL ═══════════ */
+function SeoChecklistPage({ goTo }) {
+  const [checked, setChecked] = useState({});
+  const toggle = (id) => setChecked((c) => ({ ...c, [id]: !c[id] }));
+
+  const total = CHECKLIST_TOTAL;
+  const done = Object.values(checked).filter(Boolean).length;
+  const pct = total ? Math.round((done / total) * 100) : 0;
+  const { grade, label, note } = gradeFor(pct);
+
+  // Weakest group (lowest % of its items checked) once the user has started.
+  let weakest = null;
+  if (done > 0) {
+    let worst = 2;
+    for (const g of CHECKLIST_GROUPS) {
+      const c = g.items.filter((it) => checked[it.id]).length;
+      const p = c / g.items.length;
+      if (p < worst) {
+        worst = p;
+        weakest = g;
+      }
+    }
+  }
+
+  const gradeColor =
+    pct >= 75 ? 'text-emerald-600' : pct >= 60 ? 'text-amber-500' : pct >= 40 ? 'text-orange-500' : 'text-red-500';
+
+  return (
+    <div className="grain-overlay min-h-screen bg-[#f3fbfb] text-gray-900">
+      <SiteHeader goTo={goTo} />
+      <main className="mx-auto max-w-5xl px-6 py-16 lg:px-10">
+        <div className="mb-10 text-center">
+          <div className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-600">Free Tool</div>
+          <h1 className="mt-4 text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">Free SEO Checklist &amp; Scorecard</h1>
+          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-600">
+            Grade your website in about 2 minutes. Check off what you already have across technical, on-page, local, content, and authority SEO — your score and weakest area update live.
+          </p>
+        </div>
+
+        <div className="grid gap-8 lg:grid-cols-[1.6fr_1fr]">
+          {/* Checklist */}
+          <div className="space-y-8">
+            {CHECKLIST_GROUPS.map((g) => {
+              const c = g.items.filter((it) => checked[it.id]).length;
+              return (
+                <section key={g.key} className="rounded-2xl border border-[#e1f1ee] bg-white p-6">
+                  <div className="mb-4 flex items-center justify-between">
+                    <h2 className="text-lg font-bold text-gray-900">{g.name}</h2>
+                    <span className="text-sm font-semibold text-emerald-700">{c}/{g.items.length}</span>
+                  </div>
+                  <ul className="space-y-2.5">
+                    {g.items.map((it) => (
+                      <li key={it.id}>
+                        <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-transparent px-3 py-2.5 transition hover:border-[#e1f1ee] hover:bg-[#f4fcfb]">
+                          <input
+                            type="checkbox"
+                            checked={!!checked[it.id]}
+                            onChange={() => toggle(it.id)}
+                            className="mt-1 h-4 w-4 shrink-0 accent-emerald-500"
+                          />
+                          <span className={'text-sm leading-6 ' + (checked[it.id] ? 'text-gray-400 line-through' : 'text-gray-700')}>{it.text}</span>
+                        </label>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              );
+            })}
+          </div>
+
+          {/* Live scorecard */}
+          <div className="lg:sticky lg:top-24 lg:self-start">
+            <div className="rounded-[2rem] border border-emerald-500/25 bg-gradient-to-br from-white to-[#eef9f7] p-8 text-center">
+              <div className="text-xs font-bold uppercase tracking-[0.3em] text-emerald-600">Your SEO Score</div>
+              <div className={'mt-4 text-6xl font-bold ' + gradeColor}>{pct}%</div>
+              <div className={'mt-1 text-2xl font-bold ' + gradeColor}>Grade {grade} · {label}</div>
+              <div className="mt-4 h-2 w-full overflow-hidden rounded-full bg-[#e1f1ee]">
+                <div className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-sky-500 transition-all duration-300" style={{ width: pct + '%' }} />
+              </div>
+              <p className="mt-4 text-sm leading-6 text-gray-600">{done === 0 ? 'Check the boxes as you go — your score updates instantly.' : note}</p>
+              {weakest && (
+                <div className="mt-5 rounded-xl border border-[#e1f1ee] bg-white p-4 text-left">
+                  <div className="text-xs font-bold uppercase tracking-wider text-emerald-600">Weakest area</div>
+                  <div className="mt-1 text-sm font-semibold text-gray-900">{weakest.name}</div>
+                  <div className="mt-1 text-xs leading-5 text-gray-500">Start here — it's where you're losing the most rankings.</div>
+                </div>
+              )}
+              <button
+                onClick={() => goTo('/get-started')}
+                className="btn-shimmer mt-6 w-full rounded-full px-6 py-3.5 text-sm font-bold text-white transition hover:scale-[1.02]"
+              >
+                Want us to fix the gaps? →
+              </button>
+              <p className="mt-3 text-xs text-gray-500">Tell us what you need · Reply in 2–6 hours</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-14 rounded-2xl border border-[#e1f1ee] bg-white p-7 text-center">
+          <p className="text-lg text-gray-700">This checklist is the same framework we use to audit client sites.</p>
+          <p className="mt-2 text-sm text-gray-500">
+            Want the deeper version? Explore our <a href="/glossary" onClick={(e) => { e.preventDefault(); goTo('/glossary'); }} className="font-semibold text-emerald-700 underline underline-offset-2">SEO glossary</a> and <a href="/blog" onClick={(e) => { e.preventDefault(); goTo('/blog'); }} className="font-semibold text-emerald-700 underline underline-offset-2">playbooks</a>.
+          </p>
+        </div>
+      </main>
+      <SiteFooter />
+    </div>
+  );
+}
+
 /* ═══════════ SITE FOOTER ═══════════ */
 function SiteFooter() {
   const footerLinkClick = (e, href) => {
@@ -2570,6 +2717,7 @@ function SiteFooter() {
                   <span className="text-[10px] text-gray-400 transition-transform duration-200 group-open:rotate-180">▼</span>
                 </summary>
                 <div className="mt-3 grid gap-2.5 border-l border-[#d7ece8] pl-4">
+                  <a href="/seo-checklist" onClick={(e) => footerLinkClick(e, '/seo-checklist')} className="text-sm text-gray-500 transition hover:text-emerald-600">Free SEO Checklist</a>
                   <a href="/glossary" onClick={(e) => footerLinkClick(e, '/glossary')} className="text-sm text-gray-500 transition hover:text-emerald-600">SEO Glossary</a>
                   <a href="/statistics" onClick={(e) => footerLinkClick(e, '/statistics')} className="text-sm text-gray-500 transition hover:text-emerald-600">SEO Statistics</a>
                   {NICHE_KEYS.map((k) => (
@@ -2801,6 +2949,7 @@ function getRouteFromPath(path) {
   if (clean === '/checkout' || clean === '/checkout/') return 'get-started';
   if (clean === '/success' || clean === '/success/') return 'success';
   if (clean === '/glossary' || clean === '/glossary/') return 'glossary';
+  if (clean === '/seo-checklist' || clean === '/seo-checklist/') return 'seo-checklist';
   if (clean === '/statistics' || clean === '/statistics/') return 'statistics';
   if (clean === '/about' || clean === '/about/') return 'about';
   if (clean === '/get-started' || clean === '/get-started/' || clean === '/free-audit' || clean === '/free-audit/') return 'get-started';
