@@ -4,7 +4,7 @@ import { niches, getNicheBySlug } from './content/niches.js';
 import { cities, getCityBySlug } from './content/cities.js';
 import { crosses, crossesForCity } from './content/cross.js';
 import { testimonials } from './content/testimonials.js';
-import { CHECKLIST_GROUPS, CHECKLIST_TOTAL, gradeFor } from './content/checklist.js';
+import { CHECKLIST_GROUPS, CHECKLIST_TOTAL, MAX_DISPLAY_SCORE, gradeFor } from './content/checklist.js';
 import { glossaryTerms, seoStatistics, aboutContent } from './content/pages.js';
 
 // Route key helpers — kept in one place so router, schemas, and renders agree
@@ -2550,8 +2550,11 @@ function SeoChecklistPage({ goTo }) {
 
   const total = CHECKLIST_TOTAL;
   const done = Object.values(checked).filter(Boolean).length;
-  const pct = total ? Math.round((done / total) * 100) : 0;
-  const { grade, label, note } = gradeFor(pct);
+  const rawPct = total ? Math.round((done / total) * 100) : 0;
+  // A self-check never earns a flawless 100 — capped just below perfect on purpose.
+  const pct = Math.min(rawPct, MAX_DISPLAY_SCORE);
+  const { grade, label, note } = gradeFor(rawPct);
+  const maxedOut = rawPct >= 100;
 
   // Weakest group (lowest % of its items checked) once the user has started.
   let weakest = null;
@@ -2622,7 +2625,14 @@ function SeoChecklistPage({ goTo }) {
               <div className="mt-4 h-2 w-full overflow-hidden rounded-full bg-[#e1f1ee]">
                 <div className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-sky-500 transition-all duration-300" style={{ width: pct + '%' }} />
               </div>
-              <p className="mt-4 text-sm leading-6 text-gray-600">{done === 0 ? 'Check the boxes as you go — your score updates instantly.' : note}</p>
+              <p className="mt-4 text-sm leading-6 text-gray-600">
+                {done === 0 ? 'Check the boxes as you go — your score updates instantly.' : maxedOut ? 'You’ve nailed every item on the surface — but a checklist can’t measure execution quality, backlink authority, or the hidden technical issues that actually decide rankings. That’s what a real audit finds.' : note}
+              </p>
+              {done > 0 && (
+                <p className="mt-3 text-xs italic leading-5 text-gray-400">
+                  No site ever scores a perfect 100 — SEO is never truly &ldquo;done.&rdquo; A full audit finds the gaps a checklist can&rsquo;t.
+                </p>
+              )}
               {weakest && (
                 <div className="mt-5 rounded-xl border border-[#e1f1ee] bg-white p-4 text-left">
                   <div className="text-xs font-bold uppercase tracking-wider text-emerald-600">Weakest area</div>
