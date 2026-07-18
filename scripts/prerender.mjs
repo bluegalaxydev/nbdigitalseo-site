@@ -161,6 +161,15 @@ let failed = 0;
 for (const route of routes) {
   const page = await browser.newPage();
   try {
+    // Don't let prerendering send real hits to analytics / tag managers.
+    await page.setRequestInterception(true);
+    page.on('request', (req) => {
+      if (/google-analytics\.com|googletagmanager\.com|analytics\.google\.com/.test(req.url())) {
+        req.abort();
+      } else {
+        req.continue();
+      }
+    });
     await page.goto('http://localhost:' + PORT + route, {
       waitUntil: 'load',
       timeout: 30000,

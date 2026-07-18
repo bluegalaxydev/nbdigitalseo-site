@@ -4,6 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- ===== Google Analytics 4 (gtag.js) =====
+         send_page_view is false here on purpose: this is a client-side-routed
+         SPA, so page_view events are sent manually on every route change from
+         src/App.jsx. That captures navigation between all pages, which the
+         default single fire-on-load would miss. -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NTSDJNJ76L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NTSDJNJ76L', { send_page_view: false });
+    </script>
+
     <!-- ✅ Google Search Console verification — replace with your real code -->
     <!-- <meta name="google-site-verification" content="YOUR_REAL_CODE_HERE" /> -->
 

@@ -1108,6 +1108,17 @@ export default function AISeoMarketingLandingPage() {
       }
     }
 
+    // Google Analytics 4 — send a page_view on every route change. The gtag
+    // config in index.html has send_page_view:false, so this is the single
+    // source of page views and correctly tracks SPA navigation across pages.
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+      window.gtag('event', 'page_view', {
+        page_title: title,
+        page_location: canonical,
+        page_path: pathMap[route] || window.location.pathname,
+      });
+    }
+
     // Signal to the prerenderer that this route's <head> (title, canonical,
     // meta, JSON-LD) has been fully applied, so it can snapshot the correct
     // per-page HTML instead of the initial shell. No-op in normal browsing.
